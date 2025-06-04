@@ -6,22 +6,57 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noemit",
+    "test": "echo \"No tests available\" && exit 0",
+    "code-lint": "eslint --fix app components i18n && prettier --write app components i18n",
+    "review": "npm run type-check && npm run code-lint",
+    "prepare": "husky install",
+    "precommit": "lint-staged",
+    "postinstall": "husky install",
+    "check-translations": "ts-node checkTranslations.ts"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "tsc --noemit --skipLibCheck"
+    ],
+    "**/*.{json,md,css,scss,html}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
+    "chart.js": "^4.4.9",
+    "framer-motion": "^12.16.0",
+    "lucide-react": "^0.512.0",
+    "next": "15.3.3",
+    "next-intl": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.3"
+    "react-icons": "^5.5.0",
+    "swiper": "^11.2.8",
+    "tailwindcss-rtl": "^0.9.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.28.0",
+    "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
-    "@eslint/eslintrc": "^3"
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
+    "postcss": "^8.5.4",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.1.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5",
+    "typescript-eslint": "^8.33.1"
   }
 }
