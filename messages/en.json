@@ -1,0 +1,23 @@
+{
+  "Navbar": {
+    "malariaWorld": "Malaria World",
+    "malariaCampaign": "Campaigns",
+     "resources": "Resources",
+    "information": "Information",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Welcome to Malaria World",
+      "description": "Your one-stop destination for all things related to malaria. Stay informed, get involved, and help us fight malaria together.",
+      "cta": "Join the Fight Against Malaria",
+      "cta2": "Explore the System",
+      "feature1": "Access comprehensive malaria data",
+      "feature2": "Get real-time updates on outbreaks",
+      "feature3": "Learn about prevention and treatment",
+      "feature4": "Engage with community health workers"
+
+    }
+  }
+}
