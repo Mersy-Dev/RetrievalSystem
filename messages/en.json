@@ -16,8 +16,28 @@
       "feature1": "Access comprehensive malaria data",
       "feature2": "Get real-time updates on outbreaks",
       "feature3": "Learn about prevention and treatment",
-      "feature4": "Engage with community health workers"
-
+      "feature4": "Engage with community health workers",
+      "rightTitle": "Malaria Intelligence Assistant",
+      "rightDescription": "Search for symptoms, treatments, or trusted malaria-related insights.",
+      "symButton": "🦠 Symptoms",
+      "treatButton": "💊 Treatments",
+      "outButton": "📊 Outbreaks",
+      "researchButton": "📚 Research",
+      "awarenessButton": "📢 Awareness",
+      "preventionButton": "🛡️ Prevention",
+      "recentSearch": "Recent Searches",
+      "commonSym": " Common malaria symptoms in Nigeria",
+      "malPrev": "Malaria prevention tips for families",
+      "bestTreat": "Best treatments for malaria in Nigeria",
+      "adInsight": "📊 Advanced Insights",
+      "uploadCase": "📤 Upload Case",
+      "retrieveInfo": "🔍 Retrieve Info"
+    },
+    "malBody": {
+      "awareness": "Awareness",
+      "title": "Built-in resources for malaria prevention and control",
+      "awarenessDescription": "Access reliable malaria prevention strategies and verified tools used by health workers and organizations globally.",
+      "description": "Explore the latest research, news, and resources related to malaria. Stay updated with our comprehensive database."
     }
   }
 }

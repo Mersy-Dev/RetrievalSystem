@@ -7,7 +7,7 @@ const Hero = () => {
   const t = useTranslations("home.hero");
 
   return (
-    <section className="bg-white py-16 mt-14 md:mt-24">
+    <section className="bg-white py-16 mt-2 md:mt-24">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-6">
@@ -43,11 +43,11 @@ const Hero = () => {
         {/* Right Malaria Input Assistant Box */}
         <div className="md:w-1/2 w-full bg-gradient-to-br from-sky-50 to-white shadow-2xl rounded-2xl p-8 border border-sky-200">
           <h2 className="text-xl font-semibold text-sky-700 mb-2">
-            Malaria Intelligence Assistant
+            {t("rightTitle") || "Malaria Intelligence Assistant"}
           </h2>
           <p className="text-sm text-gray-600 mb-6">
-            Search for symptoms, treatments, or trusted malaria-related
-            insights.
+            {t("rightDescription") || "Search for symptoms, treatments, or trusted malaria-related insights."
+      }
           </p>
 
           {/* Search Input */}
@@ -65,12 +65,12 @@ const Hero = () => {
           {/* Quick Action Tags */}
           <div className="mb-5 grid grid-cols-3 gap-3 text-sm">
             {[
-              "🧬 Symptoms",
-              "💊 Treatment",
-              "📍 Outbreaks",
-              "📚 Research",
-              "📢 Awareness",
-              "🛡 Prevention",
+              t("symButton") || "🦠 Symptoms",
+              t("treatButton") || "💊 Treatment",
+              t("outButton") || "🌍 Outbreaks",
+              t("researchButton") || "📚 Research",
+              t("awarenessButton") || "📈 Awareness",
+              t("preventionButton") || "🛡️ Prevention",
             ].map((item) => (
               <button
                 key={item}
@@ -84,17 +84,20 @@ const Hero = () => {
           {/* Recent or Suggested Searches */}
           <div className="mb-6">
             <p className="text-sm text-gray-500 mb-2 font-medium">
-              Recent Searches
+              {t("recentSearch") || "Recent Searches"}
             </p>
             <ul className="text-sm text-sky-700 space-y-1">
               <li className="hover:underline cursor-pointer">
-                Common malaria symptoms in Nigeria
+               {t("commonSym") || " Common malaria symptoms in Nigeria"}
+
+               
               </li>
               <li className="hover:underline cursor-pointer">
-                Malaria prevention tips for families
+                 {t("malPrev") || "Malaria prevention tips for families"}
+
               </li>
               <li className="hover:underline cursor-pointer">
-                Best treatment practices in 2025
+                   {t("bestTreat") || "Best treatment practices in 2025"}
               </li>
             </ul>
           </div>
@@ -102,14 +105,16 @@ const Hero = () => {
           {/* Footer Actions */}
           <div className="flex items-center justify-between">
             <button className="text-sky-600 text-sm font-semibold hover:underline">
-              📊 Advanced Insights
+                 {t("adInsight") || "📊 Advanced Insights"}
+              
             </button>
             <div className="flex items-center gap-3">
               <button className="text-sm text-gray-600 hover:underline">
-                📤 Upload Case
+                 {t("uploadCase") || "📤 Upload Case"}
+                
               </button>
               <button className="bg-sky-600 text-white px-4 py-2 rounded-md hover:bg-sky-700 shadow">
-                Retrieve Info
+                {t("retrieveInfo") || "🔍 Retrieve Info"}
               </button>
             </div>
           </div>

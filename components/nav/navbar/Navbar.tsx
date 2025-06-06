@@ -1,12 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,8 +18,13 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  const locale = useLocale();
+
+
   const handleLanguageChange = (lang: string) => {
-    router.replace(`/${lang}${pathname}`);
+    const segments = pathname.split("/");
+    const newPath = segments.slice(2).join("/") || ""; // remove locale segment
+    router.replace(`/${lang}/${newPath}`);
   };
 
   return (
@@ -152,11 +158,15 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <select
               onChange={(e) => handleLanguageChange(e.target.value)}
-              defaultValue="en"
+              value={locale} // use the current locale as value
               className="border border-gray-300 rounded px-2 py-1 text-sm bg-white text-gray-700 hover:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-300"
             >
-              <option value="en">English</option>
-              <option value="yo">Yorùbá</option>
+              <option value="en">
+                {locale === "en" ? "English" : "Gẹ̀ẹ́sì"}
+              </option>
+              <option value="yo">
+                {locale === "yo" ? "Yorùbá" : "Yorùbá"}
+              </option>
             </select>
           </div>
         </div>
