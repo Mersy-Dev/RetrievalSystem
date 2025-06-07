@@ -24,12 +24,12 @@ const MalBody = () => {
         {/* Keyword Tags */}
         <div className="flex flex-wrap gap-3 mt-4">
           {[
-            "🛏️ Bed Nets",
-            "💉 Malaria Vaccine",
-            "🦟 Mosquito Repellent",
-            "🌍 WHO Guidelines",
-            "📊 Case Surveillance",
-            "🚫 Stagnant Water Control",
+            t("keyword1") || "🛏️ Bed Nets",
+            t("keyword2") || "💊 💉 Malaria Vaccine",
+            t("keyword3") || "🦟 Mosquito Repellent",  
+            t("keyword4") || "🌍 WHO Guidelines",
+            t("keyword5") || "📊 Case Surveillance",
+            t("keyword6") || "🚫 Stagnant Water Control",
           ].map((item) => (
             <button
               key={item}
@@ -43,23 +43,24 @@ const MalBody = () => {
 
       {/* Right Section: Partners/Organizations */}
       <div className="md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-5">
-        {[
-          { name: "World Health Org", icon: "🌐" },
-          { name: "CDC (US)", icon: "🧪" },
-          { name: "UNICEF", icon: "🧒" },
-          { name: "Red Cross", icon: "➕" },
-          { name: "Africa CDC", icon: "🌍" },
-          { name: "Gavi", icon: "💉" },
-        ].map((org) => (
-          <div
-            key={org.name}
-            className="rounded-xl bg-white p-4 shadow-md flex flex-col items-center justify-center text-center hover:shadow-lg transition"
-          >
-            <div className="text-3xl mb-2">{org.icon}</div>
-            <p className="text-sm font-medium text-gray-700">{org.name}</p>
-          </div>
-        ))}
+  {[
+    { key: "org1", name: t("org1.name") || "Org 1", icon: t("org1.icon") || "🏥" },
+    { key: "org2", name: t("org2.name") || "Org 2", icon: t("org2.icon") || "🌐" },
+    { key: "org3", name: t("org3.name") || "Org 3", icon: t("org3.icon") || "🧬" },
+    { key: "org4", name: t("org4.name") || "Org 4", icon: t("org4.icon") || "💉" },
+    { key: "org5", name: t("org5.name") || "Org 5", icon: t("org5.icon") || "🦟" },
+    { key: "org6", name: t("org6.name") || "Org 6", icon: t("org6.icon") || "🌍" },
+  ].map((org) => (
+      <div
+        key={org.key}
+        className="rounded-xl bg-white p-4 shadow-md flex flex-col items-center justify-center text-center hover:shadow-lg transition"
+      >
+        <div className="text-3xl mb-2">{org.icon}</div>
+        <p className="text-sm font-medium text-gray-700">{org.name}</p>
       </div>
+    ))}
+</div>
+
     </div>
      </section>
   );

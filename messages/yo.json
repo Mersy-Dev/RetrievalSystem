@@ -1,11 +1,120 @@
 {
-    "Navbar": {
-        "malariaWorld": "Ayé Maleria",
-        "malariaCampaign": "Ìmúlòyẹ̀ nípa Ìpolówó Maleria",
-        "malariaNews": "Ìròyìn Maleria",
-        "malariaResources": "Àwùjọ Maleria",
-        "about": "Nípa Wa",
-        "login": "Wọlé",
-        "signup": "FORÚKỌSÍ FÚN ỌFẸ"
+  "Navbar": {
+    "malariaWorld": "Ayé Maleria",
+    "malariaCampaign": "Ìpolówó",
+    "resources": "Àwọn orísun",
+    "information": "Alaye",
+    "about": "Nípà Wa",
+    "contact": "Kan sí Wa"
+  },
+  "home": {
+    "hero": {
+      "title": " E Kaabọ sí Ayé Maleria",
+      "description": "Ìpò kan ṣoṣo láti rí gbogbo ohun tí o ní ṣe pẹ̀lú maleria. Máa mọ̀, kópa, kí o sì ran wa lọ́wọ́ láti jagun maleria pọ̀.",
+      "cta": "Darapọ̀ mọ́ Ijà lòdì sí Maleria",
+      "cta2": "Ṣàwárí Eto naa",
+      "feature1": "Gba ìmọ̀ jinlẹ̀ nípa maleria",
+      "feature2": "Gba ìmúlò àkókò gidi lórí àjálù",
+      "feature3": "Kọ́ ẹ̀kọ́ nípa ìtọ́jú àti ìbẹ̀wẹ̀",
+      "feature4": "Bá àwọn akẹ́kọ̀ọ́ ilé ìwòsàn ṣe bẹ̀rẹ̀ ìbáṣepọ̀",
+      "rightTitle": "Olùrànlọ́wọ́ Oye Maleria",
+      "rightDescription": "Ṣàwárí àwọn ààmì, ìtọ́jú, tàbí ìmọ̀ tó dájú nípa maleria.",
+      "symButton": "🦠 Ààmì",
+      "treatButton": "💊 Ìtọ́jú",
+      "outButton": "📊 Àjálù",
+      "researchButton": "📚 Ìwádìí",
+      "awarenessButton": "📢 Ìmọ̀ sáyẹ̀",
+      "preventionButton": "🛡️ Àbójútó",
+      "recentSearch": "Àwárí Tó ṣẹ̀ṣẹ̀ ṣẹlẹ̀",
+      "commonSym": "Ààmì maleria tí wọpọ̀ ní Nàìjíríà",
+      "malPrev": "Ìmọ̀ ìbẹ̀wẹ̀ maleria fún ẹbí",
+      "bestTreat": "Ìtọ́jú tó dájú jùlọ fún maleria ní Nàìjíríà",
+      "adInsight": "📊 Ìtàn jinlẹ̀",
+      "uploadCase": "📤 Ṣẹ̀dá Ìsọ̀rí",
+      "retrieveInfo": "🔍 Gba Alaye"
+    },
+    "malBody": {
+      "awareness": "Ìmọ̀ sáyẹ̀",
+      "title": "Àwọn orísun tó wúlò fún ìbẹ̀wẹ̀ àti iṣakoso maleria",
+      "awarenessDescription": "Gba ìmọ̀ tó dájú nípa àwọn ọ̀nà ìbẹ̀wẹ̀ maleria àti àwọn irinṣẹ́ tó jẹ́ mímu ṣiṣẹ́ ní gbogbo agbáyé.",
+      "description": "Ṣàwárí àwọn ìwádìí tuntun, ìròyìn, àti àwọn orísun nípa maleria. Máa mọ̀ pẹ̀lú ibi àkópọ̀ tó péye.",
+      "keyword1": "🛏️ Àpò àyà ńlá",
+      "keyword2": "💉 Abẹ maleria",
+      "keyword3": "🦟 Ẹ̀fọ́tọ̀ àlẹ́pẹ̀",
+      "keyword4": "🌍 Àwọn ìtọná WHO",
+      "keyword5": "📊 Ìtẹ̀lé Àjọṣe",
+      "keyword6": "🚫 Iṣakoso omi tí kò ń sàn",
+      "org1": { "name": "Ẹgbẹ́ Ìlera Agbaye", "icon": "🌐" },
+      "org2": { "name": "CDC (Nàìjíríà)", "icon": "🧪" },
+      "org3": { "name": "UNICEF", "icon": "🧒" },
+      "org4": { "name": "Red Cross", "icon": "➕" },
+      "org5": { "name": "Africa CDC", "icon": "🌍" },
+      "org6": { "name": "Gavi", "icon": "💉" }
+    },
+    "features": {
+      "title": "Ṣàwárí Àwọn Ẹ̀ka Ìlera Wa",
+      "items": [
+        {
+          "title": "Ìbẹ̀wẹ̀ Maleria",
+          "description": "Kọ́ ẹ̀kọ́ àwọn ọ̀nà tó dájú láti dáàbò bo ara rẹ àti ẹbí rẹ.",
+          "cta": "Ṣàwárí ọ̀nà ìbẹ̀wẹ̀"
+        },
+        {
+          "title": "Ìtọ́jú",
+          "description": "Gba ìmọ̀ nípa àwọn ọ̀nà ìtọ́jú tó dájú àti tó fọwọ́ sílẹ̀.",
+          "cta": "Wo ìtọ́jú"
+        },
+        {
+          "title": "Ààmì",
+          "description": "Mọ̀ àwọn àmì àkọ́kọ́ maleria kí o lè múra.",
+          "cta": "Ṣàyẹ̀wò ààmì"
+        },
+        {
+          "title": "Ìtójú Kánkán",
+          "description": "Mọ̀ àwọn ìgbésẹ̀ kíákíá tí o yẹ kí o gbà nígbà pajawiri maleria.",
+          "cta": "Kọ́ ẹ̀kọ́ ìtọ́jú"
+        },
+        {
+          "title": "Ìkìlọ̀ Àjálù",
+          "description": "Máa mọ̀ pẹ̀lú ìkìlọ̀ àkókò gidi lórí àjálù maleria.",
+          "cta": "Wo ìkìlọ̀"
+        },
+        {
+          "title": "Àwọn Orísun Àgbàjọ",
+          "description": "Gba àwọn irinṣẹ́, ìtọná, àti àwọn kánkan tó fọwọ́sí látọ̀dọ̀ àwọn oníṣẹ́ ilé ìwòsàn.",
+          "cta": "Ṣàwárí orísun"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Ìbéèrè Tí a Màa Ń Bé lórí Olùrànlọ́wọ́ Oye Maleria",
+      "subtitle": "Gbogbo ohun tí o yẹ kí o mọ̀ nípa bí eto naa ṣe n ṣiṣẹ́ àti bí o ṣe lè lo o dáadáa.",
+      "items": [
+        {
+          "question": "Kí ni Olùrànlọ́wọ́ Oye Maleria?",
+          "answer": "Olùrànlọ́wọ́ Oye Maleria jẹ́ pátákó tó dá lórí AI tí ó máa ń ràn àwọn olùlo lọwọ́ láti ṣàwárí, tọ́jú, àti gba ìmọ̀ jinlẹ̀ nípa àwọn kókó maleria gẹ́gẹ́ bí ààmì, ìtọ́jú, àjálù, àti àwọn ìwádìí."
+        },
+        {
+          "question": "Báwo ni mo ṣe lè lo olùrànlọ́wọ́ náà?",
+          "answer": "Fọwọ́ sí ìbéèrè rẹ tàbí àwọn kókó-ọrọ̀ sínú àyà-àwárí, èyí yóò fi àwọn abajade tó ṣàyẹ̀wò yàn padà láti àwọn àpamọ̀ ìwádìí, àwọn ibi ìkọ́kọ́ tó dájú, àti àwọn orísun ìlera tó dájú."
+        },
+        {
+          "question": "Ṣé mo lè gbẹ́kẹ̀ lé abajade naa?",
+          "answer": "Bẹ́ẹ̀ni. Eto naa máa n fa ìmọ̀ láti àwọn orísun tó fọwọ́ sílẹ̀ gẹ́gẹ́ bí WHO, PubMed, àti àwọn àpẹẹrẹ tí a fi ẹ̀dá ènìyàn ṣe ayẹwo. A fi idi rẹ̀ mulẹ̀ láti fojú kọ irọ̀, kí o sì gbẹ́kẹ̀ lé ìtọ́sọ́nà onímọ̀."
+        },
+        {
+          "question": "Tálọ́ lè lo eto yìí?",
+          "answer": "Eto yìí jẹ́ fún àwọn akẹ́kọ̀ọ́, àwọn onímọ̀ ìwádìí, àwọn oníṣẹ́ ilé ìwòsàn, àti gbogbo ènìyàn tó fẹ́ mọ̀ jinlẹ̀ nípa maleria."
+        },
+        {
+          "question": "Ṣé eto yìí lè mọ̀ ààmì maleria?",
+          "answer": "Eto naa kì í ṣe tó gbìmọ̀ sọ́rọ̀ nípa arùn, ṣùgbọ́n ó lè fún ọ ní ìtàn nípa àwọn ààmì tí ó wọpọ̀, àwọn ìlànà, àti ìwádìí nípa maleria. Má ṣe fi ìlera rẹ sínú ewu, kan sí dokita."
+        }
+      ]
     }
+  },
+  "system":{
+    
+  }
+
 }

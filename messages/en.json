@@ -2,7 +2,7 @@
   "Navbar": {
     "malariaWorld": "Malaria World",
     "malariaCampaign": "Campaigns",
-     "resources": "Resources",
+    "resources": "Resources",
     "information": "Information",
     "about": "About Us",
     "contact": "Contact"
@@ -37,7 +37,83 @@
       "awareness": "Awareness",
       "title": "Built-in resources for malaria prevention and control",
       "awarenessDescription": "Access reliable malaria prevention strategies and verified tools used by health workers and organizations globally.",
-      "description": "Explore the latest research, news, and resources related to malaria. Stay updated with our comprehensive database."
+      "description": "Explore the latest research, news, and resources related to malaria. Stay updated with our comprehensive database.",
+      "keyword1": "🛏️ Bed Nets",
+      "keyword2": "💉 Malaria Vaccines",
+      "keyword3": "🦟 Mosquito Repellent",
+      "keyword4": "🌍 WHO Guidelines",
+      "keyword5": "📊 Case Surveillance",
+      "keyword6": "🚫 Stagnant Water Control",
+      "org1": { "name": "World Health Org", "icon": "🌐" },
+      "org2": { "name": "CDC (Nigeria)", "icon": "🧪" },
+      "org3": { "name": "UNICEF", "icon": "🧒" },
+      "org4": { "name": "Red Cross", "icon": "➕" },
+      "org5": { "name": "Africa CDC", "icon": "🌍" },
+      "org6": { "name": "Gavi", "icon": "💉" }
+    },
+    "features": {
+      "title": "Explore Our Health Features",
+      "items": [
+        {
+          "title": "Malaria Prevention",
+          "description": "Learn key strategies to protect yourself and your family from malaria.",
+          "cta": "Explore prevention tips"
+        },
+        {
+          "title": "Treatment",
+          "description": "Get information on effective and verified treatment options.",
+          "cta": "View treatments"
+        },
+        {
+          "title": "Symptoms",
+          "description": "Understand early signs and symptoms of malaria for faster action.",
+          "cta": "Check symptoms"
+        },
+        {
+          "title": "Fast First Aid",
+          "description": "Know the immediate steps to take during a malaria emergency.",
+          "cta": "Learn first aid"
+        },
+        {
+          "title": "Outbreak Alerts",
+          "description": "Stay up to date with real-time malaria outbreak notifications.",
+          "cta": "View alerts"
+        },
+        {
+          "title": "Community Resources",
+          "description": "Access verified tools, guides, and contacts from health workers.",
+          "cta": "Browse resources"
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQs about Malaria Intelligence Assistant",
+      "subtitle": "Everything you need to know about how the system works and how to get the best from it.",
+      "items": [
+        {
+          "question": "What is the Malaria Intelligence Assistant?",
+          "answer": "The Malaria Intelligence Assistant is an AI-powered platform designed to help users search, explore, and retrieve detailed insights about malaria-related topics including symptoms, treatments, outbreaks, and research studies."
+        },
+        {
+          "question": "How do I use the assistant?",
+          "answer": "Simply enter your question or keywords in the search bar, and the system will return curated results from research papers, medical databases, and trusted health sources."
+        },
+        {
+          "question": "Can I trust the results?",
+          "answer": "Yes. The assistant retrieves data from verified sources such as WHO, PubMed, and malaria-specific case reports. It is built to prioritize credible, human-reviewed information."
+        },
+        {
+          "question": "Who can use this assistant?",
+          "answer": "It is designed for students, researchers, health workers, and the general public interested in understanding malaria-related information more deeply."
+        },
+        {
+          "question": "Is this system able to detect malaria symptoms?",
+          "answer": "The system cannot diagnose diseases but can provide information about common symptoms, trends, and research related to malaria. Always consult a healthcare provider for medical concerns."
+        }
+      ]
     }
+  },
+  "system": {
+   
   }
 }

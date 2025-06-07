@@ -20,13 +20,13 @@ const Hero = () => {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="/educator"
+              href="/"
               className="bg-sky-600 text-white py-2 px-4 rounded hover:bg-sky-700 transition"
             >
               {t("cta") || "Join the Fight Against Malaria"}
             </Link>
             <Link
-              href="/signup"
+              href="/system"
               className="border border-sky-600 text-sky-600 py-2 px-4 rounded hover:bg-sky-50 transition"
             >
               {t("cta2") || "Explore Malaria Data"}

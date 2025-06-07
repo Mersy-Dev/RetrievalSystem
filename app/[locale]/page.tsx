@@ -1,5 +1,5 @@
+import FeatureGrid from '@/components/features/FeatureGrid'
 import Hero from '@/components/home/Hero'
-import InfoSearch from '@/components/home/InfoSearch'
 import MalariaFAQ from '@/components/home/MalariaFAQ'
 import MalBody from '@/components/home/MalBody'
 
@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <Hero />
       <MalBody />
-      <InfoSearch />
+      <FeatureGrid />
       <MalariaFAQ />
       
     </main>
