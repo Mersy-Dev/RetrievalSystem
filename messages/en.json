@@ -5,7 +5,9 @@
     "resources": "Resources",
     "information": "Information",
     "about": "About Us",
-    "contact": "Contact"
+    "contact": "Contact",
+    "dashboard": "Dashboard"
+
   },
   "home": {
     "hero": {
@@ -113,7 +115,12 @@
       ]
     }
   },
-  "system": {
-   
+  "system": {},
+  "about": {
+    "AboutSection": {
+      "imageAlt": "Overview of the Malaria Information Retrieval System",
+      "title": "About the System",
+      "description": "This system is designed to provide users with easy access to malaria-related information in both English and a local language. It enables keyword-based search through a collection of academic, clinical, and public health resources. Built using a bilingual information retrieval model, the platform empowers users—researchers, students, and health workers—to find relevant content efficiently and in their preferred language."
+    }
   }
 }

@@ -8,7 +8,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 
-
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [infoDropdown, setInfoDropdown] = useState(false);
@@ -19,7 +18,6 @@ const Navbar = () => {
   const pathname = usePathname();
 
   const locale = useLocale();
-
 
   const handleLanguageChange = (lang: string) => {
     const segments = pathname.split("/");
@@ -144,6 +142,13 @@ const Navbar = () => {
               className="hover:text-sky-600 transition-colors duration-200"
             >
               {t("about")}
+            </Link>
+
+            <Link
+              href="/dashboard"
+              className="hover:text-sky-600 transition-colors duration-200"
+            >
+              {t("dashboard") || "Dashboard"}
             </Link>
 
             {/* <Link
