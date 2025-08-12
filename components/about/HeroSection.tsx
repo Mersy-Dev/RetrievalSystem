@@ -24,7 +24,7 @@ export default function HeroSection() {
             {t('title')}
           </h1>
           <p className="text-lg font-light text-gray-700 leading-relaxed">
-            {t('description')}
+            {t('introMala')}
           </p>
         </div>
       </div>

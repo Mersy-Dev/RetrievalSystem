@@ -119,7 +119,8 @@
   "about": {
     "AboutSection": {
       "imageAlt": "Overview of the Malaria Information Retrieval System",
-      "title": "About the System",
+      "title": "About Malaria",
+      "introMala": "Malaria is a serious but preventable disease caused by Plasmodium parasites and transmitted to humans through the bites of infected female Anopheles mosquitoes. It remains a major public health concern in many tropical and subtropical regions, including Nigeria. With early diagnosis, prompt treatment, and effective prevention measures, malaria can be controlled and lives can be saved.",
       "description": "This system is designed to provide users with easy access to malaria-related information in both English and a local language. It enables keyword-based search through a collection of academic, clinical, and public health resources. Built using a bilingual information retrieval model, the platform empowers users—researchers, students, and health workers—to find relevant content efficiently and in their preferred language."
     }
   }
