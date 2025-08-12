@@ -7,6 +7,10 @@ export interface Article {
   author: string;
 }
 
+export interface ArticleDetailClientProps {
+  article?: Article;
+}
+
 export const articles: Article[] = [
   {
     id: "symptoms",
