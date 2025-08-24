@@ -156,5 +156,66 @@
       "details1": "The first signs of malaria are usually fever, headache, and chills. These symptoms may be mild and difficult to recognize as malaria.",
       "details2": "If not treated within 24 hours, malaria can progress to severe illness and often death. Severe malaria is caused by Plasmodium falciparum and can lead to complications like breathing problems, organ failure, and convulsions.",
       "details3": "Early diagnosis and treatment are crucial to prevent complications. Always seek medical advice if you experience these symptoms after visiting or living in malaria-prone areas."
+    },
+    "Prevention": {
+    "title": "Malaria Prevention",
+    "intro": "Protecting yourself and your community from malaria involves simple but powerful preventive measures. Explore the recommended strategies below.",
+    "netsTitle": "Use Mosquito Nets",
+    "netsDesc": "Sleeping under insecticide-treated mosquito nets significantly reduces malaria risk, especially for children and pregnant women.",
+    "breedingTitle": "Eliminate Breeding Sites",
+    "breedingDesc": "Prevent mosquitoes from multiplying by removing stagnant water in buckets, flower pots, and discarded tires.",
+    "clothingTitle": "Wear Protective Clothing",
+    "clothingDesc": "Long-sleeved shirts and pants help reduce mosquito bites, especially during evening hours when mosquitoes are most active.",
+    "indoorTitle": "Indoor Protection",
+    "indoorDesc": "Use indoor spraying with insecticides and install window screens to keep mosquitoes out of your home.",
+    "ctaTitle": "Take Action Today",
+    "ctaDesc": "Prevention starts with small steps. Encourage your family and community to adopt these protective measures.",
+    "ctaButton": "Learn More"
+  },
+  "Treatment": {
+    "title": "Malaria Treatment",
+    "intro": "Proper diagnosis and timely treatment are essential to cure malaria and prevent complications.",
+    "diagnosis": {
+      "title": "Diagnosis",
+      "description": "Malaria should be confirmed with a blood test to identify the parasite before starting treatment."
+    },
+    "medications": {
+      "title": "Medications",
+      "item1": "Artemisinin-based Combination Therapy (ACT) for uncomplicated malaria",
+      "item2": "Chloroquine for chloroquine-sensitive cases",
+      "item3": "Primaquine for eliminating dormant liver stages"
+    },
+    "severe": {
+      "title": "Treatment of Severe Malaria",
+      "description": "Hospitalization is required, with intravenous medications such as artesunate and supportive care."
+    },
+    "homeCare": {
+      "title": "Home Care and Recovery",
+      "item1": "Take prescribed medication as directed",
+      "item2": "Stay hydrated and rest",
+      "item3": "Monitor symptoms and seek medical help if they worsen"
     }
+  },
+   "EducationalMaterials": {
+    "title": "Educational Materials",
+    "intro": "Explore documents, guides, and infographics to learn more about malaria prevention, treatment, and recovery.",
+    "searchPlaceholder": "Search materials...",
+    "view": "View",
+    "download": "Download",
+    "noResults": "No materials found.",
+    "materials": {
+      "1": {
+        "title": "Malaria Prevention Guide",
+        "description": "Step-by-step information on preventing malaria in high-risk areas."
+      },
+      "2": {
+        "title": "Treatment Protocol Handbook",
+        "description": "Official handbook for healthcare providers on malaria treatment."
+      },
+      "3": {
+        "title": "Educational Infographic",
+        "description": "Visual learning material on recognizing malaria symptoms."
+      }
+    }
+  }
 }

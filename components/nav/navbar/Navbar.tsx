@@ -76,12 +76,6 @@ const Navbar = () => {
               {infoDropdown && (
                 <div className="absolute top-full left-0 bg-white shadow-md rounded-md py-2 w-48 z-50">
                   <Link
-                    href="/info/what-is-malaria"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    What is Malaria?
-                  </Link>
-                  <Link
                     href="/info/symptoms"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
@@ -115,12 +109,6 @@ const Navbar = () => {
               </button>
               {resourcesDropdown && (
                 <div className="absolute top-full left-0 bg-white shadow-md rounded-md py-2 w-56 z-50">
-                  <Link
-                    href="/resources/reports"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Reports
-                  </Link>
                   <Link
                     href="/resources/educational"
                     className="block px-4 py-2 hover:bg-gray-100"
