@@ -30,8 +30,8 @@ export default async function RootLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: { locale: string };
+  children: React.ReactNode
+  params: { locale: string }
 }) {
   const locale = (await params).locale;
 
@@ -49,8 +49,9 @@ export default async function RootLayout({
 
         <NextIntlClientProvider messages={messages}>
           <Header />
-
-          {children}
+          
+          {/* 👇 Add padding so content starts below header */}
+          <main className="pt-20">{children}</main>
         </NextIntlClientProvider>
       </body>
     </html>

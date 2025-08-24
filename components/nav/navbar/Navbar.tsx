@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full bg-white text-sm font-medium py-4 px-6 lg:fixed lg:top-0 z-30 shadow-sm border-b border-gray-200">
+    <nav className="w-full bg-white text-sm font-medium  py-4 px-6 lg:fixed lg:top-0 z-30 shadow-sm border-b border-gray-200">
       <div className="max-w-[1280px] mx-auto flex items-center justify-between gap-8 relative">
         {/* Logo and Tagline */}
         <Link href="/" className="flex flex-col items-start">

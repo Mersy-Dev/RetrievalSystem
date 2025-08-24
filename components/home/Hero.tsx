@@ -8,7 +8,7 @@ const Hero = () => {
   const t = useTranslations("home.hero");
 
   return (
-    <section className="bg-white py-16 mt-2 md:mt-24">
+    <section className="bg-white py-16 mt-2 md:mt-0">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-6">
