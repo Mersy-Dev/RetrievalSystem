@@ -1,7 +1,7 @@
 {
   "Navbar": {
     "malariaWorld": "Malaria World",
-    "malariaCampaign": "Campaigns",
+    "MalariaHome": "Home",
     "resources": "Resources",
     "information": "Information",
     "about": "About Us",
@@ -11,6 +11,7 @@
   "home": {
     "hero": {
       "title": "Welcome to Malaria World",
+      "imageAlt": "Overview of the Malaria Information Retrieval System",
       "description": "Your one-stop destination for all things related to malaria. Stay informed, get involved, and help us fight malaria together.",
       "cta": "Join the Fight Against Malaria",
       "cta2": "Explore the System",
@@ -215,6 +216,24 @@
       "3": {
         "title": "Educational Infographic",
         "description": "Visual learning material on recognizing malaria symptoms."
+      }
+    }
+  },
+  "FAQs": {
+    "title": "Frequently Asked Questions",
+    "intro": "Find answers to the most common questions about malaria, its prevention, and treatment.",
+    "items": {
+      "1": {
+        "q": "What causes malaria?",
+        "a": "Malaria is caused by parasites transmitted to humans through the bites of infected mosquitoes."
+      },
+      "2": {
+        "q": "Can malaria be cured?",
+        "a": "Yes. With the right diagnosis and treatment, malaria can be completely cured. Early treatment is essential."
+      },
+      "3": {
+        "q": "How can I protect myself from malaria?",
+        "a": "You can protect yourself by sleeping under insecticide-treated nets, taking preventive medications if recommended, and reducing mosquito exposure."
       }
     }
   }

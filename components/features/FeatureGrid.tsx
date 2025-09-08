@@ -13,8 +13,8 @@ const FeatureGrid = () => {
   }[];
 
   return (
-    <section className="px-6 py-12 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
+    <section className=" px-6 py-12 max-w-7xl mx-auto">
+      <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-10">
         {t("title")}
       </h2>
       <div className="flex flex-wrap justify-center gap-6">

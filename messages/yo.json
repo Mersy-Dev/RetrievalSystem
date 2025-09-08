@@ -1,15 +1,18 @@
 {
   "Navbar": {
     "malariaWorld": "Ayé Maleria",
+    "MalariaHome": "Ilé",
     "malariaCampaign": "Ìpolówó",
     "resources": "Àwọn orísun",
     "information": "Alaye",
     "about": "Nípà Wa",
-    "contact": "Kan sí Wa"
+    "contact": "Kan sí Wa",
+    "dashboard": "Dasibodu"
   },
   "home": {
     "hero": {
-      "title": " E Kaabọ sí Ayé Maleria",
+      "title": "E Kaabọ sí Ayé Maleria",
+      "imageAlt": "Àkópọ̀ ìtàn nípa Eto Àwárí Alaye Maleria",
       "description": "Ìpò kan ṣoṣo láti rí gbogbo ohun tí o ní ṣe pẹ̀lú maleria. Máa mọ̀, kópa, kí o sì ran wa lọ́wọ́ láti jagun maleria pọ̀.",
       "cta": "Darapọ̀ mọ́ Ijà lòdì sí Maleria",
       "cta2": "Ṣàwárí Eto naa",
@@ -113,8 +116,118 @@
       ]
     }
   },
-  "system":{
-    
+  "about": {
+    "AboutSection": {
+      "imageAlt": "Àkópọ̀ ìtàn nípa Eto Àwárí Alaye Maleria",
+      "title": "Nípa Maleria",
+      "introMala": "Maleria jẹ́ àrùn tó lewu ṣùgbọ́n a lè dáàbò bo rẹ̀, tí àpẹẹrẹ Plasmodium ń fa, tí a sì ń tan sí ènìyàn nípasẹ̀ ìkọlu ẹ̀fọ́tọ̀ Anopheles obìnrin. Ó ṣì jẹ́ ìṣòro ilera àgbáyé pátá ní ọ̀pọ̀ agbègbè tó wà ní àárín gbígbóná àti ojú omi. Pẹ̀lú ìdánimọ̀ tete, ìtọ́jú tó yẹ, àti ìbẹ̀wẹ̀ tó dájú, a lè ṣakoso maleria, a sì lè gba ìyè.",
+      "description": "Eto yìí jẹ́ kí àwọn olùlo ní ìraye rọrùn sí ìmọ̀ nípa maleria ní èdè Gẹ̀ẹ́sì àti èdè abinibi. Ó ń fúnni ní àwárí kókó-ọrọ̀ nípasẹ̀ ìkànsí àwọn ìwádìí, ìlera àwùjọ, àti àwọn ìwé ìmọ̀. A dá a lórí àfihàn àwárí ìmọ̀ èdè méjì, tó máa ń ràn àwọn akẹ́kọ̀ọ́, onímọ̀ ìwádìí, àti oníṣẹ́ ilé ìwòsàn lọ́wọ́ láti rí ohun tó yẹ kíákíá ní èdè tí wọ́n fẹ́."
+    }
+  },
+  "Symptoms": {
+    "title": "Ààmì Maleria",
+    "intro": "Maleria máa ń ní àwọn ààmì tó lè farahàn lẹ́yìn ọjọ́ mẹ́wàá sí mẹ́ẹ̀dógún lẹ́yìn ìkọlu ẹ̀fọ́tọ̀ tí ó ní àrùn.",
+    "commonSymptoms": "Ààmì Tó wọpọ̀",
+    "feverTitle": "Ìbà Gíga",
+    "feverDesc": "Ìgbẹ̀kẹ̀lé ìwọ̀ ooru ara tó ń yípadà lójú-àkókò.",
+    "feverDetails": "Ìbà gíga ni àmì pàtàkì jùlọ tí maleria. Ó maa ń wáyé ní àkókò àtẹ̀yìnwá, tí ó máa ń tọ́ka pẹ̀lú ìtútù àti òórùn púpọ̀.",
+    "sweatingTitle": "Ìtẹ̀lú Tó pọ̀",
+    "sweatingDesc": "Ìrọ̀ oorùn tó pọ̀ jùlọ lẹ́yìn ìbà.",
+    "sweatingDetails": "Ìrọ̀ oorùn maa ń tẹ̀lé ìbà àti ìtútù. Ara ń gbìmọ̀ láti tutu ara lẹ́yìn ìwọ̀ ooru tó lágbára.",
+    "fatigueTitle": "Ìrẹwẹ́sì Tó pọ̀",
+    "fatigueDesc": "Ìrora àti ìrora ara tó pọ̀, àti ìrẹwẹ́sì.",
+    "fatigueDetails": "Ìrẹwẹ́sì wáyé nípasẹ̀ ìparun ẹ̀jẹ̀ pupa àti agbára tí ara ń lò láti jagun arùn naa.",
+    "chillsTitle": "Ìtútù àti Ìmí ìbànújẹ́",
+    "chillsDesc": "Ìrora ìtútù àti ìmí ìbànújẹ́ tó ṣẹlẹ̀ kí ìbà tó yọ.",
+    "chillsDetails": "Ìtútù maa ń farahàn ṣáájú ìbà, nípasẹ̀ ìkọlu ẹ̀jẹ̀ pupa àti ìfèsì ara.",
+    "anemiaTitle": "Àìlera Ẹ̀jẹ̀ (Anemia)",
+    "anemiaDesc": "Ìmọ̀lẹ̀ ara, ìyípo, àti àìlera nípasẹ̀ ìsonu ẹ̀jẹ̀ pupa.",
+    "anemiaDetails": "Àìlera ẹ̀jẹ̀ ni abajade ìparun ẹ̀jẹ̀ pupa tó pọ̀. Ó lè fa ìṣòro fún àwọn ọmọ àti aboyún.",
+    "otherTitle": "Ààmì Míì",
+    "otherDesc": "Ìrora orí, ìfarapa, ìdígbẹ, àti ìrora egungun.",
+    "otherDetails": "Ààmì míì ni ìdígbẹ, àìní ìfẹ́jẹun, àti ìfarapa. Ìṣòro tó lagbara lè nípa ìbànújẹ́ ọpọlọ tàbí ìríra.",
+    "detailsTitle": "Àlàyé Jinlẹ̀",
+    "details1": "Ààmì àkọ́kọ́ maleria ni ìbà, ìrora orí, àti ìtútù. Wọ́n lè rọrùn tí ènìyàn kì í mọ̀ lẹ́sẹ̀kẹsẹ.",
+    "details2": "Bí kò bá ṣe ìtọ́jú lẹ́sẹ̀kẹsẹ ní wákàtí 24, maleria lè dàgbà sí ìṣòro tó lewu, tó sì lè pa. Plasmodium falciparum ni ó maa ń fa.",
+    "details3": "Ìdánimọ̀ tete àti ìtọ́jú lẹ́sẹ̀kẹsẹ jẹ́ kókó láti yago fún ìṣòro. Máa kan sí dókítà bí o bá ní ààmì lẹ́yìn ìbẹ̀wẹ̀ sí agbègbè maleria."
+  },
+  "Prevention": {
+    "title": "Àbójútó Maleria",
+    "intro": "Àbójútó ará rẹ àti àwùjọ rẹ pẹ̀lú àwọn ìlànà tó rọrùn ṣùgbọ́n tó lágbára. Kọ́ ẹ̀kọ́ nípa wọn ní ìsàlẹ̀.",
+    "netsTitle": "Lo Àpò Àyà",
+    "netsDesc": "Ìsun lórí àpò àyà tí a fi oogun ṣe máa ń din ewu maleria kù.",
+    "breedingTitle": "Pa ibi ẹ̀fọ́tọ̀ run",
+    "breedingDesc": "Yọ omi tí kò ń sàn kúrò nínú àpò, agbada, àti taya tó sọnù.",
+    "clothingTitle": "Wọ̀ Ìmọ̀ràn Aṣọ",
+    "clothingDesc": "Wọ̀ aṣọ pípẹ̀ láti dín ìkọlu ẹ̀fọ́tọ̀ kù ní alẹ́.",
+    "indoorTitle": "Àbójútó Nínú Ilé",
+    "indoorDesc": "Lo oogun lórí ogiri, àti fi àga window ṣe ìbòjí.",
+    "ctaTitle": "Bẹrẹ Ìgbésẹ̀ Lónìí",
+    "ctaDesc": "Ìbẹ̀wẹ̀ bẹ̀rẹ̀ pẹ̀lú ìgbésẹ̀ kékeré. Fọwọ́ sí ẹbí àti àwùjọ rẹ.",
+    "ctaButton": "Kọ́ ẹ̀kọ́ síi"
+  },
+  "Treatment": {
+    "title": "Ìtọ́jú Maleria",
+    "intro": "Ìdánimọ̀ tó dájú àti ìtọ́jú tó tete jẹ́ kókó láti gbàgbé maleria.",
+    "diagnosis": {
+      "title": "Ìdánimọ̀",
+      "description": "Àyẹ̀wò ẹ̀jẹ̀ ni a yẹ kí a ṣe kí ìtọ́jú tó bẹ̀rẹ̀."
+    },
+    "medications": {
+      "title": "Oògùn",
+      "item1": "Artemisinin-based Combination Therapy (ACT) fún maleria tó rọrùn",
+      "item2": "Chloroquine fún ọ̀ràn tí kò ní ìfarapa",
+      "item3": "Primaquine fún ìparun parasite tí ó ń dúró ní ẹdọ"
+    },
+    "severe": {
+      "title": "Ìtọ́jú Arun Malaria To Ṣe Pátáki",
+      "description": "Ìwòsàn nílé ìwòsàn ló yẹ, pẹ̀lú lílo òògùn láti inú iṣan bíi artesunate àti ìtọju ìmúlò àfikún."
+    },
+    "homeCare": {
+      "title": "Ìtọju Nílé àti Ìmúlò",
+      "item1": "Mú òògùn tí dókítà pàṣẹ gẹ́gẹ́ bí a ti sọ",
+      "item2": "Máa mu omi lọ́pọ̀ kí o sì sinmi dáadáa",
+      "item3": "Tópinpin ààmì àìsàn àti pè lọ́wọ́ àwọn dókítà tí wọ́n bá burú síi"
+    }
+  },
+  "EducationalMaterials": {
+    "title": "Àwọn Ohun Èkó",
+    "intro": "Ṣàwárí àwọn ìwé, ìtòsọ́nà, àti àwòrán ìkànsí láti kọ́ ẹ̀kó síi nípa ìdènà, ìtọ́jú, àti ìmúlò lòdì sí malaria.",
+    "searchPlaceholder": "Ṣàwárí àwọn ohun èkó...",
+    "view": "Wo",
+    "download": "Ṣe igbasilẹ",
+    "noResults": "Kò sí ohun èkó tí a rí.",
+    "materials": {
+      "1": {
+        "title": "Ìtòsọ́nà Ìdènà Malaria",
+        "description": "Ìtọ́kasí nípasẹ̀ ìgbésẹ̀ nígbésẹ̀ fún bí a ṣe lè dá malaria dúró ní àwọn agbègbè tó lágbára."
+      },
+      "2": {
+        "title": "Ìwé Ìtọ́jú Malaria",
+        "description": "Ìwé ìtòsọ́nà fún àwọn dókítà lórí bí a ṣe ń tọ́jú malaria."
+      },
+      "3": {
+        "title": "Àwòrán Ìmọ̀ Ẹ̀kọ́",
+        "description": "Ohun èkó àwòrán lórí bí a ṣe lè mọ ààmì malaria."
+      }
+    }
+  },
+  "FAQs": {
+    "title": "Ìbéèrè Tí A Máa ń Béèrè Lóòótọ́",
+    "intro": "Wa ìdáhùn sí àwọn ìbéèrè tó wọpọ̀ jù lọ nípa malaria, ìdènà rẹ̀, àti ìtọ́jú rẹ̀.",
+    "items": {
+      "1": {
+        "q": "Kí ni ń fa malaria?",
+        "a": "Malaria wáyé látàrí kokoro tí wọ́n ń gbe lọ sí ara ènìyàn nípasẹ̀ ìkókorò àkúnya (mosquito) tí ó ní àrùn náà."
+      },
+      "2": {
+        "q": "Ṣé a lè wòsàn pátápátá kúrò ní malaria?",
+        "a": "Bẹ́ẹ̀ni. Pẹ̀lú ìdánimọ̀ tó tọ́ àti ìtọ́jú tó yẹ, malaria lè parí pátápátá. Ìtọ́jú kíákíá jẹ́ dandan."
+      },
+      "3": {
+        "q": "Báwo ni mo ṣe lè dá ara mi lóró kúrò ní malaria?",
+        "a": "O lè dá ara rẹ̀ lóró nípa lílo àga àfẹnusọ tí wọ́n fi sitẹ́ ológun, mú òògùn ìdènà tí dókítà bá sọ, àti dín ìfarahan sí àkúnya kù."
+      }
+    }
   }
-
 }

@@ -8,7 +8,9 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 
 import Header from "@/components/nav/Header";
-import LanguageProvider from "@/components/provider/LanguageProvider"; // Importar el nuevo componente
+import LanguageProvider from "@/components/provider/LanguageProvider";
+
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +32,8 @@ export default async function RootLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
-  params: { locale: string }
+  children: React.ReactNode;
+  params: { locale: string };
 }) {
   const locale = (await params).locale;
 
@@ -41,18 +43,21 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider locale={locale} />
+        {/* 🌙 Wrap everything in ThemeProvider for dark mode */}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <LanguageProvider locale={locale} />
 
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          
-          {/* 👇 Add padding so content starts below header */}
-          <main className="pt-20">{children}</main>
-        </NextIntlClientProvider>
+          <NextIntlClientProvider messages={messages}>
+            <Header />
+
+            {/* 👇 Add padding so content starts below header */}
+            <main className="pt-20">{children}</main>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

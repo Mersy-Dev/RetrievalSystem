@@ -38,20 +38,25 @@ export default function EducationalMaterialsPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 space-y-10">
+    <section className="bg-sky-50 dark:bg-gray-900 py-12 md:py-20 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-6 py-12 space-y-10">
       {/* Header */}
-      <section className="text-center space-y-3">
-        <h1 className="text-4xl font-bold text-indigo-700">{t("title")}</h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">{t("intro")}</p>
+      <section className=" text-center space-y-3">
+        <h1 className="text-4xl font-bold text-indigo-700 dark:text-indigo-400">
+          {t("title")}
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          {t("intro")}
+        </p>
       </section>
 
       {/* Search bar */}
-      <div className="flex items-center gap-3 max-w-md mx-auto">
-        <Search className="w-5 h-5 text-gray-400" />
+      <div className="flex items-center gap-3 max-w-md mx-auto bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2">
+        <Search className="w-5 h-5 text-gray-400 dark:text-gray-500" />
         <input
           type="text"
           placeholder={t("searchPlaceholder")}
-          className="w-full border rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="w-full bg-transparent focus:outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -73,8 +78,11 @@ export default function EducationalMaterialsPage() {
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-center text-gray-500">{t("noResults")}</p>
+        <p className="text-center text-gray-500 dark:text-gray-400">
+          {t("noResults")}
+        </p>
       )}
     </div>
+    </section>
   );
 }

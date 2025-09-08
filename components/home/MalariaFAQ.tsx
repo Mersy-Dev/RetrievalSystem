@@ -14,19 +14,26 @@ const MalariaFAQ = () => {
   };
 
   return (
-    <section className="bg-sky-50 py-12 md:py-20">
-      <div className="w-full md:w-3/4 mx-auto bg-white shadow-xl rounded-2xl p-8 mb-16 border border-sky-100">
+    <section className="bg-sky-50 dark:bg-gray-900 py-12 md:py-20 transition-colors duration-300">
+      <div className="w-full md:w-3/4 mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 mb-16 border border-sky-100 dark:border-gray-700 transition-colors duration-300">
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold text-sky-700">{t("title")}</h2>
-          <p className="text-sm text-gray-600 mt-2">{t("subtitle")}</p>
+          <h2 className="text-2xl font-bold text-sky-700 dark:text-sky-300">
+            {t("title")}
+          </h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+            {t("subtitle")}
+          </p>
         </div>
 
         <div className="space-y-5">
           {faqItems.map((item, index) => (
-            <div key={index} className="border-b border-gray-200 pb-4">
+            <div
+              key={index}
+              className="border-b border-gray-200 dark:border-gray-700 pb-4"
+            >
               <button
                 onClick={() => toggle(index)}
-                className="w-full text-left text-sky-800 font-medium text-base flex justify-between items-center"
+                className="w-full text-left text-sky-800 dark:text-sky-300 font-medium text-base flex justify-between items-center"
               >
                 {item.question}
                 <span className="text-xl">
@@ -34,7 +41,9 @@ const MalariaFAQ = () => {
                 </span>
               </button>
               {activeIndex === index && (
-                <p className="text-sm text-gray-600 mt-2">{item.answer}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  {item.answer}
+                </p>
               )}
             </div>
           ))}
