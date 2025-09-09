@@ -9,6 +9,8 @@ interface MaterialCardProps {
   size: string;
   viewLabel: string;
   downloadLabel: string;
+  onView: () => void; // ✅ Added
+
 }
 
 export default function MaterialCard({
@@ -18,6 +20,7 @@ export default function MaterialCard({
   size,
   viewLabel,
   downloadLabel,
+  onView,
 }: MaterialCardProps) {
   return (
     <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-5 flex flex-col justify-between hover:shadow-xl dark:hover:shadow-lg transition">
@@ -38,7 +41,10 @@ export default function MaterialCard({
           {type} • {size}
         </span>
         <div className="flex gap-3">
-          <button className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline">
+          <button
+            className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline"
+            onClick={onView}
+          >
             <BookOpen className="w-4 h-4" /> {viewLabel}
           </button>
           <button className="flex items-center gap-1 text-green-600 dark:text-green-400 hover:underline">
