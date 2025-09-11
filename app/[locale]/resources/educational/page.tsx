@@ -34,7 +34,7 @@ function DocumentPageContent() {
     summary: doc.summary,
     description: doc.description,
     type: "PDF", // assuming all docs are PDFs from backend
-    size: "Unknown", // backend doesn’t send size
+    size: "file size", // backend doesn’t send size
     url: doc.cloudinaryUrl || doc.sourceUrl || "#",
   }));
 
