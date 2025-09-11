@@ -4,6 +4,7 @@ import { FileText, Download, BookOpen } from "lucide-react";
 
 interface MaterialCardProps {
   title: string;
+  summary: string;
   description: string;
   type: string;
   size: string;
@@ -15,7 +16,8 @@ interface MaterialCardProps {
 
 export default function MaterialCard({
   title,
-  description,
+  summary,
+  // description,
   type,
   size,
   viewLabel,
@@ -33,7 +35,7 @@ export default function MaterialCard({
       </div>
 
       {/* Description */}
-      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{description}</p>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{summary}</p>
 
       {/* Footer */}
       <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
