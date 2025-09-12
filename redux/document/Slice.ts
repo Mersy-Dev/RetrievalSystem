@@ -1,6 +1,11 @@
 // redux/document/Slice.ts
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchDocuments, uploadDocument } from "./Thunk";
+import {
+  fetchDocuments,
+  uploadDocument,
+  updateDocument,
+  getSingleDocument, // ✅ import new thunk
+} from "./Thunk";
 
 interface Tag {
   id: number;
@@ -22,18 +27,24 @@ export interface Document {
 
 interface DocumentState {
   allDocuments: Document[];
+  singleDocument: Document | null; // ✅ new
   loading: boolean;
   error: string | null;
   uploadStatus: "idle" | "loading" | "success" | "failed";
+  updateStatus: "idle" | "loading" | "success" | "failed";
   uploadedDocument: Document | null;
+  updatedDocument: Document | null;
 }
 
 const initialState: DocumentState = {
   allDocuments: [],
+  singleDocument: null, // ✅ new
   loading: false,
   error: null,
   uploadStatus: "idle",
+  updateStatus: "idle",
   uploadedDocument: null,
+  updatedDocument: null,
 };
 
 const documentSlice = createSlice({
@@ -43,6 +54,15 @@ const documentSlice = createSlice({
     resetUploadState: (state) => {
       state.uploadStatus = "idle";
       state.uploadedDocument = null;
+      state.error = null;
+    },
+    resetUpdateState: (state) => {
+      state.updateStatus = "idle";
+      state.updatedDocument = null;
+      state.error = null;
+    },
+    resetSingleDocument: (state) => { // ✅ reset single doc
+      state.singleDocument = null;
       state.error = null;
     },
   },
@@ -70,14 +90,51 @@ const documentSlice = createSlice({
       .addCase(uploadDocument.fulfilled, (state, action) => {
         state.uploadStatus = "success";
         state.uploadedDocument = action.payload;
-        state.allDocuments.push(action.payload); // add new doc to list
+        state.allDocuments.push(action.payload);
       })
       .addCase(uploadDocument.rejected, (state, action) => {
         state.uploadStatus = "failed";
         state.error = action.payload as string;
+      })
+
+      // updateDocument
+      .addCase(updateDocument.pending, (state) => {
+        state.updateStatus = "loading";
+        state.error = null;
+      })
+      .addCase(updateDocument.fulfilled, (state, action) => {
+        state.updateStatus = "success";
+        state.updatedDocument = action.payload;
+        state.allDocuments = state.allDocuments.map((doc) =>
+          doc.id === action.payload.id ? action.payload : doc
+        );
+      })
+      .addCase(updateDocument.rejected, (state, action) => {
+        state.updateStatus = "failed";
+        state.error = action.payload as string;
+      })
+
+      // getSingleDocument
+      .addCase(getSingleDocument.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getSingleDocument.fulfilled, (state, action) => {
+        state.loading = false;
+        state.singleDocument = action.payload;
+      })
+      .addCase(getSingleDocument.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+        state.singleDocument = null;
       });
   },
 });
 
-export const { resetUploadState } = documentSlice.actions;
+export const {
+  resetUploadState,
+  resetUpdateState,
+  resetSingleDocument, // ✅ export reset action
+} = documentSlice.actions;
+
 export default documentSlice.reducer;

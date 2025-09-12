@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import { useRouter } from "next/navigation"; // ✅ Add this
 import { useAppDispatch, useAppSelector } from "@/redux/user/hooks/useAppHooks";
 import { fetchDocuments } from "@/redux/document/Thunk";
 import {
@@ -30,6 +31,8 @@ type Document = {
 
 function AllDocumentsContent() {
   const dispatch = useAppDispatch();
+    const router = useRouter(); // ✅ for navigation
+
   const { allDocuments, loading, error } = useAppSelector(
     (state) => state.documents
   );
@@ -104,7 +107,8 @@ function AllDocumentsContent() {
                   {/* Update icon */}
                   <button
                     className="p-2 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-500"
-                    onClick={() => console.log("Update doc:", doc.id)}
+                    onClick={() => router.push(`/dashboard/documents/edit/${doc.id}`)
+}
                   >
                     <Pencil className="w-5 h-5" />
                   </button>
