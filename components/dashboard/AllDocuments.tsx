@@ -9,12 +9,24 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Loader2, Trash2, Pencil, Search, FileText } from "lucide-react";
-import Button from "@/components/ui/button";
+    
+type Tag = {
+  name: string;
+};
+
+type Document = {
+  id: string;
+  title: string;
+  author: string;
+  publishedYear: number; // Match redux slice type
+  publisher?: string;
+  tags?: Tag[];
+  createdAt: string;
+};
 
 function AllDocumentsContent() {
   const dispatch = useAppDispatch();
@@ -63,49 +75,51 @@ function AllDocumentsContent() {
           Failed to fetch documents. Try again.
         </p>
       ) : filteredDocs.length > 0 ? (
-        <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-gray-50 dark:bg-gray-800">
-                <TableHead className="w-[200px]">Title</TableHead>
-                <TableHead>Author</TableHead>
-                <TableHead>Year</TableHead>
-                <TableHead>Publisher</TableHead>
-                <TableHead>Tags</TableHead>
-                <TableHead>Date Uploaded</TableHead>
-                <TableHead className="text-right px-10">Actions</TableHead>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableCell className="font-medium px-6">Title</TableCell>
+              <TableCell>Author</TableCell>
+              <TableCell>Published Year</TableCell>
+              <TableCell>Publisher</TableCell>
+              <TableCell>Tags</TableCell>
+              <TableCell>Created At</TableCell>
+              <TableCell className="text-right px-6">Actions</TableCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredDocs.map((doc: Document) => (
+              <TableRow key={doc.id}>
+                <TableCell className="font-medium px-6">{doc.title}</TableCell>
+                <TableCell>{doc.author}</TableCell>
+                <TableCell>{doc.publishedYear}</TableCell>
+                <TableCell>{doc.publisher || "—"}</TableCell>
+                <TableCell>
+                  {doc.tags?.map((t: Tag) => t.name).join(", ") || "—"}
+                </TableCell>
+                <TableCell>
+                  {new Date(doc.createdAt).toLocaleDateString()}
+                </TableCell>
+                <TableCell className="text-right space-x-3 px-6">
+                  {/* Update icon */}
+                  <button
+                    className="p-2 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-500"
+                    onClick={() => console.log("Update doc:", doc.id)}
+                  >
+                    <Pencil className="w-5 h-5" />
+                  </button>
+                  {/* Delete icon */}
+                  <button
+                    className="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900 text-red-500"
+                    onClick={() => console.log("Delete doc:", doc.id)}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </TableCell>
               </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredDocs.map((doc) => (
-                <TableRow key={doc.id}>
-                  <TableCell className="font-medium px-6">{doc.title}</TableCell>
-                  <TableCell>{doc.author}</TableCell>
-                  <TableCell>{doc.publishedYear}</TableCell>
-                  <TableCell>{doc.publisher || "—"}</TableCell>
-                  <TableCell>{doc.tags?.map((t: any) => t.name).join(", ") || "—"}</TableCell>
-                  <TableCell>
-                    {new Date(doc.createdAt).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell className="text-right space-x-2 px-6">
-                    <Button
-                      defaultText="Update"
-                      className="rounded-full border border-indigo-500 text-indigo-500 bg-white hover:bg-indigo-50"
-                    >
-                      <Pencil className="w-4 h-4 mr-1" /> Update
-                    </Button>
-                    <Button
-                      defaultText="Delete"
-                      className="rounded-full border border-red-500 text-red-500 bg-white hover:bg-red-50"
-                    >
-                      <Trash2 className="w-4 h-4 mr-1" /> Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+            ))}
+          </TableBody>
+        </Table>
       ) : (
         <p className="text-center text-gray-500 dark:text-gray-400">
           No documents found.

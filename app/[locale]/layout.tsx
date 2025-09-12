@@ -12,6 +12,10 @@ import LanguageProvider from "@/components/provider/LanguageProvider";
 
 import { ThemeProvider } from "next-themes";
 
+// ✅ Import Toastify CSS and ToastContainer
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -47,16 +51,25 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* 🌙 Wrap everything in ThemeProvider for dark mode */}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <LanguageProvider locale={locale} />
 
           <NextIntlClientProvider messages={messages}>
             <Header />
-
-            {/* 👇 Add padding so content starts below header */}
             <main className="pt-20">{children}</main>
           </NextIntlClientProvider>
+
+          {/* ✅ Toast container at root level */}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            theme="light"
+          />
         </ThemeProvider>
       </body>
     </html>

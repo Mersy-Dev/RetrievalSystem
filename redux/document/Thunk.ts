@@ -21,3 +21,28 @@ export const fetchDocuments = createAsyncThunk(
     }
   }
 );
+
+// ✅ Upload a new document
+export const uploadDocument = createAsyncThunk(
+  "documents/upload",
+  async (formData: FormData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/documents/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Uploaded document:", response.data);
+      return response.data.document; // backend returns { message, document }
+
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue(
+          error.response.data?.error || "Failed to upload document"
+        );
+      }
+      return rejectWithValue("Failed to upload document");
+    }
+  }
+);

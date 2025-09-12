@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // ✅ Import router
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import {
@@ -13,6 +14,7 @@ import {
   Link as LinkIcon,
   Loader2,
 } from "lucide-react";
+import { toast } from "react-toastify";
 
 const TAG_OPTIONS = [
   "🧬 Malaria Symptoms",
@@ -24,7 +26,8 @@ const TAG_OPTIONS = [
 ];
 
 function UploadDocumentContent() {
-  const [pageLoading, setPageLoading] = useState(true); // ✅ new page loading state
+  const router = useRouter(); // ✅ Initialize router
+  const [pageLoading, setPageLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
@@ -33,10 +36,9 @@ function UploadDocumentContent() {
   const [referenceLink, setReferenceLink] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false); // ✅ upload loader
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // mimic fetch/init delay
     const timer = setTimeout(() => {
       setPageLoading(false);
     }, 1200);
@@ -52,26 +54,39 @@ function UploadDocumentContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) {
-      alert("Please select a file to upload");
+      toast.warning("📂 Please select a file to upload.");
       return;
     }
 
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("author", author);
+      formData.append("publishedYear", publishedYear);
+      formData.append("publisher", publisher);
+      formData.append("referenceLink", referenceLink);
+      formData.append("document", file);
+      formData.append("tags", JSON.stringify(selectedTags));
 
-        console.log({
-            title,
-            description,
-            author,
-            publishedYear,
-            publisher,
-            referenceLink,
-            file,
-            selectedTags,
-        });
+      const response = await fetch("/api/documents/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-      alert("Document uploaded successfully (mock)");
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Upload failed");
+      }
+
+      toast.success("🎉 Your document has been uploaded successfully!");
+
+      // ✅ Redirect to documents page after a short delay
+      setTimeout(() => {
+        router.push("/dashboard/documents");
+      }, 1500);
 
       // reset form
       setTitle("");
@@ -82,6 +97,10 @@ function UploadDocumentContent() {
       setReferenceLink("");
       setFile(null);
       setSelectedTags([]);
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Something went wrong";
+      toast.error(`❌ Upload failed: ${message}`);
     } finally {
       setLoading(false);
     }
@@ -169,7 +188,8 @@ function UploadDocumentContent() {
         {/* Reference Link */}
         <div>
           <label className="block text-sm font-medium mb-2 flex items-center gap-1">
-            <LinkIcon className="w-4 h-4 text-indigo-500" /> Reference Link (optional)
+            <LinkIcon className="w-4 h-4 text-indigo-500" /> Reference Link
+            (optional)
           </label>
           <input
             type="url"
