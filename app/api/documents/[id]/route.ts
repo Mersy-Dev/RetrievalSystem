@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { API_URL } from "@/app/config/config";
 
-// GET single document
+// ✅ GET single document
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
     const res = await fetch(`${API_URL}/documents/${params.id}`, {
@@ -21,7 +21,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
-// PUT update document
+// ✅ PUT update document
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const body = await req.json();
@@ -40,6 +40,25 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     return NextResponse.json(updated);
   } catch (error) {
     console.error("PUT document error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+// ✅ DELETE document
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+  try {
+    const res = await fetch(`${API_URL}/documents/${params.id}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) {
+      return NextResponse.json({ error: "Failed to delete document" }, { status: res.status });
+    }
+
+    const deleted = await res.json();
+    return NextResponse.json(deleted);
+  } catch (error) {
+    console.error("DELETE document error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

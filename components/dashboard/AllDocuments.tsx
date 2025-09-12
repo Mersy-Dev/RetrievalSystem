@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
-import { useRouter } from "next/navigation"; // ✅ Add this
+import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/user/hooks/useAppHooks";
-import { fetchDocuments } from "@/redux/document/Thunk";
+import { fetchDocuments, deleteDocument } from "@/redux/document/Thunk"; // ✅ import delete thunk
 import {
   Table,
   TableBody,
@@ -14,7 +14,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Loader2, Trash2, Pencil, Search, FileText } from "lucide-react";
-    
+import { toast } from "react-toastify";
+import { ConfirmDialog } from "@/components/ui/confirmDialog";
+
 type Tag = {
   name: string;
 };
@@ -23,7 +25,7 @@ type Document = {
   id: string;
   title: string;
   author: string;
-  publishedYear: number; // Match redux slice type
+  publishedYear: number;
   publisher?: string;
   tags?: Tag[];
   createdAt: string;
@@ -31,16 +33,46 @@ type Document = {
 
 function AllDocumentsContent() {
   const dispatch = useAppDispatch();
-    const router = useRouter(); // ✅ for navigation
+  const router = useRouter();
 
   const { allDocuments, loading, error } = useAppSelector(
     (state) => state.documents
   );
+
   const [search, setSearch] = useState("");
+  const [deleteId, setDeleteId] = useState<string | null>(null); // store the doc ID
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchDocuments());
   }, [dispatch]);
+
+  const confirmDelete = (id: string) => {
+    setDeleteId(id);
+    setIsDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!deleteId) return;
+
+    try {
+      const result = await dispatch(deleteDocument(Number(deleteId))).unwrap();
+      toast.success(result.message || "✅ Document deleted successfully!");
+      dispatch(fetchDocuments());
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "❌ Failed to delete document";
+      toast.error(errorMessage);
+    } finally {
+      setIsDialogOpen(false);
+      setDeleteId(null);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setIsDialogOpen(false);
+    setDeleteId(null);
+  };
 
   const filteredDocs = allDocuments.filter((doc) =>
     doc.title.toLowerCase().includes(search.toLowerCase())
@@ -107,15 +139,16 @@ function AllDocumentsContent() {
                   {/* Update icon */}
                   <button
                     className="p-2 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-500"
-                    onClick={() => router.push(`/dashboard/documents/edit/${doc.id}`)
-}
+                    onClick={() =>
+                      router.push(`/dashboard/documents/edit/${doc.id}`)
+                    }
                   >
                     <Pencil className="w-5 h-5" />
                   </button>
                   {/* Delete icon */}
                   <button
                     className="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900 text-red-500"
-                    onClick={() => console.log("Delete doc:", doc.id)}
+                    onClick={() => confirmDelete(doc.id)}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -129,6 +162,16 @@ function AllDocumentsContent() {
           No documents found.
         </p>
       )}
+       {/* Confirmation Dialog */}
+      <ConfirmDialog
+        open={isDialogOpen}
+        title="Delete Document"
+        description="Are you sure you want to delete this document? This action cannot be undone."
+        confirmText="Yes, Delete"
+        cancelText="Cancel"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </div>
   );
 }

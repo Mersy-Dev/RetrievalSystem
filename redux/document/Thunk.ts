@@ -94,3 +94,22 @@ export const updateDocument = createAsyncThunk(
     }
   }
 );
+
+
+// ✅ Delete document thunk
+export const deleteDocument = createAsyncThunk(
+  "documents/delete",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/api/documents/${id}`);
+      return { id, message: response.data.message };
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue(
+          error.response.data?.error || "Failed to delete document"
+        );
+      }
+      return rejectWithValue("Failed to delete document");
+    }
+  }
+);

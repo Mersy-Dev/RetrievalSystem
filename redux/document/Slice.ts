@@ -4,7 +4,8 @@ import {
   fetchDocuments,
   uploadDocument,
   updateDocument,
-  getSingleDocument, // ✅ import new thunk
+  getSingleDocument,
+  deleteDocument, // ✅ import delete thunk
 } from "./Thunk";
 
 interface Tag {
@@ -27,22 +28,26 @@ export interface Document {
 
 interface DocumentState {
   allDocuments: Document[];
-  singleDocument: Document | null; // ✅ new
+  singleDocument: Document | null;
   loading: boolean;
   error: string | null;
+  success: string | null; // ✅ added for delete / general messages
   uploadStatus: "idle" | "loading" | "success" | "failed";
   updateStatus: "idle" | "loading" | "success" | "failed";
+  deleteStatus: "idle" | "loading" | "success" | "failed"; // ✅ new
   uploadedDocument: Document | null;
   updatedDocument: Document | null;
 }
 
 const initialState: DocumentState = {
   allDocuments: [],
-  singleDocument: null, // ✅ new
+  singleDocument: null,
   loading: false,
   error: null,
+  success: null,
   uploadStatus: "idle",
   updateStatus: "idle",
+  deleteStatus: "idle",
   uploadedDocument: null,
   updatedDocument: null,
 };
@@ -61,7 +66,12 @@ const documentSlice = createSlice({
       state.updatedDocument = null;
       state.error = null;
     },
-    resetSingleDocument: (state) => { // ✅ reset single doc
+    resetDeleteState: (state) => { // ✅ new reset
+      state.deleteStatus = "idle";
+      state.success = null;
+      state.error = null;
+    },
+    resetSingleDocument: (state) => {
       state.singleDocument = null;
       state.error = null;
     },
@@ -127,6 +137,24 @@ const documentSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
         state.singleDocument = null;
+      })
+
+      // deleteDocument
+      .addCase(deleteDocument.pending, (state) => {
+        state.deleteStatus = "loading";
+        state.error = null;
+        state.success = null;
+      })
+      .addCase(deleteDocument.fulfilled, (state, action) => {
+        state.deleteStatus = "success";
+        state.allDocuments = state.allDocuments.filter(
+          (doc) => doc.id !== String(action.payload.id)
+        );
+        state.success = action.payload.message;
+      })
+      .addCase(deleteDocument.rejected, (state, action) => {
+        state.deleteStatus = "failed";
+        state.error = action.payload as string;
       });
   },
 });
@@ -134,7 +162,8 @@ const documentSlice = createSlice({
 export const {
   resetUploadState,
   resetUpdateState,
-  resetSingleDocument, // ✅ export reset action
+  resetDeleteState, // ✅ export new reset action
+  resetSingleDocument,
 } = documentSlice.actions;
 
 export default documentSlice.reducer;
