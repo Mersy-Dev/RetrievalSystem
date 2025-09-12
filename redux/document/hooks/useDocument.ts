@@ -6,7 +6,7 @@ import { fetchDocuments } from "../Thunk";
 
 export const useDocuments = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items, loading, error } = useSelector(
+  const { allDocuments, loading, error } = useSelector(
     (state: RootState) => state.documents
   );
 
@@ -14,5 +14,5 @@ export const useDocuments = () => {
     dispatch(fetchDocuments());
   }, [dispatch]);
 
-  return { items, loading, error };
+  return { allDocuments, loading, error };
 };

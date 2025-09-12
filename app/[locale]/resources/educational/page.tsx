@@ -25,10 +25,10 @@ function DocumentPageContent() {
   const [previewDoc, setPreviewDoc] = useState<Material | null>(null);
 
   // ✅ Redux hook to fetch documents
-  const { items, loading, error } = useDocuments();
+  const { allDocuments, loading, error } = useDocuments();
 
   // ✅ Map backend response into Material type for UI
-  const materials: Material[] = items.map((doc) => ({
+  const materials: Material[] = allDocuments.map((doc) => ({
     id: Number(doc.id),
     title: doc.title,
     summary: doc.summary,
@@ -56,7 +56,7 @@ function DocumentPageContent() {
         </section>
 
         {/* Search bar */}
-        <div className="flex items-center gap-3 max-w-md mx-auto bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2">
+        <div className="flex allDocuments-center gap-3 max-w-md mx-auto bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2">
           <Search className="w-5 h-5 text-gray-400 dark:text-gray-500" />
           <input
             type="text"
@@ -105,7 +105,7 @@ function DocumentPageContent() {
 
       {/* Preview Modal */}
       {previewDoc && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/70 flex allDocuments-center justify-center z-50">
           <div className="bg-white dark:bg-gray-800 rounded-2xl w-11/12 md:w-3/4 lg:w-2/3 p-6 shadow-lg relative">
             {/* Close button */}
             <button
@@ -120,7 +120,7 @@ function DocumentPageContent() {
               {previewDoc.description}
             </p>
 
-            <div className="w-full h-[70vh] bg-gray-100 dark:bg-gray-700 flex items-center justify-center rounded-xl overflow-hidden">
+            <div className="w-full h-[70vh] bg-gray-100 dark:bg-gray-700 flex allDocuments-center justify-center rounded-xl overflow-hidden">
               {previewDoc.type === "PDF" ? (
                 <iframe
                   src={previewDoc.url}

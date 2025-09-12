@@ -11,13 +11,13 @@ interface Document {
 }
 
 interface DocumentState {
-  items: Document[];
+  allDocuments: Document[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: DocumentState = {
-  items: [],
+  allDocuments: [],
   loading: false,
   error: null,
 };
@@ -35,7 +35,7 @@ const documentSlice = createSlice({
       })
       .addCase(fetchDocuments.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload.documents;
+        state.allDocuments = action.payload.documents;
       })
       .addCase(fetchDocuments.rejected, (state, action) => {
         state.loading = false;
