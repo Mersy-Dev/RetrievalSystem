@@ -63,13 +63,15 @@ function AllDocumentsContent() {
           Failed to fetch documents. Try again.
         </p>
       ) : filteredDocs.length > 0 ? (
-        <div className="overflow-x-auto rounded-xl border border-gray-200  dark:border-gray-700 shadow-sm">
+        <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gray-50 dark:bg-gray-800 ">
+              <TableRow className="bg-gray-50 dark:bg-gray-800">
                 <TableHead className="w-[200px]">Title</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Size</TableHead>
+                <TableHead>Author</TableHead>
+                <TableHead>Year</TableHead>
+                <TableHead>Publisher</TableHead>
+                <TableHead>Tags</TableHead>
                 <TableHead>Date Uploaded</TableHead>
                 <TableHead className="text-right px-10">Actions</TableHead>
               </TableRow>
@@ -78,8 +80,10 @@ function AllDocumentsContent() {
               {filteredDocs.map((doc) => (
                 <TableRow key={doc.id}>
                   <TableCell className="font-medium px-6">{doc.title}</TableCell>
-                  <TableCell>{"PDF"}</TableCell>
-                  <TableCell>{"—"}</TableCell>
+                  <TableCell>{doc.author}</TableCell>
+                  <TableCell>{doc.publishedYear}</TableCell>
+                  <TableCell>{doc.publisher || "—"}</TableCell>
+                  <TableCell>{doc.tags?.map((t: any) => t.name).join(", ") || "—"}</TableCell>
                   <TableCell>
                     {new Date(doc.createdAt).toLocaleDateString()}
                   </TableCell>

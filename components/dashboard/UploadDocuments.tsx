@@ -60,16 +60,16 @@ function UploadDocumentContent() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      console.log({
-        title,
-        description,
-        author,
-        publishedYear,
-        publisher,
-        referenceLink,
-        file,
-        selectedTags,
-      });
+        console.log({
+            title,
+            description,
+            author,
+            publishedYear,
+            publisher,
+            referenceLink,
+            file,
+            selectedTags,
+        });
 
       alert("Document uploaded successfully (mock)");
 

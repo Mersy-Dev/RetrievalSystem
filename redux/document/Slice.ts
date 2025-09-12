@@ -2,11 +2,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchDocuments } from "./Thunk";
 
-interface Document {
+interface Tag {
+  id: number;
+  name: string;
+}
+
+export interface Document {
   id: string;
   title: string;
-  summary: string;
   description: string;
+  author: string;
+  publishedYear: number;
+  publisher?: string;
+  referenceLink?: string;
+  cloudinaryUrl: string;
+  tags: Tag[];
   createdAt: string;
 }
 
@@ -35,7 +45,7 @@ const documentSlice = createSlice({
       })
       .addCase(fetchDocuments.fulfilled, (state, action) => {
         state.loading = false;
-        state.allDocuments = action.payload.documents;
+        state.allDocuments = action.payload.documents; // assume payload matches updated Document interface
       })
       .addCase(fetchDocuments.rejected, (state, action) => {
         state.loading = false;

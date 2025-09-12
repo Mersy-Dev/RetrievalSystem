@@ -4,22 +4,27 @@ import { FileText, Download, BookOpen } from "lucide-react";
 
 interface MaterialCardProps {
   title: string;
-  summary: string;
   description: string;
   type: string;
   size: string;
+  author: string;
+  publishedYear: number;
+  publisher?: string;
+  tags?: string[];
   viewLabel: string;
   downloadLabel: string;
-  onView: () => void; // ✅ Added
-
+  onView: () => void;
 }
 
 export default function MaterialCard({
   title,
-  summary,
-  // description,
+  description,
   type,
   size,
+  author,
+  publishedYear,
+  publisher,
+  tags,
   viewLabel,
   downloadLabel,
   onView,
@@ -34,8 +39,23 @@ export default function MaterialCard({
         <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
       </div>
 
-      {/* Description */}
-      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{summary}</p>
+      {/* Summary & Metadata */}
+      <div className="text-sm text-gray-600 dark:text-gray-300 mb-4 space-y-1">
+        <p>{description}</p>
+        <p>
+          <span className="font-medium">Author:</span> {author} • <span className="font-medium">Year:</span> {publishedYear}
+        </p>
+        {publisher && (
+          <p>
+            <span className="font-medium">Publisher:</span> {publisher}
+          </p>
+        )}
+        {tags && tags.length > 0 && (
+          <p>
+            <span className="font-medium">Tags:</span> {tags.join(", ")}
+          </p>
+        )}
+      </div>
 
       {/* Footer */}
       <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">

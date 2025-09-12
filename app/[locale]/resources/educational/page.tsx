@@ -12,10 +12,13 @@ import { useDocuments } from "@/redux/document/hooks/useDocument";
 type Material = {
   id: number;
   title: string;
-  summary: string;
   description: string;
-  type: string;
-  size: string;
+  author: string;
+  publishedYear: number;
+  publisher?: string;
+  referenceLink?: string;
+  tags: string[];
+  type: "PDF" | "Image" | "Other";
   url: string;
 };
 
@@ -24,18 +27,20 @@ function DocumentPageContent() {
   const [search, setSearch] = useState("");
   const [previewDoc, setPreviewDoc] = useState<Material | null>(null);
 
-  // ✅ Redux hook to fetch documents
   const { allDocuments, loading, error } = useDocuments();
 
-  // ✅ Map backend response into Material type for UI
+  // Map backend response into Material type for UI
   const materials: Material[] = allDocuments.map((doc) => ({
     id: Number(doc.id),
     title: doc.title,
-    summary: doc.summary,
     description: doc.description,
-    type: "PDF", // assuming all docs are PDFs from backend
-    size: "file size", // backend doesn’t send size
-    url: doc.cloudinaryUrl || doc.sourceUrl || "#",
+    author: doc.author,
+    publishedYear: doc.publishedYear,
+    publisher: doc.publisher || undefined,
+    referenceLink: doc.referenceLink || undefined,
+    tags: doc.tags?.map((t: { name: string }) => t.name) || [],
+    type: "PDF", // Assume PDFs; you can add logic to detect type by extension
+    url: doc.cloudinaryUrl || "#",
   }));
 
   const filtered = materials.filter((m) =>
@@ -56,7 +61,7 @@ function DocumentPageContent() {
         </section>
 
         {/* Search bar */}
-        <div className="flex allDocuments-center gap-3 max-w-md mx-auto bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2">
+        <div className="flex items-center gap-3 max-w-md mx-auto bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2">
           <Search className="w-5 h-5 text-gray-400 dark:text-gray-500" />
           <input
             type="text"
@@ -84,10 +89,13 @@ function DocumentPageContent() {
               <MaterialCard
                 key={m.id}
                 title={m.title}
-                summary={m.summary}
                 description={m.description}
                 type={m.type}
-                size={m.size}
+                size="N/A"
+                author={m.author}
+                publishedYear={m.publishedYear}
+                publisher={m.publisher}
+                tags={m.tags}
                 viewLabel={t("view")}
                 downloadLabel={t("download")}
                 onView={() => setPreviewDoc(m)}
@@ -105,9 +113,8 @@ function DocumentPageContent() {
 
       {/* Preview Modal */}
       {previewDoc && (
-        <div className="fixed inset-0 bg-black/70 flex allDocuments-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-white dark:bg-gray-800 rounded-2xl w-11/12 md:w-3/4 lg:w-2/3 p-6 shadow-lg relative">
-            {/* Close button */}
             <button
               onClick={() => setPreviewDoc(null)}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200"
@@ -115,12 +122,29 @@ function DocumentPageContent() {
               <X className="w-6 h-6" />
             </button>
 
-            <h2 className="text-xl font-bold mb-4">{previewDoc.title}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              {previewDoc.description}
+            <h2 className="text-xl font-bold mb-2">{previewDoc.title}</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+              {previewDoc.author} • {previewDoc.publishedYear}
             </p>
+            {previewDoc.publisher && (
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+                Publisher: {previewDoc.publisher}
+              </p>
+            )}
+            {previewDoc.referenceLink && (
+              <p className="text-sm text-blue-600 dark:text-blue-400 mb-4">
+                <a href={previewDoc.referenceLink} target="_blank" rel="noreferrer">
+                  {t("referenceLink")}
+                </a>
+              </p>
+            )}
+            {previewDoc.tags.length > 0 && (
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                Tags: {previewDoc.tags.join(", ")}
+              </p>
+            )}
 
-            <div className="w-full h-[70vh] bg-gray-100 dark:bg-gray-700 flex allDocuments-center justify-center rounded-xl overflow-hidden">
+            <div className="w-full h-[70vh] bg-gray-100 dark:bg-gray-700 flex items-center justify-center rounded-xl overflow-hidden">
               {previewDoc.type === "PDF" ? (
                 <iframe
                   src={previewDoc.url}
@@ -134,9 +158,7 @@ function DocumentPageContent() {
                   className="max-h-full max-w-full object-contain"
                 />
               ) : (
-                <p className="text-center text-gray-500">
-                  {t("previewNotSupported")}
-                </p>
+                <p className="text-center text-gray-500">{t("previewNotSupported")}</p>
               )}
             </div>
           </div>
@@ -146,7 +168,6 @@ function DocumentPageContent() {
   );
 }
 
-// ✅ Wrap in Redux Provider
 export default function EducationalMaterialsPage() {
   return (
     <Provider store={store}>
