@@ -157,33 +157,55 @@ export default function ArticleDetailClient() {
           </ul>
         </section>
 
-        {/* Document Viewer + Actions */}
-        {/* Document Viewer */}
-        <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-4">
-          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-            Document
+        {/* Document Preview Section */}
+        <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
+            Document Preview
           </h2>
 
           {document.signedUrl ? (
-            <div className="w-full h-[600px] border rounded-lg overflow-hidden shadow">
+            <div className="relative w-full h-[700px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg bg-gray-50 dark:bg-gray-900">
+              {/* Document Iframe */}
               <iframe
-                src={document.signedUrl} // ✅ use signed URL here
+                src={document.signedUrl}
                 className="w-full h-full"
                 title="Document Viewer"
               />
+
+              {/* Subtle gradient overlay at bottom like Google Classroom */}
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-100/90 dark:from-gray-900/90 to-transparent pointer-events-none" />
+
+              {/* Toolbar (bottom-right) */}
+              <div className="absolute bottom-3 right-3 flex gap-2 z-20">
+                {/* Open in New Tab */}
+                <a
+                  href={document.signedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 text-xs font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+                >
+                  Open
+                </a>
+
+                {/* Download */}
+                <a
+                  href={document.signedUrl}
+                  download
+                  className="px-3 py-1.5 text-xs font-medium bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 transition"
+                >
+                  Download
+                </a>
+
+                {/* Transcribe */}
+                <button className="px-3 py-1.5 text-xs font-medium bg-emerald-600 text-white rounded-lg shadow hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 transition">
+                  Transcribe
+                </button>
+              </div>
             </div>
           ) : (
-            <p className="text-red-500">This document is private or expired.</p>
-          )}
-
-          {document.signedUrl && (
-            <a
-              href={document.signedUrl}
-              download
-              className="inline-block px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
-            >
-              Download Document
-            </a>
+            <div className="p-6 text-center text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <p>📄 This document is private, unavailable, or expired.</p>
+            </div>
           )}
         </section>
 
