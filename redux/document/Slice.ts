@@ -21,7 +21,7 @@ export interface Document {
   publishedYear: number;
   publisher?: string;
   referenceLink?: string;
-  cloudinaryUrl: string;
+  firebaseUrl: string;
   tags: Tag[];
   createdAt: string;
 }

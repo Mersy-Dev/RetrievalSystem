@@ -9,7 +9,9 @@ export const getSingleDocument = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/documents/${id}`);
+      console.log("Fetched document:", response.data);
       return response.data; // backend returns the document object
+      
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         return rejectWithValue(

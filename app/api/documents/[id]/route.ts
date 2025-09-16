@@ -1,23 +1,26 @@
 // app/api/documents/[id]/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { API_URL } from "@/app/config/config";
 
 // ✅ GET single document
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   try {
-    const res = await fetch(`${API_URL}/documents/${params.id}`, {
+    const { id } = await context.params; // ✅ await the params
+
+    const res = await fetch(`${API_URL}/documents/${id}`, {
       method: "GET",
     });
 
-    if (!res.ok) {
-      return NextResponse.json({ error: "Failed to fetch document" }, { status: res.status });
-    }
-
     const data = await res.json();
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("GET document error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return new Response(JSON.stringify(data), { status: 200 });
+    console.log(data);
+    
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return new Response(JSON.stringify({ error: message }), { status: 500 });
   }
 }
 

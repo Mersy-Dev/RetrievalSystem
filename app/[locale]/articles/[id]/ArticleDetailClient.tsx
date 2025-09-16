@@ -27,7 +27,8 @@ type Document = {
   publisher?: string;
   description?: string;
   referenceLink?: string;
-  cloudinaryUrl: string;
+  storageUrl: string; // Supabase path
+  signedUrl?: string; // ✅ backend must return this
   createdAt: string;
   tags?: Tag[];
 };
@@ -48,6 +49,8 @@ export default function ArticleDetailClient() {
         const res = await fetch(`/api/documents/${documentId}`);
         if (!res.ok) throw new Error("Failed to fetch document");
         const data = await res.json();
+        console.log("📄 Document:", data);
+
         setDocument(data);
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : "Unknown error";
@@ -87,7 +90,6 @@ export default function ArticleDetailClient() {
   return (
     <section className="bg-sky-50 dark:bg-gray-900 py-12 transition-colors duration-300">
       <div className="max-w-5xl mx-auto space-y-10 p-6">
-
         {/* Title + Metadata */}
         <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-2">
           <h1 className="text-3xl font-bold text-sky-700 dark:text-sky-300">
@@ -114,10 +116,19 @@ export default function ArticleDetailClient() {
             <Info size={20} /> Quick Stats
           </h2>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700 dark:text-gray-200">
-            <li><strong>Created:</strong> {new Date(document.createdAt).toDateString()}</li>
-            <li><strong>Pages:</strong> ~12 (sample)</li>
-            <li><strong>Reading Time:</strong> ~15 mins</li>
-            <li><strong>File Size:</strong> 2.4 MB (sample)</li>
+            <li>
+              <strong>Created:</strong>{" "}
+              {new Date(document.createdAt).toDateString()}
+            </li>
+            <li>
+              <strong>Pages:</strong> ~12 (sample)
+            </li>
+            <li>
+              <strong>Reading Time:</strong> ~15 mins
+            </li>
+            <li>
+              <strong>File Size:</strong> 2.4 MB (sample)
+            </li>
           </ul>
         </section>
 
@@ -147,23 +158,33 @@ export default function ArticleDetailClient() {
         </section>
 
         {/* Document Viewer + Actions */}
+        {/* Document Viewer */}
         <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-4">
           <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
             Document
           </h2>
-          <div className="w-full h-[600px] border rounded-lg overflow-hidden shadow">
-            <iframe
-              src={document.cloudinaryUrl}
-              className="w-full h-full"
-              title="Document Viewer"
-            />
-          </div>
-          <button
-            onClick={() => alert("Transcription feature coming soon 🚀")}
-            className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
-          >
-            Transcribe Document
-          </button>
+
+          {document.signedUrl ? (
+            <div className="w-full h-[600px] border rounded-lg overflow-hidden shadow">
+              <iframe
+                src={document.signedUrl} // ✅ use signed URL here
+                className="w-full h-full"
+                title="Document Viewer"
+              />
+            </div>
+          ) : (
+            <p className="text-red-500">This document is private or expired.</p>
+          )}
+
+          {document.signedUrl && (
+            <a
+              href={document.signedUrl}
+              download
+              className="inline-block px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
+            >
+              Download Document
+            </a>
+          )}
         </section>
 
         {/* Tags */}
@@ -191,7 +212,8 @@ export default function ArticleDetailClient() {
             Citation Info
           </h2>
           <p className="text-sm text-gray-700 dark:text-gray-200">
-            {document.author}. ({document.publishedYear}). <em>{document.title}</em>. {document.publisher}.
+            {document.author}. ({document.publishedYear}).{" "}
+            <em>{document.title}</em>. {document.publisher}.
           </p>
         </section>
 
@@ -231,7 +253,11 @@ export default function ArticleDetailClient() {
           </h2>
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
-              <Star key={star} size={20} className="text-gray-400 hover:text-yellow-400 cursor-pointer" />
+              <Star
+                key={star}
+                size={20}
+                className="text-gray-400 hover:text-yellow-400 cursor-pointer"
+              />
             ))}
           </div>
           <textarea
