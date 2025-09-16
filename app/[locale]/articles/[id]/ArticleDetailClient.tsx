@@ -9,7 +9,7 @@ import {
   BookOpen,
   Calendar,
   User,
-  Tag,
+  Tag as TagIcon,
   Info,
   Star,
 } from "lucide-react";
@@ -19,18 +19,32 @@ type Tag = {
   name: string;
 };
 
-type Document = {
+type Feedback = {
   id: number;
+  rating: number; // 1-5
+  comment?: string;
+  createdAt: string;
+};
+
+type Document = {
+  id: string;
   title: string;
+  description?: string;
   author: string;
   publishedYear: number;
   publisher?: string;
-  description?: string;
   referenceLink?: string;
-  storageUrl: string; // Supabase path
-  signedUrl?: string; // ✅ backend must return this
+  storageUrl: string;
+  signedUrl?: string;
+  pages?: number;
+  readingTime?: number;
+  fileSize?: number;
   createdAt: string;
+  updatedAt: string;
   tags?: Tag[];
+  relatedDocs?: Document[];
+  relatedByDocuments?: Document[];
+  feedbacks?: Feedback[];
 };
 
 export default function ArticleDetailClient() {
@@ -48,9 +62,8 @@ export default function ArticleDetailClient() {
         setLoading(true);
         const res = await fetch(`/api/documents/${documentId}`);
         if (!res.ok) throw new Error("Failed to fetch document");
-        const data = await res.json();
+        const data: Document = await res.json();
         console.log("📄 Document:", data);
-
         setDocument(data);
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : "Unknown error";
@@ -121,13 +134,13 @@ export default function ArticleDetailClient() {
               {new Date(document.createdAt).toDateString()}
             </li>
             <li>
-              <strong>Pages:</strong> ~12 (sample)
+              <strong>Pages:</strong> {document.pages ?? "N/A"}
             </li>
             <li>
-              <strong>Reading Time:</strong> ~15 mins
+              <strong>Reading Time:</strong> {document.readingTime ?? "N/A"} mins
             </li>
             <li>
-              <strong>File Size:</strong> 2.4 MB (sample)
+              <strong>File Size:</strong> {document.fileSize ?? "N/A"} MB
             </li>
           </ul>
         </section>
@@ -144,40 +157,20 @@ export default function ArticleDetailClient() {
           </section>
         )}
 
-        {/* Key Highlights */}
-        <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-            Key Highlights
-          </h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-            <li>Summarizes malaria trends across multiple regions.</li>
-            <li>Includes treatment guidelines with latest WHO updates.</li>
-            <li>Provides case studies with statistical insights.</li>
-            <li>References recent peer-reviewed publications.</li>
-          </ul>
-        </section>
-
-        {/* Document Preview Section */}
+        {/* Document Preview */}
         <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
           <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
             Document Preview
           </h2>
-
           {document.signedUrl ? (
             <div className="relative w-full h-[700px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg bg-gray-50 dark:bg-gray-900">
-              {/* Document Iframe */}
               <iframe
                 src={document.signedUrl}
                 className="w-full h-full"
                 title="Document Viewer"
               />
-
-              {/* Subtle gradient overlay at bottom like Google Classroom */}
               <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-100/90 dark:from-gray-900/90 to-transparent pointer-events-none" />
-
-              {/* Toolbar (bottom-right) */}
               <div className="absolute bottom-3 right-3 flex gap-2 z-20">
-                {/* Open in New Tab */}
                 <a
                   href={document.signedUrl}
                   target="_blank"
@@ -186,8 +179,6 @@ export default function ArticleDetailClient() {
                 >
                   Open
                 </a>
-
-                {/* Download */}
                 <a
                   href={document.signedUrl}
                   download
@@ -195,11 +186,6 @@ export default function ArticleDetailClient() {
                 >
                   Download
                 </a>
-
-                {/* Transcribe */}
-                <button className="px-3 py-1.5 text-xs font-medium bg-emerald-600 text-white rounded-lg shadow hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 transition">
-                  Transcribe
-                </button>
               </div>
             </div>
           ) : (
@@ -210,46 +196,73 @@ export default function ArticleDetailClient() {
         </section>
 
         {/* Tags */}
-        {document.tags && document.tags.length > 0 && (
+        {Array.isArray(document.tags) && document.tags.length > 0 && (
           <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
             <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
               Tags
             </h2>
             <div className="flex flex-wrap gap-2">
-              {document.tags.map((tag, i) => (
+              {document.tags.map((tag) => (
                 <span
-                  key={i}
+                  key={tag.id ?? tag.name}
                   className="px-3 py-1 bg-sky-100 text-sky-700 dark:bg-sky-700 dark:text-sky-100 rounded-full text-sm flex items-center gap-1"
                 >
-                  <Tag size={14} /> {tag.name}
+                  <TagIcon size={14} /> {tag.name}
                 </span>
               ))}
             </div>
           </section>
         )}
 
-        {/* Citation Info */}
-        <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-            Citation Info
-          </h2>
-          <p className="text-sm text-gray-700 dark:text-gray-200">
-            {document.author}. ({document.publishedYear}).{" "}
-            <em>{document.title}</em>. {document.publisher}.
-          </p>
-        </section>
+        {/* Related Documents */}
+        {Array.isArray(document.relatedDocs) && document.relatedDocs.length > 0 && (
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+            <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
+              Related Documents
+            </h2>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
+              {document.relatedDocs.map((doc) => (
+                <li key={doc.id}>
+                  <Link
+                    href={`/articles/${doc.id}`}
+                    className="text-sky-600 dark:text-sky-400 hover:underline"
+                  >
+                    {doc.title} ({doc.publishedYear})
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-        {/* Related Documents (Placeholder) */}
-        <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-            Related Documents
-          </h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-            <li>Malaria Treatment Study (2021)</li>
-            <li>Global Outbreak Trends (2020)</li>
-            <li>WHO Health Guidelines (2022)</li>
-          </ul>
-        </section>
+        {/* Feedbacks */}
+        {Array.isArray(document.feedbacks) && document.feedbacks.length > 0 && (
+          <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
+            <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-3">
+              Feedbacks
+            </h2>
+            {document.feedbacks.map((fb) => (
+              <div
+                key={fb.id}
+                className="border-b border-gray-200 dark:border-gray-700 py-2"
+              >
+                <div className="flex items-center gap-1 mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={i < fb.rating ? "text-yellow-400" : "text-gray-400"}
+                    />
+                  ))}
+                </div>
+                {fb.comment && <p className="text-gray-700 dark:text-gray-200">{fb.comment}</p>}
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  {new Date(fb.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+            ))}
+          </section>
+        )}
 
         {/* Reference */}
         {document.referenceLink && (
@@ -267,30 +280,6 @@ export default function ArticleDetailClient() {
             </a>
           </section>
         )}
-
-        {/* Feedback */}
-        <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-3">
-            Feedback
-          </h2>
-          <div className="flex gap-2">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                size={20}
-                className="text-gray-400 hover:text-yellow-400 cursor-pointer"
-              />
-            ))}
-          </div>
-          <textarea
-            placeholder="Leave a comment..."
-            className="mt-3 w-full border rounded-md p-2 dark:bg-gray-700 dark:text-gray-200"
-            rows={3}
-          />
-          <button className="mt-2 px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600">
-            Submit Feedback
-          </button>
-        </section>
 
         {/* Back to Search */}
         <div className="pt-4">
