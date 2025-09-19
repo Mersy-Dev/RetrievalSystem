@@ -4,17 +4,17 @@ import "./globals.css";
 
 import { Locale, routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
-import { getMessages } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
 
 import Header from "@/components/nav/Header";
 import LanguageProvider from "@/components/provider/LanguageProvider";
-
 import { ThemeProvider } from "next-themes";
 
-// ✅ Import Toastify CSS and ToastContainer
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// ⭐ Import the official provider
+import { NextIntlClientProvider } from "next-intl";
+import { set } from "lodash"; // ✅ install: npm install lodash
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,12 +39,24 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const locale = (await params).locale;
+  const locale = params.locale;
 
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
-  const messages = await getMessages();
+
+  // 🔹 Fetch translations from your backend
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/translations/${locale}`,
+    { cache: "no-store" }
+  );
+  const flatMessages = await res.json();
+
+  // 🔹 Convert flat keys (e.g. "home.hero.title") into nested objects
+  const messages = Object.entries(flatMessages).reduce(
+    (acc, [key, value]) => set(acc, key, value),
+    {}
+  );
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -52,24 +64,15 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <LanguageProvider locale={locale} />
+          {/* ✅ Use NextIntlClientProvider instead of custom TranslationProvider */}
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <LanguageProvider locale={locale} />
 
-          <NextIntlClientProvider messages={messages}>
             <Header />
-            <main className="pt-20">{children}</main>
+            <main className="pt-0">{children}</main>
           </NextIntlClientProvider>
 
-          {/* ✅ Toast container at root level */}
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnHover
-            draggable
-            theme="light"
-          />
+          <ToastContainer position="top-right" autoClose={3000} theme="light" />
         </ThemeProvider>
       </body>
     </html>

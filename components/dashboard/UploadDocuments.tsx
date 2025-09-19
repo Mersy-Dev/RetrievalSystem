@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; // ✅ Import router
+import { useRouter } from "next/navigation";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import {
@@ -26,7 +26,7 @@ const TAG_OPTIONS = [
 ];
 
 function UploadDocumentContent() {
-  const router = useRouter(); // ✅ Initialize router
+  const router = useRouter();
   const [pageLoading, setPageLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -70,6 +70,7 @@ function UploadDocumentContent() {
       formData.append("document", file);
       formData.append("tags", JSON.stringify(selectedTags));
 
+      // ✅ Backend now calculates pages, readingTime, fileSize, storageUrl, signedUrl
       const response = await fetch("/api/documents/upload", {
         method: "POST",
         body: formData,
@@ -83,7 +84,6 @@ function UploadDocumentContent() {
 
       toast.success("🎉 Your document has been uploaded successfully!");
 
-      // ✅ Redirect to documents page after a short delay
       setTimeout(() => {
         router.push("/dashboard/documents");
       }, 1500);

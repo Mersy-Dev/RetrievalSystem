@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import MobileMenu from "./MobileMenu";
-import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, Sun, Moon } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
 import { useTheme } from "next-themes";
+import { useRouter, usePathname } from "@/i18n/routing";
+import { useTranslations, useLocale } from "next-intl";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,23 +15,23 @@ const Navbar = () => {
   const [resourcesDropdown, setResourcesDropdown] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  const t = useTranslations("Navbar");
+  const t = useTranslations("Navbar"); // ✅ Scope to Navbar namespace
+  const { theme, setTheme } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
-  const { theme, setTheme } = useTheme();
+  const locale = useLocale(); // ✅ current locale from next-intl
 
   useEffect(() => {
-    setMounted(true); // ensures hydration consistency
+    setMounted(true); // prevents hydration mismatch
   }, []);
 
-  const handleLanguageChange = (lang: string) => {
-    const segments = pathname.split("/");
-    const newPath = segments.slice(2).join("/") || "";
-    router.replace(`/${lang}/${newPath}`);
+  const switchLanguage = (newLocale: "en" | "yo") => {
+    if (newLocale === locale) return;
+    // ✅ Navigate to same path but with new locale prefix
+    router.replace({ pathname }, { locale: newLocale });
   };
 
-  if (!mounted) return null; // prevent hydration issues with next-themes
+  if (!mounted) return null;
 
   return (
     <nav className="w-full bg-white dark:bg-gray-900 text-sm font-medium py-4 px-6 lg:fixed lg:top-0 z-30 shadow-sm border-b border-gray-200 dark:border-gray-700">
@@ -46,7 +46,7 @@ const Navbar = () => {
             className="object-contain"
           />
           <span className="text-[10px] text-gray-500 dark:text-gray-300 leading-none mt-1">
-            Intelligent Malaria Awareness System
+            {t("tagline")}
           </span>
         </Link>
 
@@ -83,14 +83,23 @@ const Navbar = () => {
               </button>
               {infoDropdown && (
                 <div className="absolute top-full left-0 bg-white dark:bg-gray-800 shadow-md rounded-md py-2 w-48 z-50">
-                  <Link href="/info/symptoms" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    Symptoms
+                  <Link
+                    href="/info/symptoms"
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    {t("symptoms")}
                   </Link>
-                  <Link href="/info/prevention" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    Prevention
+                  <Link
+                    href="/info/prevention"
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    {t("prevention")}
                   </Link>
-                  <Link href="/info/treatment" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    Treatment
+                  <Link
+                    href="/info/treatment"
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    {t("treatment")}
                   </Link>
                 </div>
               )}
@@ -108,8 +117,11 @@ const Navbar = () => {
               </button>
               {resourcesDropdown && (
                 <div className="absolute top-full left-0 bg-white dark:bg-gray-800 shadow-md rounded-md py-2 w-56 z-50">
-                  <Link href="/resources/educational" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    Educational Materials
+                  <Link
+                    href="/resources/educational"
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    {t("educational")}
                   </Link>
                 </div>
               )}
@@ -126,7 +138,7 @@ const Navbar = () => {
               href="/dashboard"
               className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200"
             >
-              {t("dashboard") || "Dashboard"}
+              {t("dashboard")}
             </Link>
           </div>
 
@@ -134,12 +146,12 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {/* Language */}
             <select
-              onChange={(e) => handleLanguageChange(e.target.value)}
+              onChange={(e) => switchLanguage(e.target.value as "en" | "yo")}
               value={locale}
               className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-300"
             >
-              <option value="en">{locale === "en" ? "English" : "Gẹ̀ẹ́sì"}</option>
-              <option value="yo">{locale === "yo" ? "Yorùbá" : "Yorùbá"}</option>
+              <option value="en">English</option>
+              <option value="yo">Yorùbá</option>
             </select>
 
             {/* Dark Mode Toggle */}
