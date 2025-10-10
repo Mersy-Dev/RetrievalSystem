@@ -53,6 +53,13 @@ export default function ArticleDetailClient() {
   const documentId = params.id as string;
 
   const [document, setDocument] = useState<Document | null>(null);
+
+  const [translatedDoc, setTranslatedDoc] = useState<{
+    translatedText?: string;
+    translatedUrl?: string;
+  } | null>(null);
+  const [translating, setTranslating] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -75,6 +82,22 @@ export default function ArticleDetailClient() {
 
     fetchDocument();
   }, [documentId]);
+
+  const handleTranslate = async () => {
+    try {
+      setTranslating(true);
+      const res = await fetch(`/api/documents/${documentId}/translated`);
+      if (!res.ok) throw new Error("Failed to fetch translated document");
+      const data = await res.json();
+      console.log("🌍 Translated document:", data);
+      setTranslatedDoc(data);
+    } catch (error) {
+      console.error("Error fetching translated document:", error);
+      alert("Failed to load translated document.");
+    } finally {
+      setTranslating(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -137,7 +160,8 @@ export default function ArticleDetailClient() {
               <strong>Pages:</strong> {document.pages ?? "N/A"}
             </li>
             <li>
-              <strong>Reading Time:</strong> {document.readingTime ?? "N/A"} mins
+              <strong>Reading Time:</strong> {document.readingTime ?? "N/A"}{" "}
+              mins
             </li>
             <li>
               <strong>File Size:</strong> {document.fileSize ?? "N/A"} MB
@@ -162,6 +186,54 @@ export default function ArticleDetailClient() {
           <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
             Document Preview
           </h2>
+
+          {/* Translated Document Section */}
+          {/* Translated Document Section */}
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+            <h2 className="text-xl font-semibold text-green-700 dark:text-green-300 mb-4">
+              Translated Document (Yoruba)
+            </h2>
+
+            {!translatedDoc ? (
+              <div className="flex flex-col items-center justify-center space-y-4">
+                <button
+                  onClick={handleTranslate}
+                  disabled={translating}
+                  className="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 disabled:opacity-50 transition"
+                >
+                  {translating ? "Translating..." : "Translate Document"}
+                </button>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Click the button to translate this document into Yoruba.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {/* Show translated text if available */}
+                {translatedDoc.translatedText && (
+                  <div className="p-6 bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-700 dark:text-gray-200 whitespace-pre-line">
+                    {translatedDoc.translatedText}
+                  </div>
+                )}
+
+                {/* Download translated version */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        `/api/documents/${documentId}/translated`,
+                        "_blank"
+                      )
+                    }
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+                  >
+                    Download Translated PDF
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
+
           {document.signedUrl ? (
             <div className="relative w-full h-[700px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg bg-gray-50 dark:bg-gray-900">
               <iframe
@@ -215,25 +287,26 @@ export default function ArticleDetailClient() {
         )}
 
         {/* Related Documents */}
-        {Array.isArray(document.relatedDocs) && document.relatedDocs.length > 0 && (
-          <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-            <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-              Related Documents
-            </h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-              {document.relatedDocs.map((doc) => (
-                <li key={doc.id}>
-                  <Link
-                    href={`/articles/${doc.id}`}
-                    className="text-sky-600 dark:text-sky-400 hover:underline"
-                  >
-                    {doc.title} ({doc.publishedYear})
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+        {Array.isArray(document.relatedDocs) &&
+          document.relatedDocs.length > 0 && (
+            <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+              <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
+                Related Documents
+              </h2>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
+                {document.relatedDocs.map((doc) => (
+                  <li key={doc.id}>
+                    <Link
+                      href={`/articles/${doc.id}`}
+                      className="text-sky-600 dark:text-sky-400 hover:underline"
+                    >
+                      {doc.title} ({doc.publishedYear})
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
         {/* Feedbacks */}
         {Array.isArray(document.feedbacks) && document.feedbacks.length > 0 && (
@@ -251,11 +324,17 @@ export default function ArticleDetailClient() {
                     <Star
                       key={i}
                       size={16}
-                      className={i < fb.rating ? "text-yellow-400" : "text-gray-400"}
+                      className={
+                        i < fb.rating ? "text-yellow-400" : "text-gray-400"
+                      }
                     />
                   ))}
                 </div>
-                {fb.comment && <p className="text-gray-700 dark:text-gray-200">{fb.comment}</p>}
+                {fb.comment && (
+                  <p className="text-gray-700 dark:text-gray-200">
+                    {fb.comment}
+                  </p>
+                )}
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   {new Date(fb.createdAt).toLocaleDateString()}
                 </p>

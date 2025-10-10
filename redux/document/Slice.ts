@@ -2,10 +2,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchDocuments,
+  fetchTranslatedDocument,
   uploadDocument,
   updateDocument,
   getSingleDocument,
   deleteDocument, // ✅ import delete thunk
+
 } from "./Thunk";
 
 interface Tag {
@@ -88,6 +90,21 @@ const documentSlice = createSlice({
         state.allDocuments = action.payload.documents;
       })
       .addCase(fetchDocuments.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      }).
+      //Translated document
+      addCase(fetchTranslatedDocument.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTranslatedDocument.fulfilled, (state, action) => {
+        state.loading = false;  
+        // You might want to store the translated document somewhere
+        // For now, we'll just log it
+        console.log("Translated Document:", action.payload);
+      })
+      .addCase(fetchTranslatedDocument.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       })

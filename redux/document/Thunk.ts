@@ -44,6 +44,26 @@ export const fetchDocuments = createAsyncThunk(
   }
 );
 
+
+export const fetchTranslatedDocument = createAsyncThunk(
+  "documents/fetchTranslated",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/api/documents/${id}/translated`);
+      console.log("Fetched translated document:", response.data);
+      
+      return response.data; // backend should return translatedText or file URL
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue(
+          error.response.data?.message || "Failed to fetch translated document"
+        );
+      }
+      return rejectWithValue("Failed to fetch translated document");
+    }
+  }
+);
+
 // ✅ Upload a new document
 export const uploadDocument = createAsyncThunk(
   "documents/upload",

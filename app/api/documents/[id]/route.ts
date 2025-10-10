@@ -24,6 +24,8 @@ export async function GET(
   }
 }
 
+
+
 // ✅ PUT update document
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
