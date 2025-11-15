@@ -9,6 +9,9 @@ import Header from "@/components/nav/Header";
 import LanguageProvider from "@/components/provider/LanguageProvider";
 import { ThemeProvider } from "next-themes";
 
+import ChatWrapper from "@/components/assistant/ChatWrapper";
+
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -69,6 +72,7 @@ export default async function RootLayout({
             <LanguageProvider locale={locale} />
 
             <Header />
+            <ChatWrapper />
             <main className="pt-0">{children}</main>
           </NextIntlClientProvider>
 

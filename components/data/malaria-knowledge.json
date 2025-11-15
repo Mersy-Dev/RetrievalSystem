@@ -1,0 +1,28 @@
+
+
+{
+  "Symptoms": {
+    "response": "Common malaria symptoms include fever, chills, sweating, headache, muscle pain and nausea. Symptoms usually appear 10–15 days after a mosquito bite."
+  },
+  "Prevention": {
+    "response": "Prevent malaria by using insecticide-treated nets, indoor spraying, using mosquito repellents, and reducing standing water around your home."
+  },
+  "Treatment": {
+    "response": "Malaria is treated using ACTs (Artemisinin-based Combination Therapies). Early diagnosis and treatment are essential."
+  },
+  "Pregnancy": {
+    "response": "Pregnant women are at higher risk. WHO recommends IPTp-SP during pregnancy and sleeping under treated mosquito nets."
+  },
+  "Children": {
+    "response": "Children under 5 are vulnerable. Symptoms can escalate quickly. Ensure quick diagnosis and treatment."
+  },
+  "Environment": {
+    "response": "Dirty environments with stagnant water attract mosquitoes. Keep surroundings clean to reduce malaria spread."
+  },
+  "Causes": {
+    "response": "Malaria is caused by Plasmodium parasites transmitted through the bite of an infected female Anopheles mosquito."
+  },
+  "Others": {
+    "response": "Feel free to ask any question about malaria. I’m here to help."
+  }
+}
