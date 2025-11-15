@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+
 import Link from "next/link";
 import {
   Loader2,
@@ -29,7 +32,9 @@ type Feedback = {
 type Document = {
   id: string;
   title: string;
+  titleYo?: string;
   description?: string;
+  descriptionYo?: string;
   author: string;
   publishedYear: number;
   publisher?: string;
@@ -51,14 +56,21 @@ export default function ArticleDetailClient() {
   const router = useRouter();
   const params = useParams();
   const documentId = params.id as string;
+  const locale = useLocale();
 
   const [document, setDocument] = useState<Document | null>(null);
 
   const [translatedDoc, setTranslatedDoc] = useState<{
+    id: string;
+    fileUrl: string;
+    translation?: string;
+    signedUrl: string | undefined;
     translatedText?: string;
     translatedUrl?: string;
   } | null>(null);
   const [translating, setTranslating] = useState(false);
+
+  const t = useTranslations("system"); // 👈 Use "Search" namespace (JSON below)
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -111,13 +123,13 @@ export default function ArticleDetailClient() {
     return (
       <div className="max-w-4xl mx-auto p-6">
         <h1 className="text-xl font-bold text-red-600 dark:text-red-400">
-          Document Not Found
+          {t("articles.documentNotFound ")}
         </h1>
         <button
           onClick={() => router.back()}
           className="mt-4 px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
         >
-          Go Back
+          {t("articles.goBackButton")}
         </button>
       </div>
     );
@@ -129,8 +141,11 @@ export default function ArticleDetailClient() {
         {/* Title + Metadata */}
         <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-2">
           <h1 className="text-3xl font-bold text-sky-700 dark:text-sky-300">
-            {document.title}
+            {locale === "yo"
+              ? document.titleYo || document.title
+              : document.title}
           </h1>
+
           <div className="flex flex-wrap items-center text-sm text-gray-600 dark:text-gray-400 gap-4">
             <span className="flex items-center gap-1">
               <User size={16} /> {document.author}
@@ -149,129 +164,154 @@ export default function ArticleDetailClient() {
         {/* Quick Stats */}
         <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
           <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-3 flex items-center gap-2">
-            <Info size={20} /> Quick Stats
+            <Info size={20} /> {t("articles.quickStats.title")}
           </h2>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700 dark:text-gray-200">
             <li>
-              <strong>Created:</strong>{" "}
+              <strong>{t("articles.quickStats.fields.created")}:</strong>{" "}
               {new Date(document.createdAt).toDateString()}
             </li>
             <li>
-              <strong>Pages:</strong> {document.pages ?? "N/A"}
+              <strong>{t("articles.quickStats.fields.pages")}:</strong>{" "}
+              {document.pages}
             </li>
             <li>
-              <strong>Reading Time:</strong> {document.readingTime ?? "N/A"}{" "}
-              mins
+              <strong>{t("articles.quickStats.fields.readingTime")}:</strong>{" "}
+              {document.readingTime}{" "}
+              {document.readingTime === 1 ? "min" : "mins"}
             </li>
+
             <li>
-              <strong>File Size:</strong> {document.fileSize ?? "N/A"} MB
+              <strong>{t("articles.quickStats.fields.fileSize")}:</strong>{" "}
+              {document.fileSize}
             </li>
           </ul>
         </section>
 
         {/* Description */}
-        {document.description && (
+        {(locale === "yo" ? document.descriptionYo : document.description) && (
           <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
             <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-              Description
+              {t("articles.description.title")}
             </h2>
             <p className="text-gray-700 dark:text-gray-200">
-              {document.description}
+              {locale === "yo"
+                ? document.descriptionYo || "Ko sí àlàyé tó wà nínú èdè Yorùbá."
+                : document.description || "No description available."}
             </p>
           </section>
         )}
 
         {/* Document Preview */}
-        <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-          <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4">
-            Document Preview
+        <section className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg space-y-10">
+          {/* Header */}
+          <h2 className="text-2xl font-bold text-sky-700 dark:text-sky-300 mb-4">
+            {t("articles.preview.title")}
           </h2>
 
-          {/* Translated Document Section */}
-          {/* Translated Document Section */}
-          <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-            <h2 className="text-xl font-semibold text-green-700 dark:text-green-300 mb-4">
-              Translated Document (Yoruba)
-            </h2>
+          {/* --- English Document Section --- */}
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6 space-y-4">
+            <h3 className="text-lg font-semibold text-sky-700 dark:text-sky-300">
+              {t("articles.preview.sections.english.title")}
+            </h3>
+
+            {document?.signedUrl ? (
+              <div className="relative w-full h-[650px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm">
+                <iframe
+                  src={document.signedUrl}
+                  className="w-full h-full"
+                  title={t(".preview.sections.english.title")}
+                />
+                <div className="absolute bottom-3 right-3 flex gap-2">
+                  <a
+                    href={document.signedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 text-xs font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+                  >
+                    {t("articles.preview.sections.english.openButton")}
+                  </a>
+                  <a
+                    href={document.signedUrl}
+                    download
+                    className="px-3 py-1.5 text-xs font-medium bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition"
+                  >
+                    {t("articles.preview.sections.english.downloadButton")}
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="p-6 text-center text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                <p>{t("articles.preview.sections.english.privateText")}</p>
+              </div>
+            )}
+          </div>
+
+          {/* --- Yoruba Translation Section --- */}
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-6 space-y-4">
+            <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">
+              {t("articles.preview.sections.yoruba.title")}
+            </h3>
 
             {!translatedDoc ? (
-              <div className="flex flex-col items-center justify-center space-y-4">
+              <div className="flex flex-col items-center justify-center py-12 space-y-5">
                 <button
                   onClick={handleTranslate}
                   disabled={translating}
-                  className="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 disabled:opacity-50 transition"
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 disabled:opacity-50 transition"
                 >
-                  {translating ? "Translating..." : "Translate Document"}
+                  {translating
+                    ? t("articles.preview.sections.yoruba.translatingText")
+                    : t("articles.preview.sections.yoruba.translateButton")}
                 </button>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Click the button to translate this document into Yoruba.
+                <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+                  {t("articles.preview.sections.yoruba.clickInfo")}
                 </p>
               </div>
             ) : (
               <div className="space-y-4">
-                {/* Show translated text if available */}
-                {translatedDoc.translatedText && (
-                  <div className="p-6 bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-700 dark:text-gray-200 whitespace-pre-line">
-                    {translatedDoc.translatedText}
+                {/* Yoruba Preview */}
+                <div className="relative w-full h-[650px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm">
+                  <iframe
+                    src={translatedDoc?.fileUrl || ""}
+                    className="w-full h-full"
+                    title={t("articles.preview.sections.yoruba.title")}
+                  />
+                  <div className="absolute bottom-3 right-3 flex gap-2">
+                    <a
+                      href={translatedDoc?.fileUrl || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 text-xs font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+                    >
+                      {t("articles.preview.sections.yoruba.openButton")}
+                    </a>
+                    <a
+                      href={translatedDoc?.fileUrl || "#"}
+                      download
+                      className="px-3 py-1.5 text-xs font-medium bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+                    >
+                      {t("articles.preview.sections.yoruba.downloadButton")}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Optional: Display Translated Text */}
+                {translatedDoc?.translation && (
+                  <div className="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-inner text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
+                    {translatedDoc.translation}
                   </div>
                 )}
-
-                {/* Download translated version */}
-                <div className="flex justify-end">
-                  <button
-                    onClick={() =>
-                      window.open(
-                        `/api/documents/${documentId}/translated`,
-                        "_blank"
-                      )
-                    }
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
-                  >
-                    Download Translated PDF
-                  </button>
-                </div>
               </div>
             )}
-          </section>
-
-          {document.signedUrl ? (
-            <div className="relative w-full h-[700px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg bg-gray-50 dark:bg-gray-900">
-              <iframe
-                src={document.signedUrl}
-                className="w-full h-full"
-                title="Document Viewer"
-              />
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-100/90 dark:from-gray-900/90 to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 right-3 flex gap-2 z-20">
-                <a
-                  href={document.signedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 text-xs font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
-                >
-                  Open
-                </a>
-                <a
-                  href={document.signedUrl}
-                  download
-                  className="px-3 py-1.5 text-xs font-medium bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 transition"
-                >
-                  Download
-                </a>
-              </div>
-            </div>
-          ) : (
-            <div className="p-6 text-center text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p>📄 This document is private, unavailable, or expired.</p>
-            </div>
-          )}
+          </div>
         </section>
 
         {/* Tags */}
         {Array.isArray(document.tags) && document.tags.length > 0 && (
           <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
             <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-              Tags
+              {t("articles.tags.title")}
             </h2>
             <div className="flex flex-wrap gap-2">
               {document.tags.map((tag) => (
@@ -291,7 +331,7 @@ export default function ArticleDetailClient() {
           document.relatedDocs.length > 0 && (
             <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
               <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-                Related Documents
+                {t("articles.relatedDocs.title")}
               </h2>
               <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
                 {document.relatedDocs.map((doc) => (
@@ -312,7 +352,7 @@ export default function ArticleDetailClient() {
         {Array.isArray(document.feedbacks) && document.feedbacks.length > 0 && (
           <section className="bg-sky-50 dark:bg-gray-800 p-6 rounded-xl shadow">
             <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-3">
-              Feedbacks
+              {t("articles.feedbacks.title")}
             </h2>
             {document.feedbacks.map((fb) => (
               <div
@@ -347,7 +387,7 @@ export default function ArticleDetailClient() {
         {document.referenceLink && (
           <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
             <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-2">
-              Reference
+              {t("articles.reference.title")}
             </h2>
             <a
               href={document.referenceLink}
@@ -355,7 +395,7 @@ export default function ArticleDetailClient() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sky-600 dark:text-sky-400 hover:underline"
             >
-              <LinkIcon size={16} /> Visit Reference
+              <LinkIcon size={16} /> {t("articles.reference.visitButton")}
             </a>
           </section>
         )}
@@ -366,7 +406,7 @@ export default function ArticleDetailClient() {
             href="/system"
             className="text-sky-600 dark:text-sky-400 hover:underline font-medium"
           >
-            ← Back to Search
+            {t("articles.backToSearch.button")}
           </Link>
         </div>
       </div>

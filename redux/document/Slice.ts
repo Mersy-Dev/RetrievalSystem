@@ -15,18 +15,47 @@ interface Tag {
   name: string;
 }
 
+interface Feedback {
+  id: number;
+  userId?: number;
+  comment?: string;
+  rating?: number;
+  createdAt?: string;
+}
+
+interface TranslationCache {
+  language: string;
+  title?: string;
+  description?: string;
+  author?: string;
+  translatedAt?: string;
+}
+
 export interface Document {
   id: string;
   title: string;
-  description: string;
+  titleYo?: string;          // Yoruba translation (optional)
+  description?: string;
+  descriptionYo?: string;    // Yoruba translation (optional)
   author: string;
+  authorYo?: string;         // Yoruba translation (optional)
   publishedYear: number;
   publisher?: string;
   referenceLink?: string;
-  firebaseUrl: string;
-  tags: Tag[];
+  storageUrl: string;        // Supabase file path
+  signedUrl?: string;        // temporary access URL
+  pages?: number;            // total number of pages
+  readingTime?: number;      // estimated reading time (minutes)
+  fileSize?: number;         // in MB
   createdAt: string;
+  updatedAt?: string;
+
+  tags: Tag[];               // related tags
+  feedbacks?: Feedback[];    // user feedback (if included in response)
+  relatedDocs?: Document[];  // related documents
+  translations?: TranslationCache[]; // translation records
 }
+
 
 interface DocumentState {
   allDocuments: Document[];

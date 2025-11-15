@@ -29,8 +29,11 @@ function UploadDocumentContent() {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState(true);
   const [title, setTitle] = useState("");
+  const [titleYo, setTitleYo] = useState("");
   const [description, setDescription] = useState("");
+  const [descriptionYo, setDescriptionYo] = useState("");
   const [author, setAuthor] = useState("");
+  const [authorYo, setAuthorYo] = useState("");
   const [publishedYear, setPublishedYear] = useState("");
   const [publisher, setPublisher] = useState("");
   const [referenceLink, setReferenceLink] = useState("");
@@ -62,8 +65,11 @@ function UploadDocumentContent() {
     try {
       const formData = new FormData();
       formData.append("title", title);
+      formData.append("titleYo", titleYo);
       formData.append("description", description);
+      formData.append("descriptionYo", descriptionYo);
       formData.append("author", author);
+      formData.append("authorYo", authorYo);
       formData.append("publishedYear", publishedYear);
       formData.append("publisher", publisher);
       formData.append("referenceLink", referenceLink);
@@ -140,6 +146,27 @@ function UploadDocumentContent() {
             required
           />
         </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Title (Yoruba)</label>
+          <input
+            type="text"
+            placeholder="Enter document title in Yoruba"
+            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            value={titleYo}
+            onChange={(e) => setTitleYo(e.target.value)}
+          />
+        </div>
+       
+        <div>
+          <label className="block text-sm font-medium mb-2">Author (Yoruba)</label>
+          <input
+            type="text"
+            placeholder="Enter author name(s) in Yoruba"
+            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            value={authorYo}
+            onChange={(e) => setAuthorYo(e.target.value)}
+          />
+        </div>
 
         {/* Author */}
         <div>
@@ -209,6 +236,17 @@ function UploadDocumentContent() {
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
+         <div>
+          <label className="block text-sm font-medium mb-2">Description (Yoruba)</label>
+          <textarea
+            placeholder="Enter short description in Yoruba"
+            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            rows={3}
+            value={descriptionYo}
+            onChange={(e) => setDescriptionYo(e.target.value)}
           />
         </div>
 
