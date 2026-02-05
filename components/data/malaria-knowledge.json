@@ -1,28 +1,5280 @@
-
-
 {
-  "Symptoms": {
-    "response": "Common malaria symptoms include fever, chills, sweating, headache, muscle pain and nausea. Symptoms usually appear 10–15 days after a mosquito bite."
+  "root": {
+    "id": "root",
+    "question": {
+      "en": "What would you like to learn about malaria today?",
+      "yo": "Kí ni o fẹ́ kọ́ nípa àrùn malaria lónìí?"
+    },
+    "options": {
+      "A": { "en": "Symptoms", "yo": "Ààmì Maláríà" },
+      "B": { "en": "Prevention", "yo": "Ìdènà" },
+      "C": { "en": "Treatment", "yo": "Ìtọju" },
+      "D": { "en": "Environment", "yo": "Àyíká" },
+      "E": { "en": "Causes", "yo": "Òkùnfà Maláríà" },
+      "F": { "en": "Others", "yo": "Àwọn Ìwárí Míìrán" }
+    },
+    "next": {
+      "A": "symptoms_step",
+      "B": "prevention_step",
+      "C": "treatment_step",
+      "D": "environment_step",
+      "E": "causes_step",
+      "F": "others_step"
+    }
   },
-  "Prevention": {
-    "response": "Prevent malaria by using insecticide-treated nets, indoor spraying, using mosquito repellents, and reducing standing water around your home."
+
+  "symptoms_step": {
+    "id": "symptoms_step",
+    "question": {
+      "en": "Choose symptoms category:",
+      "yo": "Yan ẹ̀ka àwọn ààmì àìlera:"
+    },
+    "options": {
+      "A": { "en": "General symptoms", "yo": "Ààmì àìlera gbogbogbo" },
+      "B": { "en": "Severe symptoms", "yo": "Ààmì tó le gan-an" },
+      "C": { "en": "Symptoms in children", "yo": "Ààmì Maláríà Lára Ọmọde" },
+      "D": { "en": "Symptoms in pregnancy", "yo": "Ààmì Maláríà Nígbà Oyún" },
+      "E": { "en": "Back to home menu", "yo": "Padà sí Àṣàyàn Tó Ṣáájú" }
+    },
+    "next": {
+      "A": "result_symptoms_general",
+      "B": "result_symptoms_severe",
+      "C": "result_symptoms_children",
+      "D": "result_symptoms_pregnancy",
+      "E": "root"
+    }
   },
-  "Treatment": {
-    "response": "Malaria is treated using ACTs (Artemisinin-based Combination Therapies). Early diagnosis and treatment are essential."
+
+  "result_symptoms_general": {
+    "id": "result_symptoms_general",
+    "question": {
+      "en": "General symptoms of malaria include:",
+      "yo": "Ààmì àìlera gbogbogbo tí malaria ń fa ni:"
+    },
+    "options": {
+      "A": { "en": "Fever", "yo": "Ìba" },
+      "B": { "en": "Chills and shivering", "yo": "otùtù àti ìrora ara" },
+      "C": { "en": "Headache", "yo": "Ìrora orí" },
+      "D": { "en": "Fatigue and weakness", "yo": "Ìkùnà àti aláìlera" },
+      "E": { "en": "Nausea and vomiting", "yo": "Ìkúnya àti ìtujade" },
+      "F": {
+        "en": "Muscle and joint pain",
+        "yo": "Ìrora iṣan àti àjọpọ̀ egungun"
+      },
+      "G": { "en": "Sweating", "yo": "Ìrẹ̀rẹ̀" },
+      "H": { "en": "Back to symptoms menu", "yo": "Padà sí Àṣàyàn Tó Ṣáájú" }
+    },
+    "next": {
+      "A": "symptom_fever",
+      "B": "symptom_chills",
+      "C": "symptom_headache",
+      "D": "symptom_fatigue",
+      "E": "symptom_nausea",
+      "F": "symptom_body_pain",
+      "G": "symptom_sweating",
+      "H": "symptoms_step"
+    }
   },
-  "Pregnancy": {
-    "response": "Pregnant women are at higher risk. WHO recommends IPTp-SP during pregnancy and sleeping under treated mosquito nets."
+
+  "symptom_fever": {
+    "id": "symptom_fever",
+    "question": {
+      "en": "Fever in malaria:",
+      "yo": "Ìba lara malaria:"
+    },
+    "options": {
+      "A": { "en": "What causes the fever?", "yo": "Kí ló fa ìba?" },
+      "B": { "en": "How high can it get?", "yo": "Báwo ni ìba ṣe lè gòkè tó?" },
+      "C": {
+        "en": "How long does it last?",
+        "yo": "Báwo ni ìbá ṣe pé sí lárà?"
+      },
+      "D": {
+        "en": "When should I see a doctor?",
+        "yo": "Nígbà wo ni o yẹ kí n rí dókítà?"
+      },
+      "E": { "en": "Back to general symptoms", "yo": "Padà sí Àṣàyàn Tó Ṣáájú" }
+    },
+    "next": {
+      "A": "fever_cause",
+      "B": "fever_degree",
+      "C": "fever_duration",
+      "D": "fever_doctor",
+      "E": "result_symptoms_general"
+    }
   },
-  "Children": {
-    "response": "Children under 5 are vulnerable. Symptoms can escalate quickly. Ensure quick diagnosis and treatment."
+
+  "fever_cause": {
+    "id": "fever_cause",
+    "question": {
+      "en": "Malaria fever is caused by the malaria parasite destroying red blood cells, triggering the body's immune response.",
+      "yo": "Ìba malaria máa ń wáyé nígbà tí kòkòrò àrùn malaria bá ń pa àwọn sẹ́ẹ̀lì ẹ̀jẹ̀ pupa run, èyí tó sì ń mú kí ètò ìdáàbòbò ara ṣiṣẹ́ láti kojú ìkọlù náà."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": { "A": "symptom_fever" }
   },
-  "Environment": {
-    "response": "Dirty environments with stagnant water attract mosquitoes. Keep surroundings clean to reduce malaria spread."
+
+  "fever_degree": {
+    "id": "fever_degree",
+    "question": {
+      "en": "Malaria fever is often high (38–41°C) and may come in cycles, especially in untreated cases.",
+      "yo": "Ìba malaria sábà máa ń gbóná púpọ̀ (38–41°C) tí ó sì lè máa ń wá ní àkókò àkókò kan-an-náà, pàápàá jùlọ nínú àwọn àìsàn tí a kò tí ì tọ́jú rẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": { "A": "symptom_fever" }
   },
-  "Causes": {
-    "response": "Malaria is caused by Plasmodium parasites transmitted through the bite of an infected female Anopheles mosquito."
+
+  "fever_duration": {
+    "id": "fever_duration",
+    "question": {
+      "en": "Fever may last several days and often repeats if malaria is not properly treated.",
+      "yo": "Ìba lè wà fún ọ̀pọ̀lọpọ̀ ọjọ́, tí ó sì sábà máa ń tún padà bọ̀ wá bí a kò bá tọ́jú àrùn malaria náà dáadáa."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "symptom_fever"
+    }
   },
-  "Others": {
-    "response": "Feel free to ask any question about malaria. I’m here to help."
+
+  "fever_doctor": {
+    "id": "fever_doctor",
+    "question": {
+      "en": "Seek medical care if fever persists for more than 24–48 hours, is very high, or occurs with vomiting, confusion, or weakness.",
+      "yo": "Ẹ wá ìtọ́jú dókítà bí ìba bá pẹ́ ju wákàtí mẹ́rìnlélógún (24) sí mẹ́rìndínláàádọ́ta (48) lọ, tàbí bí ó bá gbóná púpọ̀, tàbí bí ó bá wá pẹ̀lú ìpòbì, ìdàrúdàpọ̀ ọpọlọ, tàbí àárẹ̀ tó lágbára."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "symptom_fever"
+    }
+  },
+
+  "symptom_chills": {
+    "id": "symptom_chills",
+    "question": {
+      "en": "Chills and shivering are common early signs of malaria, often occurring before or during fever episodes.",
+      "yo": "Ìtútù tí ó ń mú ara wárìrì jẹ́ àmì àkọ́kọ́ tí ó wọ́pọ̀ jùlọ fún àrùn malaria, tí ó sábà máa ń ṣẹlẹ̀ ṣáájú tàbí nígbà tí ìba bá ń mú."
+    },
+    "options": {
+      "A": {
+        "en": "Why chills happen",
+        "yo": "Ìdí tí ìtútù àti ìwárìrì ara fi ń ṣẹlẹ̀"
+      },
+      "B": {
+        "en": "Back to general symptoms",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn gbogbogbò"
+      }
+    },
+    "next": {
+      "A": "chills_cause",
+      "B": "result_symptoms_general"
+    }
+  },
+
+  "chills_cause": {
+    "id": "chills_cause",
+    "question": {
+      "en": "Chills occur due to rapid changes in body temperature as the parasite cycles within the bloodstream.",
+      "yo": "Ìtútù àti ìwárìrì ara máa ń ṣẹlẹ̀ nítorí ìyípadà tó yára jùlọ nínú ìgbónágbooru ara bí kòkòrò àrùn náà ṣe ń yípo nínú iṣan ẹ̀jẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "symptom_chills"
+    }
+  },
+
+  "symptom_headache": {
+    "id": "symptom_headache",
+    "question": {
+      "en": "Headache in malaria can range from mild to severe and may worsen with fever.",
+      "yo": "Orí fífo nínú àrùn malaria lè jẹ́ èyí tí kò lágbára tàbí èyí tó lágbára púpọ̀, tí ó sì lè túbọ̀ burú sí i nígbà tí ìba bá ń mú."
+    },
+    "options": {
+      "A": { "en": "Is it dangerous?", "yo": "Ǹjẹ́ ó léwu?" },
+      "B": {
+        "en": "Back to general symptoms",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn gbogbogbò"
+      }
+    },
+    "next": {
+      "A": "headache_risk",
+      "B": "result_symptoms_general"
+    }
+  },
+
+  "headache_risk": {
+    "id": "headache_risk",
+    "question": {
+      "en": "Severe or persistent headaches may indicate complications and should be medically evaluated.",
+      "yo": "Orí fífo tó lágbára púpọ̀ tàbí èyí tí kò ní ìsinmi lè jẹ́ àmì pé ìṣòro mìíràn ti dé, ó sì yẹ kí dókítà ṣe àyẹ̀wò rẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "symptom_headache"
+    }
+  },
+
+  "symptom_fatigue": {
+    "id": "symptom_fatigue",
+    "question": {
+      "en": "Fatigue and weakness result from anemia and the body fighting infection.",
+      "yo": "Àárẹ̀ àti aláìlera ara máa ń wáyé nítorí àìtó ẹ̀jẹ̀ pupa nínú ara àti bí ara ṣe ń jà láti borí àkóràn náà."
+    },
+    "options": {
+      "A": {
+        "en": "Back to general symptoms",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn gbogbogbò"
+      }
+    },
+    "next": {
+      "A": "result_symptoms_general"
+    }
+  },
+
+  "symptom_nausea": {
+    "id": "symptom_nausea",
+    "question": {
+      "en": "Nausea and vomiting may occur, especially in the early stages of malaria.",
+      "yo": "Ìríra inú àti ìpòbì lè ṣẹlẹ̀, pàápàá jùlọ ní ìbẹ̀rẹ̀ àrùn malaria."
+    },
+    "options": {
+      "A": {
+        "en": "Back to general symptoms",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn gbogbogbò"
+      }
+    },
+    "next": {
+      "A": "result_symptoms_general"
+    }
+  },
+
+  "symptom_body_pain": {
+    "id": "symptom_body_pain",
+    "question": {
+      "en": "Muscle and joint pain are common due to inflammation and fever.",
+      "yo": "Ìrora iṣan-ara àti oríkúta egungun wọ́pọ̀ púpọ̀ nítorí ìwú ara àti ìba."
+    },
+    "options": {
+      "A": {
+        "en": "Back to general symptoms",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn gbogbogbò"
+      }
+    },
+    "next": {
+      "A": "result_symptoms_general"
+    }
+  },
+
+  "symptom_sweating": {
+    "id": "symptom_sweating",
+    "question": {
+      "en": "Sweating often follows fever episodes as body temperature begins to drop.",
+      "yo": "Ìbìlẹ̀ sábà máa ń tẹ̀lé àkókò ìba bí ìgbónágbooru ara ṣe ń bẹ̀rẹ̀ sí ní dín kù."
+    },
+    "options": {
+      "A": {
+        "en": "Back to general symptoms",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn gbogbogbò"
+      }
+    },
+    "next": {
+      "A": "result_symptoms_general"
+    }
+  },
+
+  "result_symptoms_severe": {
+    "id": "result_symptoms_severe",
+    "question": {
+      "en": "Severe symptoms of malaria include:",
+      "yo": "Àwọn àmì àrùn malaria tó burú jùlọ ni:"
+    },
+    "options": {
+      "A": { "en": "Severe anemia", "yo": "Àìtó ẹ̀jẹ̀ pupa tó burú púpọ̀" },
+      "B": { "en": "Difficulty breathing", "yo": "Ìṣòro ìmí-sísun" },
+      "C": {
+        "en": "Confusion or unconsciousness",
+        "yo": "Ìdàrúdàpọ̀ ọpọlọ tàbí àìmọ̀ọ́rọ̀kan"
+      },
+      "D": { "en": "Repeated vomiting", "yo": "Ìpòbì léraléra" },
+      "E": {
+        "en": "Seizures (convulsions)",
+        "yo": "Ìgbósẹ (ìwárìrì ara tó lágbára)"
+      },
+      "F": { "en": "Organ failure", "yo": "Ìkùnà àwọn ẹ̀yà ara" },
+      "G": {
+        "en": "Severe weakness or collapse",
+        "yo": "Àárẹ̀ tó lágbára púpọ̀ tàbí ìṣubú"
+      },
+      "H": {
+        "en": "Back to symptoms menu",
+        "yo": "Padà sí àkójọ àwọn àmì àìsàn"
+      }
+    },
+    "next": {
+      "A": "severe_anemia",
+      "B": "severe_breathing",
+      "C": "severe_confusion",
+      "D": "severe_vomiting",
+      "E": "severe_seizures",
+      "F": "severe_organ_failure",
+      "G": "severe_weakness",
+      "H": "symptoms_step"
+    }
+  },
+
+  "severe_anemia": {
+    "id": "severe_anemia",
+    "question": {
+      "en": "Severe anemia in malaria:",
+      "yo": "Àìtó ẹ̀jẹ̀ pupa tó burú púpọ̀ nínú àrùn malaria:"
+    },
+    "options": {
+      "A": { "en": "What causes it?", "yo": "Kí ni ó máa ń fà á?" },
+      "B": {
+        "en": "Signs to watch for",
+        "yo": "Àwọn àmì tí ó yẹ kí a máa ṣọ́ra fún"
+      },
+      "C": { "en": "Why it is dangerous", "yo": "Ìdí tí ó fi léwu" },
+      "D": {
+        "en": "When to seek urgent care",
+        "yo": "Ìgbà tí ó yẹ kí a wá ìtọ́jú kánkán"
+      },
+      "E": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "anemia_cause",
+      "B": "anemia_signs",
+      "C": "anemia_danger",
+      "D": "anemia_urgent",
+      "E": "result_symptoms_severe"
+    }
+  },
+
+  "anemia_cause": {
+    "id": "anemia_cause",
+    "question": {
+      "en": "Malaria parasites destroy red blood cells, reducing oxygen supply to vital organs.",
+      "yo": "Àwọn kòkòrò àrùn malaria máa ń pa àwọn sẹ́ẹ̀lì ẹ̀jẹ̀ pupa run, èyí tó sì ń mú kí atẹ́gùn tí ń lọ sí àwọn ẹ̀yà ara pàtàkì dín kù."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_anemia"
+    }
+  },
+
+  "anemia_signs": {
+    "id": "anemia_signs",
+    "question": {
+      "en": "Signs include extreme weakness, pale skin, fast heartbeat, and dizziness.",
+      "yo": "Àwọn àmì rẹ̀ ni àárẹ̀ tó lágbára púpọ̀, awọ ara tí ó ṣe funfun, ìlù ọkàn tó yára, àti òrírì."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_anemia"
+    }
+  },
+
+  "anemia_danger": {
+    "id": "anemia_danger",
+    "question": {
+      "en": "Severe anemia can lead to heart failure and reduced oxygen to the brain.",
+      "yo": "Àìtó ẹ̀jẹ̀ pupa tó burú púpọ̀ lè fa ìkùnà ọkàn àti ìdínkù atẹ́gùn tí ń lọ sí ọpọlọ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_anemia"
+    }
+  },
+
+  "anemia_urgent": {
+    "id": "anemia_urgent",
+    "question": {
+      "en": "Seek immediate medical attention if weakness is extreme or the person collapses.",
+      "yo": "Ẹ wá ìtọ́jú ìlera lẹ́sẹ̀kẹsẹ̀ bí àárẹ̀ bá pọ̀ jù lọ tàbí bí ẹni náà bá ṣubú."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_anemia"
+    }
+  },
+
+
+
+
+
+
+
+  "severe_breathing": {
+    "id": "severe_breathing",
+    "question": {
+      "en": "Difficulty breathing in malaria:",
+      "yo": "Ìṣòro ìmí-sísun nínú àrùn malaria:"
+    },
+    "options": {
+      "A": {
+        "en": "Why breathing becomes difficult",
+        "yo": "Ìdí tí ìmí-sísun fi máa ń ṣòro"
+      },
+      "B": { "en": "Danger signs", "yo": "Àwọn àmì ewu" },
+      "C": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "breathing_cause",
+      "B": "breathing_danger",
+      "C": "result_symptoms_severe"
+    }
+  },
+
+  "breathing_cause": {
+    "id": "breathing_cause",
+    "question": {
+      "en": "Low oxygen levels and fluid buildup in the lungs can cause breathing problems.",
+      "yo": "Ìpele atẹ́gùn tó kéré àti ìkójọpọ̀ omi nínú ẹ̀dọ̀fóró lè fa àwọn ìṣòro ìmí-sísun."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_breathing"
+    }
+  },
+
+  "breathing_danger": {
+    "id": "breathing_danger",
+    "question": {
+      "en": "Rapid breathing, chest tightness, or gasping for air require urgent hospital care.",
+      "yo": "Ìmí-mímí tó yára, ìfúnpá àyà, tàbí ìfọ́ọ́rọ́ láti mí afẹ́fẹ́ nílò ìtọ́jú kánkán ní ilé ìwòsàn."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_breathing"
+    }
+  },
+
+  "severe_confusion": {
+    "id": "severe_confusion",
+    "question": {
+      "en": "Confusion or unconsciousness:",
+      "yo": "Ìdàrúdàpọ̀ ọpọlọ tàbí àìmọ̀ọ́rọ̀kan:"
+    },
+    "options": {
+      "A": { "en": "What causes this?", "yo": "Kí ni ó máa ń fa èyí?" },
+      "B": { "en": "Why it is serious", "yo": "Ìdí tí ó fi burú tó" },
+      "C": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "confusion_cause",
+      "B": "confusion_danger",
+      "C": "result_symptoms_severe"
+    }
+  },
+
+  "confusion_cause": {
+    "id": "confusion_cause",
+    "question": {
+      "en": "This occurs when malaria affects the brain (cerebral malaria).",
+      "yo": "Èyí máa ń ṣẹlẹ̀ nígbà tí àrùn malaria bá kọlu ọpọlọ (malaria ọpọlọ - cerebral malaria)."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_confusion"
+    }
+  },
+
+  "confusion_danger": {
+    "id": "confusion_danger",
+    "question": {
+      "en": "It can lead to coma or death if not treated immediately.",
+      "yo": "Ó lè yọrí sí òfò ọpọlọ (coma) tàbí ikú bí a kò bá tọ́jú rẹ̀ lẹ́sẹ̀kẹsẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_confusion"
+    }
+  },
+
+  "severe_vomiting": {
+    "id": "severe_vomiting",
+    "question": {
+      "en": "Repeated vomiting:",
+      "yo": "Ìpòbì léraléra:"
+    },
+    "options": {
+      "A": { "en": "Why it happens", "yo": "Ìdí tí ó fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Risks involved", "yo": "Àwọn ewu tó wà nínú rẹ̀" },
+      "C": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "vomiting_cause",
+      "B": "vomiting_risk",
+      "C": "result_symptoms_severe"
+    }
+  },
+
+  "vomiting_cause": {
+    "id": "vomiting_cause",
+    "question": {
+      "en": "Malaria toxins irritate the stomach and affect digestion.",
+      "yo": "Àwọn oró àrùn malaria máa ń fa ìyọnu ikùn tí ó sì ń kó ètò ìtúpalẹ̀ oúnjẹ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_vomiting"
+    }
+  },
+
+  "vomiting_risk": {
+    "id": "vomiting_risk",
+    "question": {
+      "en": "It can cause dehydration and prevent malaria medicines from working properly.",
+      "yo": "Ó lè fa gbígbẹ inú ara (àìní omi tó pọ̀ nínú ara) tí ó sì lè dènà àwọn oògùn malaria láti ṣiṣẹ́ bí ó ṣe yẹ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_vomiting"
+    }
+  },
+
+  "severe_seizures": {
+    "id": "severe_seizures",
+    "question": {
+      "en": "Seizures (convulsions):",
+      "yo": "Ìgbósẹ (ìwárìrì ara tó lágbára):"
+    },
+    "options": {
+      "A": { "en": "Why seizures occur", "yo": "Ìdí tí ìgbósẹ fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Who is most at risk", "yo": "Tani ó wà nínú ewu jùlọ" },
+      "C": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "seizures_cause",
+      "B": "seizures_risk",
+      "C": "result_symptoms_severe"
+    }
+  },
+
+  "seizures_cause": {
+    "id": "seizures_cause",
+    "question": {
+      "en": "Seizures happen when malaria affects brain function.",
+      "yo": "Ìgbósẹ máa ń ṣẹlẹ̀ nígbà tí àrùn malaria bá kọlu iṣẹ́ ṣíṣe ọpọlọ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_seizures"
+    }
+  },
+
+  "seizures_risk": {
+    "id": "seizures_risk",
+    "question": {
+      "en": "Children and pregnant women are at higher risk of malaria-related seizures.",
+      "yo": "Àwọn ọmọdé àti àwọn aboyún wà nínú ewu tó ga jùlọ fún ìgbósẹ tó ní ìbátan pẹ̀lú àrùn malaria."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_seizures"
+    }
+  },
+
+  "severe_organ_failure": {
+    "id": "severe_organ_failure",
+    "question": {
+      "en": "Organ failure in malaria:",
+      "yo": "Ìkùnà àwọn ẹ̀yà ara nínú àrùn malaria:"
+    },
+    "options": {
+      "A": {
+        "en": "Which organs are affected?",
+        "yo": "Àwọn ẹ̀yà ara wo ni ó máa ń kọlù?"
+      },
+      "B": {
+        "en": "Why this is life-threatening",
+        "yo": "Ìdí tí ó fi lè pa ènìyàn"
+      },
+      "C": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "organ_affected",
+      "B": "organ_danger",
+      "C": "result_symptoms_severe"
+    }
+  },
+
+  "organ_affected": {
+    "id": "organ_affected",
+    "question": {
+      "en": "Malaria can affect the kidneys, liver, lungs, and brain.",
+      "yo": "Àrùn malaria lè kọlu àwọn kíndìnrín, ẹ̀dọ̀, ẹ̀dọ̀fóró, àti ọpọlọ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_organ_failure"
+    }
+  },
+
+  "organ_danger": {
+    "id": "organ_danger",
+    "question": {
+      "en": "Failure of vital organs can quickly become fatal without emergency treatment.",
+      "yo": "Ìkùnà àwọn ẹ̀yà ara pàtàkì lè yára di ohun tó lè pa ènìyàn bí a kò bá ṣe ìtọ́jú kánkán."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_organ_failure"
+    }
+  },
+
+  "severe_weakness": {
+    "id": "severe_weakness",
+    "question": {
+      "en": "Severe weakness or collapse:",
+      "yo": "Àárẹ̀ tó lágbára púpọ̀ tàbí ìṣubú:"
+    },
+    "options": {
+      "A": { "en": "Why it happens", "yo": "Ìdí tí ó fi máa ń ṣẹlẹ̀" },
+      "B": {
+        "en": "Back to severe symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn tó burú púpọ̀"
+      }
+    },
+    "next": {
+      "A": "weakness_cause",
+      "B": "result_symptoms_severe"
+    }
+  },
+
+  "weakness_cause": {
+    "id": "weakness_cause",
+    "question": {
+      "en": "Extreme weakness results from anemia, dehydration, and reduced oxygen supply.",
+      "yo": "Àárẹ̀ tó lágbára jùlọ máa ń wáyé látara àìtó ẹ̀jẹ̀ pupa, gbígbẹ inú ara, àti ìdínkù ìpèsè atẹ́gùn."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "severe_weakness"
+    }
+  },
+
+  "result_symptoms_children": {
+    "id": "result_symptoms_children",
+    "question": {
+      "en": "Symptoms of malaria in children include:",
+      "yo": "Àwọn àmì àrùn malaria nínú àwọn ọmọdé ni:"
+    },
+    "options": {
+      "A": { "en": "High fever", "yo": "Ìba tó gbóná púpọ̀" },
+      "B": {
+        "en": "Poor feeding or refusal to eat",
+        "yo": "Ìjẹun tí kò dára tàbí kíkọ̀ láti jẹun"
+      },
+      "C": { "en": "Vomiting and diarrhea", "yo": "Ìpòbì àti ìgbésẹ̀" },
+      "D": {
+        "en": "Irritability or excessive crying",
+        "yo": "Ìyọnu tàbí ekún tó pọ̀jù"
+      },
+      "E": { "en": "Convulsions (seizures)", "yo": "Ìgbósẹ (ìwárìrì ara tó lágbára)" },
+      "F": { "en": "Severe anemia", "yo": "Àìtó ẹ̀jẹ̀ pupa tó burú púpọ̀" },
+      "G": {
+        "en": "Extreme sleepiness or unconsciousness",
+        "yo": "Oorun tó pọ̀jù tàbí àìmọ̀ọ́rọ̀kan"
+      },
+      "H": { "en": "Back to symptoms menu", "yo": "Padà sí àkójọ àwọn àmì àìsàn" }
+    },
+    "next": {
+      "A": "child_fever",
+      "B": "child_poor_feeding",
+      "C": "child_vomiting_diarrhea",
+      "D": "child_irritability",
+      "E": "child_convulsions",
+      "F": "child_anemia",
+      "G": "child_unconsciousness",
+      "H": "symptoms_step"
+    }
+  },
+
+  "child_fever": {
+    "id": "child_fever",
+    "question": {
+      "en": "High fever in children with malaria:",
+      "yo": "Ìba tó gbóná púpọ̀ nínú àwọn ọmọdé tó ní àrùn malaria:"
+    },
+    "options": {
+      "A": { "en": "Why fever is common", "yo": "Ìdí tí ìba fi wọ́pọ̀" },
+      "B": { "en": "How high the fever can be", "yo": "Bí ìba ṣe lè gbóna tó" },
+      "C": {
+        "en": "When to seek medical help",
+        "yo": "Ìgbà tí ó yẹ kí a wá ìrànlọ́wọ́ ìlera"
+      },
+      "D": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "child_fever_cause",
+      "B": "child_fever_degree",
+      "C": "child_fever_urgent",
+      "D": "result_symptoms_children"
+    }
+  },
+
+  "child_fever_cause": {
+    "id": "child_fever_cause",
+    "question": {
+      "en": "Children develop fever as their immune system reacts to malaria parasites in the blood.",
+      "yo": "Àwọn ọmọdé máa ń ní ìba bí ètò ìdáàbòbò ara wọn ṣe ń dáhùn sí àwọn kòkòrò àrùn malaria tó wà nínú ẹ̀jẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_fever"
+    }
+  },
+
+  "child_fever_degree": {
+    "id": "child_fever_degree",
+    "question": {
+      "en": "Fever in children can rise rapidly and may exceed 39°C.",
+      "yo": "Ìba nínú àwọn ọmọdé lè gbóná kánkán kíákíá tí ó sì lè ju ìwọ̀n 39°C lọ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_fever"
+    }
+  },
+
+  "child_fever_urgent": {
+    "id": "child_fever_urgent",
+    "question": {
+      "en": "Seek medical care immediately if fever is persistent, very high, or accompanied by seizures or vomiting.",
+      "yo": "Ẹ wá ìtọ́jú ìlera lẹ́sẹ̀kẹsẹ̀ bí ìba bá ń tẹ̀síwájú, bí ó bá gbóná púpọ̀, tàbí bí ó bá wá pẹ̀lú ìgbósẹ tàbí ìpòbì."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_fever"
+    }
+  },
+
+  "child_poor_feeding": {
+    "id": "child_poor_feeding",
+    "question": {
+      "en": "Poor feeding or refusal to eat:",
+      "yo": "Ìjẹun tí kò dára tàbí kíkọ̀ láti jẹun:"
+    },
+    "options": {
+      "A": { "en": "Why it happens", "yo": "Ìdí tí ó fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Why it is concerning", "yo": "Ìdí tí ó fi ṣe ohun ìyọnu" },
+      "C": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "feeding_cause",
+      "B": "feeding_risk",
+      "C": "result_symptoms_children"
+    }
+  },
+
+  "feeding_cause": {
+    "id": "feeding_cause",
+    "question": {
+      "en": "Malaria causes weakness, nausea, and discomfort, making children unwilling to eat.",
+      "yo": "Àrùn malaria máa ń fa àárẹ̀, ìríra inú, àti àìrọ̀rùn ara, tó ń jẹ́ kí àwọn ọmọdé kọ̀ láti jẹun."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_poor_feeding"
+    }
+  },
+
+  "feeding_risk": {
+    "id": "feeding_risk",
+    "question": {
+      "en": "Poor feeding can quickly lead to dehydration and low blood sugar in children.",
+      "yo": "Ìjẹun tí kò dára lè yára fa gbígbẹ inú ara àti ìdínkù sùgà nínú ẹ̀jẹ̀ fún àwọn ọmọdé."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_poor_feeding"
+    }
+  },
+
+  "child_vomiting_diarrhea": {
+    "id": "child_vomiting_diarrhea",
+    "question": {
+      "en": "Vomiting and diarrhea:",
+      "yo": "Ìpòbì àti ìgbésẹ̀:"
+    },
+    "options": {
+      "A": { "en": "Why this occurs", "yo": "Ìdí tí èyí fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Dangers involved", "yo": "Àwọn ewu tó wà nínú rẹ̀" },
+      "C": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "child_vomiting_cause",
+      "B": "child_vomiting_risk",
+      "C": "result_symptoms_children"
+    }
+  },
+
+  "child_vomiting_cause": {
+    "id": "child_vomiting_cause",
+    "question": {
+      "en": "Malaria toxins irritate the stomach and intestines, leading to vomiting or diarrhea.",
+      "yo": "Àwọn oró àrùn malaria máa ń fa ìyọnu ikùn àti ifun, èyí tó ń yọrí sí ìpòbì tàbí ìgbésẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_vomiting_diarrhea"
+    }
+  },
+
+  "child_vomiting_risk": {
+    "id": "child_vomiting_risk",
+    "question": {
+      "en": "These symptoms can cause dehydration and prevent oral medicines from being absorbed.",
+      "yo": "Àwọn àmì àìsàn wọ̀nyí lè fa gbígbẹ inú ara tí ó sì lè dènà àwọn oògùn ẹnu láti wọ inú ara."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_vomiting_diarrhea"
+    }
+  },
+
+  "child_irritability": {
+    "id": "child_irritability",
+    "question": {
+      "en": "Irritability or excessive crying:",
+      "yo": "Ìyọnu tàbí ekún tó pọ̀jù:"
+    },
+    "options": {
+      "A": { "en": "What it indicates", "yo": "Ohun tí ó túmọ̀ sí" },
+      "B": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "irritability_meaning",
+      "B": "result_symptoms_children"
+    }
+  },
+
+  "irritability_meaning": {
+    "id": "irritability_meaning",
+    "question": {
+      "en": "It may indicate pain, fever discomfort, or early effects of malaria on the nervous system.",
+      "yo": "Ó lè jẹ́ àmì ìrora, àìrọ̀rùn látara ìba, tàbí ipa àkọ́kọ́ àrùn malaria lórí ètò iṣan-ara."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_irritability"
+    }
+  },
+
+  "child_convulsions": {
+    "id": "child_convulsions",
+    "question": {
+      "en": "Convulsions (seizures) in children:",
+      "yo": "Ìgbósẹ (ìwárìrì ara tó lágbára) nínú àwọn ọmọdé:"
+    },
+    "options": {
+      "A": { "en": "Why seizures occur", "yo": "Ìdí tí ìgbósẹ fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Why this is dangerous", "yo": "Ìdí tí èyí fi léwu" },
+      "C": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "child_seizure_cause",
+      "B": "child_seizure_danger",
+      "C": "result_symptoms_children"
+    }
+  },
+
+  "child_seizure_cause": {
+    "id": "child_seizure_cause",
+    "question": {
+      "en": "High fever or malaria affecting the brain can trigger seizures in children.",
+      "yo": "Ìba tó gbóná púpọ̀ tàbí àrùn malaria tó ń kọlu ọpọlọ lè fa ìgbósẹ nínú àwọn ọmọdé."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_convulsions"
+    }
+  },
+
+  "child_seizure_danger": {
+    "id": "child_seizure_danger",
+    "question": {
+      "en": "Seizures require urgent hospital treatment to prevent brain damage or death.",
+      "yo": "Ìgbósẹ nílò ìtọ́jú kánkán ní ilé ìwòsàn láti dènà ìbàjẹ́ ọpọlọ tàbí ikú."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_convulsions"
+    }
+  },
+
+  "child_anemia": {
+    "id": "child_anemia",
+    "question": {
+      "en": "Severe anemia in children:",
+      "yo": "Àìtó ẹ̀jẹ̀ pupa tó burú púpọ̀ nínú àwọn ọmọdé:"
+    },
+    "options": {
+      "A": {
+        "en": "Why children are at risk",
+        "yo": "Ìdí tí àwọn ọmọdé fi wà nínú ewu"
+      },
+      "B": { "en": "Warning signs", "yo": "Àwọn àmì ìkìlọ̀" },
+      "C": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "child_anemia_cause",
+      "B": "child_anemia_signs",
+      "C": "result_symptoms_children"
+    }
+  },
+
+  "child_anemia_cause": {
+    "id": "child_anemia_cause",
+    "question": {
+      "en": "Children have fewer red blood cells to begin with, making malaria-related loss more dangerous.",
+      "yo": "Àwọn ọmọdé ní àwọn sẹ́ẹ̀lì ẹ̀jẹ̀ pupa tó kéré láti ìbẹ̀rẹ̀, èyí tó ń jẹ́ kí ìsọnù ẹ̀jẹ̀ tó ní ìbátan pẹ̀lú àrùn malaria jẹ́ ewu tó pọ̀ síi."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_anemia"
+    }
+  },
+
+  "child_anemia_signs": {
+    "id": "child_anemia_signs",
+    "question": {
+      "en": "Signs include pale skin, fast breathing, extreme weakness, and lethargy.",
+      "yo": "Àwọn àmì ìkìlọ̀ ni awọ ara tó fara pẹ́lẹ́pẹ́lẹ́, ìmí-mímí tó yára, àárẹ̀ tó lágbára púpọ̀, àti ìrọ̀lẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_anemia"
+    }
+  },
+
+  "child_unconsciousness": {
+    "id": "child_unconsciousness",
+    "question": {
+      "en": "Extreme sleepiness or unconsciousness:",
+      "yo": "Oorun tó pọ̀jù tàbí àìmọ̀ọ́rọ̀kan:"
+    },
+    "options": {
+      "A": { "en": "What it means", "yo": "Ohun tí ó túmọ̀ sí" },
+      "B": {
+        "en": "Back to children symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn ọmọdé"
+      }
+    },
+    "next": {
+      "A": "child_unconscious_danger",
+      "B": "result_symptoms_children"
+    }
+  },
+
+  "child_unconscious_danger": {
+    "id": "child_unconscious_danger",
+    "question": {
+      "en": "This may indicate cerebral malaria and is a medical emergency.",
+      "yo": "Èyí lè jẹ́ àmì àrùn malaria ọpọlọ tó sì jẹ́ ìṣẹ̀lẹ̀ kánkán tó nílò ìtọ́jú ìlera lẹ́sẹ̀kẹsẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "child_unconsciousness"
+    }
+  },
+
+
+
+
+
+
+  "result_symptoms_pregnancy": {
+    "id": "result_symptoms_pregnancy",
+    "question": {
+      "en": "Symptoms of malaria during pregnancy include:",
+      "yo": "Àwọn àmì àrùn malaria nígbà oyún ni:"
+    },
+    "options": {
+      "A": { "en": "Fever", "yo": "Ìba" },
+      "B": {
+        "en": "Severe weakness or fatigue",
+        "yo": "Àárẹ̀ tó lágbára púpọ̀ tàbí àìlágbára"
+      },
+      "C": { "en": "Anemia", "yo": "Àìtó ẹ̀jẹ̀ pupa" },
+      "D": { "en": "Vomiting", "yo": "Ìpòbì" },
+      "E": { "en": "Headache", "yo": "Orí fífo" },
+      "F": { "en": "Low blood sugar", "yo": "Ìdínkù sùgà nínú ẹ̀jẹ̀" },
+      "G": { "en": "Reduced fetal movement", "yo": "Ìdínkù ìmìíró ọmọ inú" },
+      "H": { "en": "Back to symptoms menu", "yo": "Padà sí àkójọ àwọn àmì àìsàn" }
+    },
+    "next": {
+      "A": "preg_fever",
+      "B": "preg_weakness",
+      "C": "preg_anemia",
+      "D": "preg_vomiting",
+      "E": "preg_headache",
+      "F": "preg_low_sugar",
+      "G": "preg_fetal_movement",
+      "H": "symptoms_step"
+    }
+  },
+
+  "preg_fever": {
+    "id": "preg_fever",
+    "question": {
+      "en": "Fever during pregnancy:",
+      "yo": "Ìba nígbà oyún:"
+    },
+    "options": {
+      "A": { "en": "Why fever occurs", "yo": "Ìdí tí ìba fi máa ń wáyé" },
+      "B": {
+        "en": "Why it is risky in pregnancy",
+        "yo": "Ìdí tí ó fi léwu nígbà oyún"
+      },
+      "C": {
+        "en": "When to seek medical care",
+        "yo": "Ìgbà tí ó yẹ kí a wá ìtọ́jú ìlera"
+      },
+      "D": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_fever_cause",
+      "B": "preg_fever_risk",
+      "C": "preg_fever_urgent",
+      "D": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_fever_cause": {
+    "id": "preg_fever_cause",
+    "question": {
+      "en": "Fever occurs as the immune system responds to malaria parasites in the blood.",
+      "yo": "Ìba máa ń wáyé bí ètò ìdáàbòbò ara ṣe ń dáhùn sí àwọn kòkòrò àrùn malaria tó wà nínú ẹ̀jẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_fever"
+    }
+  },
+
+  "preg_fever_risk": {
+    "id": "preg_fever_risk",
+    "question": {
+      "en": "High fever can affect both the mother and the developing baby if untreated.",
+      "yo": "Ìba tó gbóná púpọ̀ lè kọlu àbiyamọ àti ọmọ tó ń dàgbà nínú oyún bí a kò bá tọ́jú rẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_fever"
+    }
+  },
+
+  "preg_fever_urgent": {
+    "id": "preg_fever_urgent",
+    "question": {
+      "en": "Any fever during pregnancy should be reported promptly to a healthcare provider.",
+      "yo": "Ẹ gbọdọ̀ sọ gbogbo irú ìba tó bá wáyé nígbà oyún fún oníṣẹ́ ìlera lẹ́sẹ̀kẹsẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_fever"
+    }
+  },
+
+  "preg_weakness": {
+    "id": "preg_weakness",
+    "question": {
+      "en": "Severe weakness or fatigue:",
+      "yo": "Àárẹ̀ tó lágbára púpọ̀ tàbí àìlágbára:"
+    },
+    "options": {
+      "A": { "en": "Why weakness is common", "yo": "Ìdí tí àárẹ̀ fi wọ́pọ̀" },
+      "B": {
+        "en": "Why it should not be ignored",
+        "yo": "Ìdí tí a kò gbọdọ̀ fi àmì yìí ṣílẹ̀"
+      },
+      "C": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_weakness_cause",
+      "B": "preg_weakness_risk",
+      "C": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_weakness_cause": {
+    "id": "preg_weakness_cause",
+    "question": {
+      "en": "Malaria reduces red blood cells and oxygen supply, leading to extreme tiredness.",
+      "yo": "Àrùn malaria máa ń dín àwọn sẹ́ẹ̀lì ẹ̀jẹ̀ pupa àti ìpèsè atẹ́gùn kù, èyí tó ń fa àárẹ̀ tó lágbára púpọ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_weakness"
+    }
+  },
+
+  "preg_weakness_risk": {
+    "id": "preg_weakness_risk",
+    "question": {
+      "en": "Severe weakness may signal anemia or complications affecting pregnancy.",
+      "yo": "Àárẹ̀ tó lágbára púpọ̀ lè jẹ́ àmì àìtó ẹ̀jẹ̀ pupa tàbí àwọn ìṣòro mìíràn tó ń kọlu oyún náà."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_weakness"
+    }
+  },
+
+  "preg_anemia": {
+    "id": "preg_anemia",
+    "question": {
+      "en": "Anemia during pregnancy:",
+      "yo": "Àìtó ẹ̀jẹ̀ pupa nígbà oyún:"
+    },
+    "options": {
+      "A": {
+        "en": "Why pregnant women are at risk",
+        "yo": "Ìdí tí àwọn aboyún fi wà nínú ewu"
+      },
+      "B": { "en": "Warning signs", "yo": "Àwọn àmì ìkìlọ̀" },
+      "C": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_anemia_cause",
+      "B": "preg_anemia_signs",
+      "C": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_anemia_cause": {
+    "id": "preg_anemia_cause",
+    "question": {
+      "en": "Pregnancy increases blood demand, and malaria worsens red blood cell loss.",
+      "yo": "Oyún máa ń mú kí ara nílò ẹ̀jẹ̀ púpọ̀ sí i, àrùn malaria sì túbọ̀ ń mú kí ìsọnù ẹ̀jẹ̀ pupa burú sí i."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_anemia"
+    }
+  },
+
+  "preg_anemia_signs": {
+    "id": "preg_anemia_signs",
+    "question": {
+      "en": "Signs include paleness, dizziness, fast heartbeat, and shortness of breath.",
+      "yo": "Àwọn àmì ìkìlọ̀ ni awọ ara tó fara pẹ́lẹ́pẹ́lẹ́, òrírì, ìlù ọkàn tó yára, àti kúkútú ìmí."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_anemia"
+    }
+  },
+
+  "preg_vomiting": {
+    "id": "preg_vomiting",
+    "question": {
+      "en": "Vomiting during malaria in pregnancy:",
+      "yo": "Ìpòbì nígbà àrùn malaria lásìkò oyún:"
+    },
+    "options": {
+      "A": { "en": "Why it occurs", "yo": "Ìdí tí ó fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Risks involved", "yo": "Àwọn ewu tó wà nínú rẹ̀" },
+      "C": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_vomiting_cause",
+      "B": "preg_vomiting_risk",
+      "C": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_vomiting_cause": {
+    "id": "preg_vomiting_cause",
+    "question": {
+      "en": "Malaria infection irritates the stomach and worsens pregnancy-related nausea.",
+      "yo": "Àkóràn malaria máa ń fa ìyọnu ikùn tó sì ń mú ìríra inú tí oyún ń fa burú sí i."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_vomiting"
+    }
+  },
+
+  "preg_vomiting_risk": {
+    "id": "preg_vomiting_risk",
+    "question": {
+      "en": "Repeated vomiting can cause dehydration and reduce medicine effectiveness.",
+      "yo": "Ìpòbì léraléra lè fa gbígbẹ inú ara tó sì lè dín agbára oògùn kù."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_vomiting"
+    }
+  },
+
+  "preg_headache": {
+    "id": "preg_headache",
+    "question": {
+      "en": "Headache during pregnancy:",
+      "yo": "Orí fífo nígbà oyún:"
+    },
+    "options": {
+      "A": { "en": "What it indicates", "yo": "Ohun tó lè jẹ́ àmì rẹ̀" },
+      "B": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_headache_meaning",
+      "B": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_headache_meaning": {
+    "id": "preg_headache_meaning",
+    "question": {
+      "en": "Headaches may result from fever, anemia, or dehydration caused by malaria.",
+      "yo": "Orí fífo lè jẹ́ àbájáde ìba, àìtó ẹ̀jẹ̀ pupa, tàbí gbígbẹ inú ara tí àrùn malaria fa."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_headache"
+    }
+  },
+
+  "preg_low_sugar": {
+    "id": "preg_low_sugar",
+    "question": {
+      "en": "Low blood sugar (hypoglycemia):",
+      "yo": "Ìdínkù sùgà nínú ẹ̀jẹ̀ (hypoglycemia):"
+    },
+    "options": {
+      "A": { "en": "Why it occurs", "yo": "Ìdí tí ó fi máa ń ṣẹlẹ̀" },
+      "B": { "en": "Why it is dangerous", "yo": "Ìdí tí ó fi léwu" },
+      "C": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_low_sugar_cause",
+      "B": "preg_low_sugar_danger",
+      "C": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_low_sugar_cause": {
+    "id": "preg_low_sugar_cause",
+    "question": {
+      "en": "Malaria and pregnancy both increase glucose demand, leading to low blood sugar.",
+      "yo": "Àrùn malaria àti oyún papọ̀ máa ń mú kí ara nílò glucose púpọ̀ sí i, èyí tó ń fa ìdínkù sùgà nínú ẹ̀jẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_low_sugar"
+    }
+  },
+
+  "preg_low_sugar_danger": {
+    "id": "preg_low_sugar_danger",
+    "question": {
+      "en": "Low blood sugar can cause dizziness, confusion, and harm to both mother and baby.",
+      "yo": "Ìdínkù sùgà nínú ẹ̀jẹ̀ lè fa òrírì, ìdàrúdàpọ̀ ọpọlọ, àti ìpalára fún àbiyamọ àti ọmọ papọ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_low_sugar"
+    }
+  },
+
+  "preg_fetal_movement": {
+    "id": "preg_fetal_movement",
+    "question": {
+      "en": "Reduced fetal movement:",
+      "yo": "Ìdínkù ìmìíró ọmọ inú:"
+    },
+    "options": {
+      "A": { "en": "What it may indicate", "yo": "Ohun tó lè jẹ́ àmì rẹ̀" },
+      "B": {
+        "en": "Back to pregnancy symptoms",
+        "yo": "Padà sí àwọn àmì àìsàn oyún"
+      }
+    },
+    "next": {
+      "A": "preg_fetal_risk",
+      "B": "result_symptoms_pregnancy"
+    }
+  },
+
+  "preg_fetal_risk": {
+    "id": "preg_fetal_risk",
+    "question": {
+      "en": "Malaria can reduce oxygen and nutrients reaching the baby, affecting movement.",
+      "yo": "Àrùn malaria lè dín atẹ́gùn àti àwọn èròjà oúnjẹ tó ń dé ọ̀dọ̀ ọmọ inú kù, èyí tó ń kọlu ìmìíró rẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "preg_fetal_movement"
+    }
+  },
+
+  "prevention_step": {
+    "id": "prevention_step",
+    "question": {
+      "en": "How would you like to prevent malaria?",
+      "yo": "Báwo ni ẹ ṣe fẹ́ ṣe ìdènà àrùn malaria?"
+    },
+    "options": {
+      "A": {
+        "en": "Use insecticide-treated nets",
+        "yo": "Lo àwọ̀n tó ní ẹ̀rọ ìpakòkòrò"
+      },
+      "B": {
+        "en": "Indoor residual spraying",
+        "yo": "Fífọ́n oògùn ìpakòkòrò sínú ilé"
+      },
+      "C": { "en": "Remove stagnant water", "yo": "Yọ omi tó dúró kúrò" },
+      "D": { "en": "Use repellents", "yo": "Lo àwọn ohun ìlésùn kòkòrò" },
+      "E": { "en": "Back to home menu", "yo": "Padà sí ojú-ìwé àkọ́kọ́" }
+    },
+    "next": {
+      "A": "result_prevention_nets",
+      "B": "result_prevention_spray",
+      "C": "result_prevention_water",
+      "D": "result_prevention_repellents",
+      "E": "root"
+    }
+  },
+
+  "result_prevention_nets": {
+    "id": "result_prevention_nets",
+    "question": {
+      "en": "What would you like to know about insecticide-treated nets (ITNs)?",
+      "yo": "Kí ni ẹ fẹ́ mọ̀ nípa àwọ̀n tó ní ẹ̀rọ ìpakòkòrò (ITNs)?"
+    },
+    "options": {
+      "A": {
+        "en": "What are insecticide-treated nets?",
+        "yo": "Kí ni àwọ̀n tó ní ẹ̀rọ ìpakòkòrò?"
+      },
+      "B": {
+        "en": "How do ITNs prevent malaria?",
+        "yo": "Báwo ni ITNs ṣe ń ṣe ìdènà àrùn malaria?"
+      },
+      "C": {
+        "en": "How to use ITNs correctly",
+        "yo": "Bí a ṣe lè lo ITNs bó ṣe yẹ"
+      },
+      "D": {
+        "en": "How often should ITNs be replaced?",
+        "yo": "Nígbà mélòó ni a yẹ kí a rọ́pò ITNs?"
+      },
+      "E": {
+        "en": "Who should sleep under ITNs?",
+        "yo": "Tani ó yẹ kí ó máa sùn lábẹ́ ITNs?"
+      },
+      "F": { "en": "Are ITNs safe?", "yo": "Ṣé ITNs ṣe àìléwu?" },
+      "G": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_definition",
+      "B": "nets_how_it_works",
+      "C": "nets_how_to_use",
+      "D": "nets_replacement",
+      "E": "nets_who_should_use",
+      "F": "nets_safety",
+      "G": "prevention_step"
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+  "nets_definition": {
+    "id": "nets_definition",
+    "question": {
+      "en": "Insecticide-treated nets (ITNs) are mosquito nets treated with chemicals that kill or repel mosquitoes. They protect people from mosquito bites while sleeping.",
+      "yo": "Àwọ̀n tó ní oògùn ìpakòkòrò (ITNs) jẹ́ àwọ̀n àgọ́ tí a ti fi àwọn ẹ̀rọ ayájẹmọ́ tọ́jú tó máa ń pa mosikito tàbí lé wọn kúrò. Wọ́n máa ń dáàbò bo ènìyàn kúrò nínú gígún mosikito nígbà tí wọ́n bá ń sùn."
+    },
+    "options": {
+      "A": { "en": "Benefits of using ITNs", "yo": "Àwọn àǹfààní ìlò ITNs" },
+      "B": { "en": "Types of mosquito nets", "yo": "Àwọn oríṣìíríṣìí àwọ̀n mosikito" },
+      "C": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_benefits",
+      "B": "nets_types",
+      "C": "result_prevention_nets"
+    }
+  },
+
+  "nets_how_it_works": {
+    "id": "nets_how_it_works",
+    "question": {
+      "en": "ITNs work by forming a physical barrier and killing mosquitoes that land on the net, reducing malaria transmission.",
+      "yo": "ITNs máa ń ṣiṣẹ́ nípa dídá ìdènà tí ó lágbára sílẹ̀ tó sì ń pa àwọn mosikito tó bá bà lé orí àwọ̀n náà, èyí tó ń dín bí àrùn malaria ṣe ń ràn káàkiri kù."
+    },
+    "options": {
+      "A": {
+        "en": "Why ITNs are effective at night",
+        "yo": "Ìdí tí ITNs fi ń ṣiṣẹ́ dáadáa ní alẹ́"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_night_effectiveness",
+      "B": "result_prevention_nets"
+    }
+  },
+
+  "nets_how_to_use": {
+    "id": "nets_how_to_use",
+    "question": {
+      "en": "ITNs should be hung properly over sleeping areas and tucked in to avoid mosquito entry.",
+      "yo": "Ẹ gbọdọ̀ ṣo ITNs bó ṣe yẹ lórí ibi ìsùn, kí ẹ sì fi ìsàlẹ̀ rẹ̀ wọ inú ibùsùn kí mosikito má bàá lè wọlé."
+    },
+    "options": {
+      "A": {
+        "en": "Steps to hang a mosquito net",
+        "yo": "Àwọn ìgbésẹ̀ láti ṣo àwọ̀n mosikito"
+      },
+      "B": {
+        "en": "Common mistakes to avoid",
+        "yo": "Àwọn àṣìṣe tí ó wọ́pọ̀ tí ó yẹ kí a yẹra fún"
+      },
+      "C": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_hanging_steps",
+      "B": "nets_common_mistakes",
+      "C": "result_prevention_nets"
+    }
+  },
+
+  "nets_replacement": {
+    "id": "nets_replacement",
+    "question": {
+      "en": "Long-lasting insecticide-treated nets (LLINs) usually last 3–5 years, depending on usage and care.",
+      "yo": "Àwọ̀n tó ní oògùn ìpakòkòrò tó ń pẹ́ (LLINs) sábà máa ń tó ọdún mẹ́ta sí márùn-ún, èyí yàtọ̀ sí bí a ṣe ń lò ó àti bí a ṣe ń tọ́jú rẹ̀."
+    },
+    "options": {
+      "A": { "en": "How to care for ITNs", "yo": "Bí a ṣe lè tọ́jú ITNs" },
+      "B": {
+        "en": "Signs a net should be replaced",
+        "yo": "Àwọn àmì tó ń fihàn pé ó tó àkókò láti rọ́pò àwọ̀n náà"
+      },
+      "C": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_care",
+      "B": "nets_replace_signs",
+      "C": "result_prevention_nets"
+    }
+  },
+
+  "nets_who_should_use": {
+    "id": "nets_who_should_use",
+    "question": {
+      "en": "Everyone should sleep under ITNs, especially vulnerable groups.",
+      "yo": "Gbogbo ènìyàn ló yẹ kí ó máa sùn lábẹ́ ITNs, pàápàá jùlọ àwọn ẹgbẹ́ tó wà nínú ewu púpọ̀."
+    },
+    "options": {
+      "A": { "en": "Pregnant women", "yo": "Àwọn aboyún" },
+      "B": {
+        "en": "Children under five",
+        "yo": "Àwọn ọmọdé tó wà lábẹ́ ọdún márùn-ún"
+      },
+      "C": { "en": "Entire household", "yo": "Gbogbo àwọn tó ń gbé nínú ilé" },
+      "D": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_pregnant_women",
+      "B": "nets_children",
+      "C": "nets_household",
+      "D": "result_prevention_nets"
+    }
+  },
+
+  "nets_safety": {
+    "id": "nets_safety",
+    "question": {
+      "en": "ITNs are safe for humans when used as directed. The insecticide amount is low and approved for public health use.",
+      "yo": "ITNs ṣe àìléwu fún ènìyàn bí a bá lò ó gẹ́gẹ́ bí a ṣe kọ́ni. Ìwọ̀n oògùn ìpakòkòrò tó wà nínú rẹ̀ kéré púpọ̀, wọ́n sì ti fọwọ́sí i pé ó yẹ fún ìlò láti dáàbò bo ìlera gbogbo ènìyàn."
+    },
+    "options": {
+      "A": {
+        "en": "Side effects and precautions",
+        "yo": "Àwọn ìpalára tó lè wáyé àti ìṣọ́ra"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "nets_precautions",
+      "B": "result_prevention_nets"
+    }
+  },
+
+  "result_prevention_spray": {
+    "id": "result_prevention_spray",
+    "question": {
+      "en": "What would you like to know about Indoor Residual Spraying (IRS)?",
+      "yo": "Kí ni ẹ fẹ́ mọ̀ nípa Fífọ́n Oògùn Ìpakòkòrò Sínú Ilé (IRS)?"
+    },
+    "options": {
+      "A": { "en": "What is IRS?", "yo": "Kí ni IRS?" },
+      "B": {
+        "en": "How does IRS prevent malaria?",
+        "yo": "Báwo ni IRS ṣe ń ṣe ìdènà àrùn malaria?"
+      },
+      "C": {
+        "en": "When and how often should IRS be done?",
+        "yo": "Ìgbà wo ni ó yẹ kí a ṣe IRS àti ìgbà mélòó?"
+      },
+      "D": { "en": "Safety of IRS chemicals", "yo": "Ààbò àwọn ẹ̀rọ ayájẹmọ́ IRS" },
+      "E": {
+        "en": "Who should benefit from IRS?",
+        "yo": "Tani ó yẹ kí ó rí àǹfààní IRS?"
+      },
+      "F": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "irs_definition",
+      "B": "irs_how_it_works",
+      "C": "irs_frequency",
+      "D": "irs_safety",
+      "E": "irs_target_groups",
+      "F": "prevention_step"
+    }
+  },
+
+  "irs_definition": {
+    "id": "irs_definition",
+    "question": {
+      "en": "Indoor Residual Spraying (IRS) is the application of long-lasting insecticides on the walls and surfaces of homes to kill mosquitoes that rest indoors.",
+      "yo": "Fífọ́n Oògùn Ìpakòkòrò Sínú Ilé (IRS) jẹ́ fífọ́n oògùn ìpakòkòrò tó ń pẹ́ sórí àwọn ogiri àti ojú ilẹ̀ inú ilé láti pa àwọn mosikito tó máa ń sinmi nínú ilé."
+    },
+    "options": {
+      "A": { "en": "Benefits of IRS", "yo": "Àwọn àǹfààní IRS" },
+      "B": {
+        "en": "Types of insecticides used",
+        "yo": "Àwọn oríṣìíríṣìí oògùn ìpakòkòrò tí a ń lò"
+      },
+      "C": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "irs_benefits",
+      "B": "irs_types",
+      "C": "result_prevention_spray"
+    }
+  },
+
+  "irs_how_it_works": {
+    "id": "irs_how_it_works",
+    "question": {
+      "en": "IRS prevents malaria by killing or repelling mosquitoes that land on treated surfaces, reducing the chance of bites and transmission.",
+      "yo": "IRS máa ń ṣe ìdènà àrùn malaria nípa pípá tàbí lílé àwọn mosikito tó bá bọ́ sórí ojú ilẹ̀ tí a ti tọ́jú kúrò, èyí tó ń dín àǹfààní gígún ẹni àti bí àrùn náà ṣe ń ràn káàkiri kù."
+    },
+    "options": {
+      "A": {
+        "en": "Effectiveness against different mosquito species",
+        "yo": "Agbára rẹ̀ lórí oríṣìíríṣìí mosikito"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "irs_effectiveness",
+      "B": "result_prevention_spray"
+    }
+  },
+
+  "irs_frequency": {
+    "id": "irs_frequency",
+    "question": {
+      "en": "IRS should typically be done every 6–12 months depending on the insecticide and malaria season.",
+      "yo": "Ó yẹ kí a máa ṣe IRS ní gbogbo oṣù mẹ́fà sí méjìlá, èyí yàtọ̀ sí irú oògùn ìpakòkòrò àti àkókò àrùn malaria."
+    },
+    "options": {
+      "A": {
+        "en": "How to prepare your home for IRS",
+        "yo": "Bí a ṣe lè múra ilé rẹ sílẹ̀ fún IRS"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "irs_preparation",
+      "B": "result_prevention_spray"
+    }
+  },
+
+  "irs_safety": {
+    "id": "irs_safety",
+    "question": {
+      "en": "IRS chemicals are safe when applied by trained professionals. Direct contact should be avoided until walls are dry.",
+      "yo": "Àwọn ẹ̀rọ ayájẹmọ́ IRS ṣe àìléwu nígbà tí àwọn aláǹtakò tó ní ìmọ̀ràn bá lò ó. Ẹ yẹra fún fífi ọwọ́ kàn án tààrà títí ogiri náà yóó fi gbẹ."
+    },
+    "options": {
+      "A": { "en": "Precautions during IRS", "yo": "Àwọn ìṣọ́ra nígbà IRS" },
+      "B": { "en": "Possible side effects", "yo": "Àwọn ìpalára tó lè ṣẹlẹ̀" },
+      "C": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "irs_precautions",
+      "B": "irs_side_effects",
+      "C": "result_prevention_spray"
+    }
+  },
+
+  "irs_target_groups": {
+    "id": "irs_target_groups",
+    "question": {
+      "en": "IRS targets entire households but is especially important in high-risk areas and for vulnerable groups.",
+      "yo": "IRS ń dojúkọ gbogbo ilé ṣùgbọ́n ó ṣe pàtàkì jùlọ ní àwọn agbègbè tó ní ewu púpọ̀ àti fún àwọn ẹgbẹ́ tó wà nínú ewu."
+    },
+    "options": {
+      "A": { "en": "Pregnant women", "yo": "Àwọn aboyún" },
+      "B": {
+        "en": "Children under five",
+        "yo": "Àwọn ọmọdé tó kéré ju ọdún márùn-ún"
+      },
+      "C": { "en": "Entire community", "yo": "Gbogbo àwùjọ" },
+      "D": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "irs_pregnant_women",
+      "B": "irs_children",
+      "C": "irs_community",
+      "D": "result_prevention_spray"
+    }
+  },
+
+  "result_prevention_water": {
+    "id": "result_prevention_water",
+    "question": {
+      "en": "How would you like to learn about removing stagnant water to prevent malaria?",
+      "yo": "Báwo ni ẹ ṣe fẹ́ kọ́ ẹ̀kọ́ nípa yíyọ omi tó dúró kúrò láti ṣe ìdènà àrùn malaria?"
+    },
+    "options": {
+      "A": {
+        "en": "Why stagnant water causes malaria",
+        "yo": "Ìdí tí omi tó dúró fi ń fa àrùn malaria"
+      },
+      "B": {
+        "en": "Where to check for stagnant water",
+        "yo": "Ibi tó yẹ kí a máa ṣàyẹ̀wò fún omi tó dúró"
+      },
+      "C": {
+        "en": "How to remove stagnant water safely",
+        "yo": "Bí a ṣe lè yọ omi tó dúró kúrò láìléwu"
+      },
+      "D": {
+        "en": "Tips to prevent water accumulation",
+        "yo": "Àwọn ìmọ̀ràn láti dènà kíkójọ omi"
+      },
+      "E": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_why_cause",
+      "B": "water_check_locations",
+      "C": "water_how_remove",
+      "D": "water_prevent_tips",
+      "E": "prevention_step"
+    }
+  },
+
+  "water_why_cause": {
+    "id": "water_why_cause",
+    "question": {
+      "en": "Stagnant water is the main breeding ground for Anopheles mosquitoes, which transmit malaria.",
+      "yo": "Omi tó dúró jẹ́ ibi àkọ́kọ́ tí mosikito Anopheles ti máa ń bímọ, èyí sì ni ó máa ń tan àrùn malaria."
+    },
+    "options": {
+      "A": {
+        "en": "Effect on malaria transmission",
+        "yo": "Ìpa rẹ̀ lórí bí àrùn malaria ṣe ń ràn káàkiri"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_effect_transmission",
+      "B": "result_prevention_water"
+    }
+  },
+
+  "water_effect_transmission": {
+    "id": "water_effect_transmission",
+    "question": {
+      "en": "More stagnant water → more mosquitoes → higher chance of malaria outbreaks. Removing stagnant water reduces mosquito breeding and protects your community.",
+      "yo": "Omi tó dúró púpọ̀ → Mosikito púpọ̀ → Àǹfààní tó pọ̀ sí i fún ìràbọ̀ àrùn malaria. Yíyọ omi tó dúró kúrò máa ń dín bí mosikito ṣe ń bímọ kù tó sì ń dáàbò bo àwùjọ rẹ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "result_prevention_water"
+    }
+  },
+
+  "water_check_locations": {
+    "id": "water_check_locations",
+    "question": {
+      "en": "Check common stagnant water areas around your home:",
+      "yo": "Ẹ ṣàyẹ̀wò àwọn ibi tí omi tó dúró ti máa ń wà ní àyíká ilé yín:"
+    },
+    "options": {
+      "A": {
+        "en": "Flower pots, vases, plant trays",
+        "yo": "Àwọn ìkòkò ododo, vases, àpẹ̀rẹ̀ ọ̀gbìn"
+      },
+      "B": {
+        "en": "Old tires, buckets, barrels",
+        "yo": "Àwọn táyà àtijọ́, gárawa, agba omi"
+      },
+      "C": {
+        "en": "Roof gutters and drains",
+        "yo": "Àwọn ọ̀nà omi orí ilé àti àwọn ọ̀nà ìṣàn omi"
+      },
+      "D": {
+        "en": "Ponds, puddles, blocked drainage",
+        "yo": "Àwọn adágún, àbàtà, àwọn ọ̀nà ìṣàn omi tó dì"
+      },
+      "E": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_solution_flowerpots",
+      "B": "water_solution_tires",
+      "C": "water_solution_gutters",
+      "D": "water_solution_ponds",
+      "E": "result_prevention_water"
+    }
+  },
+
+  "water_solution_flowerpots": {
+    "id": "water_solution_flowerpots",
+    "question": {
+      "en": "Empty standing water in flower pots, plant trays, and small containers at least twice a week. Use sand or soil in trays that must retain water for plants. ✅ This prevents mosquito breeding.",
+      "yo": "Ẹ tú omi tó dúró nínú ìkòkò ododo, àpẹ̀rẹ̀ ọ̀gbìn, àti àwọn àpòtí kékeré ní ó kéré ju lẹ́ẹ̀mejì lọ́sẹ̀. Ẹ lo iyẹ̀pẹ tàbí ilẹ̀ nínú àpẹ̀rẹ̀ tó gbọdọ̀ pa omi mọ́ fún àwọn ewéko. ✅ Èyí máa ń dènà bí mosikito ṣe ń bímọ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_check_locations"
+    }
+  },
+
+  "water_solution_tires": {
+    "id": "water_solution_tires",
+    "question": {
+      "en": "Old tires, buckets, and barrels collect water easily. Dispose of unused items or drill holes to allow drainage. ✅ Eliminating these prevents mosquito breeding hotspots.",
+      "yo": "Àwọn táyà àtijọ́, gárawa, àti agba omi máa ń kó omi ní ìrọ̀rùn. Ẹ dànù àwọn tí ẹ kò lò mọ́ tàbí ẹ lu ihò sí wọn kí omi lè máa ṣàn jáde. ✅ Yíyọ àwọn wọ̀nyí kúrò máa ń dènà àwọn ibi tó gbóná fún bíbímọ mosikito."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_check_locations"
+    }
+  },
+
+  "water_solution_gutters": {
+    "id": "water_solution_gutters",
+    "question": {
+      "en": "Clean roof gutters regularly to prevent blockages. Remove leaves and debris. ✅ Proper drainage stops mosquitoes from laying eggs near your home.",
+      "yo": "Ẹ máa mọ́ àwọn ọ̀nà omi orí ilé déédéédéé láti dènà dídì. Ẹ yọ àwọn ewé àti ìdọ̀tí kúrò. ✅ Ìṣàn omi tó dára máa ń dènà mosikito láti fiyín sí lẹ́gbẹ̀ẹ́ ilé yín."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_check_locations"
+    }
+  },
+
+  "water_solution_ponds": {
+    "id": "water_solution_ponds",
+    "question": {
+      "en": "Ponds, puddles, and blocked drains can be treated by: draining stagnant water, adding larvicide (safe chemicals), or introducing mosquito-eating fish. ✅ This reduces malaria risk in your surroundings.",
+      "yo": "A lè tọ́jú àwọn adágún, àbàtà, àti ọ̀nà ìṣàn omi tó dì nípa: títú omi tó dúró kúrò, fífi larvicide (àwọn ẹ̀rọ ayájẹmọ́ tó ṣe àìléwu) sí i, tàbí fífi ẹja tó máa ń jẹ mosikito sínú rẹ̀. ✅ Èyí máa ń dín ewu àrùn malaria kù ní àyíká rẹ."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_check_locations"
+    }
+  },
+
+  "water_how_remove": {
+    "id": "water_how_remove",
+    "question": {
+      "en": "To remove stagnant water safely:",
+      "yo": "Láti yọ omi tó dúró kúrò láìléwu:"
+    },
+    "options": {
+      "A": {
+        "en": "Drain containers and refill daily",
+        "yo": "Tú omi nínú àwọn àpòtí, kí ẹ sì tún fi omi tuntun kun lójoojúmọ́"
+      },
+      "B": {
+        "en": "Cover water storage containers",
+        "yo": "Bo àwọn àpòtí ìtọ́jú omi"
+      },
+      "C": {
+        "en": "Use larvicides in large water bodies",
+        "yo": "Lo larvicide nínú àwọn omi ńlá"
+      },
+      "D": {
+        "en": "Keep gutters and drains flowing",
+        "yo": "Jẹ́ kí àwọn ọ̀nà omi àti ìṣàn omi máa ṣàn dáadáa"
+      },
+      "E": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_solution_daily_drain",
+      "B": "water_solution_cover",
+      "C": "water_solution_larvicide",
+      "D": "water_solution_gutter_flow",
+      "E": "result_prevention_water"
+    }
+  },
+
+  "water_solution_daily_drain": {
+    "id": "water_solution_daily_drain",
+    "question": {
+      "en": "Empty and refill water containers like buckets and vases daily. ✅ Simple daily routine drastically reduces mosquito breeding indoors.",
+      "yo": "Ẹ tú omi nínú àwọn gárawa, vases àti àwọn àpòtí omi mìíràn, kí ẹ sì tún fi omi tuntun kun lójoojúmọ́. ✅ Ìṣe kékeré lójoojúmọ́ yìí máa ń dín bí mosikito ṣe ń bímọ nínú ilé kù púpọ̀ gan-an."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_how_remove"
+    }
+  },
+
+  "water_solution_cover": {
+    "id": "water_solution_cover",
+    "question": {
+      "en": "Always cover water storage containers with tight lids or nets. ✅ Prevents mosquitoes from accessing water to lay eggs.",
+      "yo": "Ẹ máa bo gbogbo àpòtí ìtọ́jú omi pẹ̀lú ìdérí tó mọ́ra tàbí àwọ̀n. ✅ Èyí máa ń dènà mosikito láti wọ inú omi láti fiyín sí."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_how_remove"
+    }
+  }
+,
+
+
+
+
+
+
+
+
+  "water_solution_larvicide": {
+    "id": "water_solution_larvicide",
+    "question": {
+      "en": "In large stagnant water bodies, use WHO-approved larvicides or mosquito-eating fish. ✅ This helps control mosquito population in the area.",
+      "yo": "Nínú àwọn omi ńlá tó dúró, ẹ lo àwọn larvicide tí WHO ti fọwọ́sí tàbí ẹ fi ẹja tó máa ń jẹ mosikito sínú rẹ̀. ✅ Èyí máa ń ṣèrànwọ́ láti ṣàkóso iye mosikito ní agbègbè náà."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_how_remove"
+    }
+  },
+
+  "water_solution_gutter_flow": {
+    "id": "water_solution_gutter_flow",
+    "question": {
+      "en": "Keep drains and gutters clear so water flows freely. ✅ Proper drainage prevents water accumulation and mosquito breeding.",
+      "yo": "Ẹ jẹ́ kí àwọn ọ̀nà ìṣàn omi àti ọ̀nà omi orí ilé máa mọ́ kí omi lè máa ṣàn láìnídíje. ✅ Ìṣàn omi tó péye máa ń dènà kíkójọ omi àti bíbímọ mosikito."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_how_remove"
+    }
+  },
+
+  "water_prevent_tips": {
+    "id": "water_prevent_tips",
+    "question": {
+      "en": "Additional tips to prevent water accumulation and malaria:",
+      "yo": "Àwọn ìmọ̀ràn mìíràn láti dènà kíkójọ omi àti àrùn malaria:"
+    },
+    "options": {
+      "A": {
+        "en": "Inspect surroundings weekly",
+        "yo": "Ẹ máa ṣàyẹ̀wò àyíká yín lọ́sẹ̀ kọ̀ọ̀kan"
+      },
+      "B": {
+        "en": "Educate neighbors about stagnant water",
+        "yo": "Ẹ kọ́ àwọn aládùúgbò yín nípa ewu omi tó dúró"
+      },
+      "C": {
+        "en": "Combine with ITNs and IRS",
+        "yo": "Ẹ darapọ̀ mọ́ lílo ITNs àti IRS"
+      },
+      "D": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_tip_inspect",
+      "B": "water_tip_educate",
+      "C": "water_tip_combine",
+      "D": "result_prevention_water"
+    }
+  },
+
+  "water_tip_inspect": {
+    "id": "water_tip_inspect",
+    "question": {
+      "en": "Inspect your home and yard weekly for water accumulation. ✅ Early detection prevents mosquito breeding and malaria outbreaks.",
+      "yo": "Ẹ máa ṣàyẹ̀wò ilé àti àgbàlá yín lọ́sẹ̀ kọ̀ọ̀kan fún kíkójọ omi. ✅ Rírímọ̀ọ́ ní kùtùkùtù máa ń dènà bíbímọ mosikito àti ìràbọ̀ àrùn malaria."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_prevent_tips"
+    }
+  },
+
+  "water_tip_educate": {
+    "id": "water_tip_educate",
+    "question": {
+      "en": "Educate your neighbors and community about stagnant water risks. ✅ Collective effort reduces malaria incidence in the neighborhood.",
+      "yo": "Ẹ kọ́ àwọn aládùúgbò àti àwùjọ yín nípa àwọn ewu tó wà nínú omi tó dúró. ✅ Ìfọwọ́sowọ́pọ̀ gbogbo ènìyàn máa ń dín ìṣẹ̀lẹ̀ àrùn malaria kù ní àdúgbò náà."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_prevent_tips"
+    }
+  },
+
+  "water_tip_combine": {
+    "id": "water_tip_combine",
+    "question": {
+      "en": "Combine stagnant water control with ITNs and IRS. ✅ Using multiple prevention methods ensures maximum protection against malaria.",
+      "yo": "Ẹ darapọ̀ ìṣàkóso omi tó dúró pọ̀ mọ́ lílo ITNs àti IRS. ✅ Lílo ọ̀nà ìdènà púpọ̀ papọ̀ máa ń fúnni ní ààbò tó pọ̀ jùlọ lórí àrùn malaria."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "water_prevent_tips"
+    }
+  },
+
+  "result_prevention_repellents": {
+    "id": "result_prevention_repellents",
+    "question": {
+      "en": "What would you like to know about using mosquito repellents?",
+      "yo": "Kí ni ẹ fẹ́ mọ̀ nípa lílo àwọn ohun ìlésùn mosikito?"
+    },
+    "options": {
+      "A": {
+        "en": "What are mosquito repellents?",
+        "yo": "Kí ni àwọn ohun ìlésùn mosikito?"
+      },
+      "B": {
+        "en": "How repellents prevent malaria",
+        "yo": "Bí àwọn ohun ìlésùn mosikito ṣe ń dènà àrùn malaria"
+      },
+      "C": { "en": "Types of repellents", "yo": "Àwọn oríṣìíríṣìí ohun ìlésùn mosikito" },
+      "D": {
+        "en": "How to apply repellents safely",
+        "yo": "Bí a ṣe lè lo àwọn ohun ìlésùn mosikito láìléwu"
+      },
+      "E": {
+        "en": "Tips for maximum protection",
+        "yo": "Àwọn ìmọ̀ràn fún ààbò tó pọ̀ jùlọ"
+      },
+      "F": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_definition",
+      "B": "repellent_how_it_works",
+      "C": "repellent_types",
+      "D": "repellent_how_to_apply",
+      "E": "repellent_tips",
+      "F": "prevention_step"
+    }
+  },
+
+  "repellent_definition": {
+    "id": "repellent_definition",
+    "question": {
+      "en": "Mosquito repellents are substances applied on skin, clothing, or surfaces to repel mosquitoes and reduce the risk of malaria.",
+      "yo": "Àwọn ohun ìlésùn mosikito jẹ́ àwọn nǹkan tí a máa ń fi sórí ara, aṣọ, tàbí ojú ilẹ̀ láti lé mosikito kúrò tó sì ń dín ewu àrùn malaria kù."
+    },
+    "options": {
+      "A": {
+        "en": "Benefits of using repellents",
+        "yo": "Àwọn àǹfààní lílo àwọn ohun ìlésùn mosikito"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_benefits",
+      "B": "result_prevention_repellents"
+    }
+  },
+
+  "repellent_benefits": {
+    "id": "repellent_benefits",
+    "question": {
+      "en": "Repellents provide personal protection, reduce mosquito bites, and complement other malaria prevention methods like ITNs and IRS. ✅ Consistent use can significantly reduce malaria risk.",
+      "yo": "Àwọn ohun ìlésùn mosikito máa ń fúnni ní ààbò ti ara ẹni, wọ́n máa ń dín gígún mosikito kù, wọ́n sì ń ṣiṣẹ́ pọ̀ mọ́ àwọn ọ̀nà ìdènà malaria mìíràn bíi ITNs àti IRS. ✅ Lílo wọn déédéédéé lè dín ewu àrùn malaria kù púpọ̀ gan-an."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_definition"
+    }
+  },
+
+  "repellent_how_it_works": {
+    "id": "repellent_how_it_works",
+    "question": {
+      "en": "Repellents work by masking human scent or producing odors that mosquitoes find unpleasant, preventing them from landing and biting.",
+      "yo": "Àwọn ohun ìlésùn mosikito máa ń ṣiṣẹ́ nípa bíbo òórùn ara ènìyàn tàbí títu òórùn kan jáde tí mosikito kò fẹ́ràn, èyí tó ń dènà wọn láti bà lé ara ẹni tàbí gún ni."
+    },
+    "options": {
+      "A": {
+        "en": "Why repellents are important outdoors and indoors",
+        "yo": "Ìdí tí ohun ìlésùn mosikito fi ṣe pàtàkì ní ìta àti nínú ilé"
+      },
+      "B": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_importance",
+      "B": "result_prevention_repellents"
+    }
+  },
+
+  "repellent_importance": {
+    "id": "repellent_importance",
+    "question": {
+      "en": "Repellents are especially important during early evening and night when mosquitoes are most active. ✅ Using repellents along with nets provides full protection.",
+      "yo": "Àwọn ohun ìlésùn mosikito ṣe pàtàkì jùlọ ní àṣálẹ́ àti ní alẹ́ nígbà tí mosikito máa ń ṣiṣẹ́ púpọ̀ jùlọ. ✅ Lílo wọn papọ̀ pẹ̀lú àwọ̀n ibùsùn máa ń fúnni ní ààbò pípé."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_how_it_works"
+    }
+  },
+
+  "repellent_types": {
+    "id": "repellent_types",
+    "question": {
+      "en": "Common types of mosquito repellents include:",
+      "yo": "Àwọn oríṣìíríṣìí ohun ìlésùn mosikito tó wọ́pọ̀ ni:"
+    },
+    "options": {
+      "A": {
+        "en": "Topical lotions or sprays for skin",
+        "yo": "Ìpara tàbí fífọ́n fún lílo lórí ara"
+      },
+      "B": {
+        "en": "Coils, vaporizers, and mats for rooms",
+        "yo": "Kọ́ọ̀lì, àwọn ohun tó ń mú ọ̀rọ̀ jáde, àti mat fún yàrá"
+      },
+      "C": {
+        "en": "Clothing treated with insecticide",
+        "yo": "Aṣọ tí a fi oògùn ìpakòkòrò tọ́jú"
+      },
+      "D": {
+        "en": "Natural plant-based repellents",
+        "yo": "Àwọn ohun ìlésùn mosikito adayeba láti inú ewéko"
+      },
+      "E": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_skin",
+      "B": "repellent_coils",
+      "C": "repellent_clothing",
+      "D": "repellent_natural",
+      "E": "result_prevention_repellents"
+    }
+  },
+
+  "repellent_skin": {
+    "id": "repellent_skin",
+    "question": {
+      "en": "Lotions or sprays applied on exposed skin can provide several hours of protection. ✅ Apply as directed on the label and reapply after washing or sweating.",
+      "yo": "Ìpara tàbí fífọ́n tí a fi sórí ara tí ó hàn lè fúnni ní ààbò fún ọ̀pọ̀lọpọ̀ wákàtí. ✅ Ẹ lò ó gẹ́gẹ́ bí a ṣe kọ sórí àpò rẹ̀, kí ẹ sì tún fi sí lẹ́yìn wíwẹ̀ ara tàbí gbígbẹ́."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_types"
+    }
+  },
+
+  "repellent_coils": {
+    "id": "repellent_coils",
+    "question": {
+      "en": "Coils, vaporizers, and mats release chemicals that repel mosquitoes indoors. ✅ Use in well-ventilated areas and follow safety instructions to avoid smoke inhalation.",
+      "yo": "Kọ́ọ̀lì, àwọn ohun tó ń mú ọ̀rọ̀ jáde, àti mat máa ń tu àwọn ẹ̀rọ ayájẹmọ́ jáde tó ń lé mosikito kúrò nínú ilé. ✅ Ẹ lò wọ́n níbi tí afẹ́fẹ́ ti ń wọlé dáadáa, kí ẹ sì tẹ̀lé àwọn ìtọ́ni ààbò láti yẹra fún mímu èéfín wọ inú ara."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_types"
+    }
+  },
+
+  "repellent_clothing": {
+    "id": "repellent_clothing",
+    "question": {
+      "en": "Clothing treated with insecticide (permethrin) prevents mosquitoes from biting through fabric. ✅ Useful for outdoor activities and high-risk areas.",
+      "yo": "Aṣọ tí a fi oògùn ìpakòkòrò (permethrin) tọ́jú máa ń dènà mosikito láti gún ẹni nípasẹ̀ aṣọ náà. ✅ Ó wúlò gan-an fún iṣẹ́ ìta ilé àti àwọn agbègbè tó ní ewu púpọ̀."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_types"
+    }
+  },
+
+  "repellent_natural": {
+    "id": "repellent_natural",
+    "question": {
+      "en": "Plant-based repellents like citronella, eucalyptus, and neem oils can provide moderate protection. ✅ Best used alongside other preventive measures for full protection.",
+      "yo": "Àwọn ohun ìlésùn mosikito adayeba láti inú ewéko bíi citronella, eucalyptus àti epo neem lè fúnni ní ààbò tó péye díẹ̀. ✅ Ó dára jùlọ láti lo wọ́n papọ̀ pẹ̀lú àwọn ọ̀nà ìdènà mìíràn fún ààbò pípé."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_types"
+    }
+  },
+
+  "repellent_how_to_apply": {
+    "id": "repellent_how_to_apply",
+    "question": {
+      "en": "To use repellents safely:",
+      "yo": "Láti lo àwọn ohun ìlésùn mosikito láìléwu:"
+    },
+    "options": {
+      "A": {
+        "en": "Apply only on exposed skin or clothing",
+        "yo": "Ẹ fi sórí ara tí ó hàn tàbí sórí aṣọ nìkan"
+      },
+      "B": {
+        "en": "Avoid eyes, mouth, and broken skin",
+        "yo": "Ẹ yẹra fún ojú, ẹnu àti ibi tí ara ti ya"
+      },
+      "C": {
+        "en": "Follow the instructions on the product label",
+        "yo": "Ẹ tẹ̀lé àwọn ìtọ́ni tó wà lórí àpò ọjà náà"
+      },
+      "D": {
+        "en": "Wash off before sleeping if required",
+        "yo": "Ẹ fọ́ ọ kúrò kí ẹ tó sùn bí ó bá yẹ"
+      },
+      "E": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_apply_skin",
+      "B": "repellent_apply_avoid",
+      "C": "repellent_apply_label",
+      "D": "repellent_apply_wash",
+      "E": "result_prevention_repellents"
+    }
+  },
+
+  "repellent_apply_skin": {
+    "id": "repellent_apply_skin",
+    "question": {
+      "en": "Apply repellent only on exposed skin or clothing. ✅ Do not overuse; a thin layer is sufficient for protection.",
+      "yo": "Ẹ fi ohun ìlésùn mosikito sórí ara tí ó hàn tàbí sórí aṣọ nìkan. ✅ Ẹ má ṣe lò ó jù; ìpara fẹ́lẹ́fẹ́lẹ́ kan tó fún ààbò."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_how_to_apply"
+    }
+  },
+
+  "repellent_apply_avoid": {
+    "id": "repellent_apply_avoid",
+    "question": {
+      "en": "Avoid contact with eyes, mouth, and broken skin. ✅ This ensures safety while still protecting against mosquito bites.",
+      "yo": "Ẹ yẹra fún fífi kan ojú, ẹnu àti ibi tí ara ti ya. ✅ Èyí máa ń jẹ́ kó ṣe àìléwu, tó sì ń dáàbò bo yín lórí gígún mosikito."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_how_to_apply"
+    }
+  },
+
+  "repellent_apply_label": {
+    "id": "repellent_apply_label",
+    "question": {
+      "en": "Follow the instructions on the product label. ✅ Using the product correctly ensures effective and safe protection.",
+      "yo": "Ẹ tẹ̀lé gbogbo ìtọ́ni tó wà lórí àpò ọjà náà. ✅ Lílo rẹ̀ lọ́nà tó péye máa ń fúnni ní ààbò tó dára tó sì ṣe àìléwu."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_how_to_apply"
+    }
+  },
+
+  "repellent_apply_wash": {
+    "id": "repellent_apply_wash",
+    "question": {
+      "en": "Wash off repellents before sleeping if instructed on the label. ✅ Reduces skin irritation and keeps protection effective during active hours.",
+      "yo": "Ẹ fọ ohun ìlésùn mosikito náà kúrò lórí ara yín kí ẹ tó sùn bí a bá sọ bẹ́ẹ̀ lórí àpò rẹ̀. ✅ Èyí máa ń dín ìyọnu awọ ara kù tó sì ń jẹ́ kí ààbò náà ṣiṣẹ́ dáadáa ní àwọn wákàtí tó ṣe pàtàkì."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_how_to_apply"
+    }
+  },
+
+  "repellent_tips": {
+    "id": "repellent_tips",
+    "question": {
+      "en": "Tips for maximum protection with repellents:",
+      "yo": "Àwọn ìmọ̀ràn fún ààbò tó pọ̀ jùlọ pẹ̀lú àwọn ohun ìlésùn mosikito:"
+    },
+    "options": {
+      "A": {
+        "en": "Use repellents in combination with ITNs and IRS",
+        "yo": "Ẹ lo àwọn ohun ìlésùn mosikito papọ̀ pẹ̀lú ITNs àti IRS"
+      },
+      "B": {
+        "en": "Reapply after sweating, swimming, or washing",
+        "yo": "Ẹ tún fi sí lẹ́yìn gbígbẹ́, wẹ̀wẹ́, tàbí wíwẹ̀"
+      },
+      "C": {
+        "en": "Apply to all exposed areas, including arms and legs",
+        "yo": "Ẹ fi sí gbogbo ibi tí ara hàn, títí kan ọwọ́ àti ẹsẹ̀"
+      },
+      "D": {
+        "en": "Teach children to apply safely",
+        "yo": "Ẹ kọ́ àwọn ọmọdé bí wọ́n ṣe lè lò ó láìléwu"
+      },
+      "E": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_tip_combine",
+      "B": "repellent_tip_reapply",
+      "C": "repellent_tip_exposed",
+      "D": "repellent_tip_children",
+      "E": "result_prevention_repellents"
+    }
+  },
+
+  "repellent_tip_combine": {
+    "id": "repellent_tip_combine",
+    "question": {
+      "en": "Combine repellent use with ITNs and IRS. ✅ Using multiple prevention methods ensures the best protection against malaria.",
+      "yo": "Ẹ darapọ̀ lílo ohun ìlésùn mosikito pọ̀ mọ́ ITNs àti IRS. ✅ Lílo ọ̀nà ìdènà púpọ̀ papọ̀ máa ń fúnni ní ààbò tó dára jùlọ lórí àrùn malaria."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_tips"
+    }
+  },
+
+  "repellent_tip_reapply": {
+    "id": "repellent_tip_reapply",
+    "question": {
+      "en": "Reapply repellents after sweating, swimming, or washing. ✅ Maintains protection throughout exposure periods.",
+      "yo": "Ẹ tún fi ohun ìlésùn mosikito sí ara yín lẹ́yìn gbígbẹ́, wẹ̀wẹ́, tàbí wíwẹ̀ ara. ✅ Èyí máa ń jẹ́ kí ààbò náà tẹ̀síwájú ní gbogbo àkókò tí ẹ bá wà níbi tí mosikito lè gún yín."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_tips"
+    }
+  },
+
+  "repellent_tip_exposed": {
+    "id": "repellent_tip_exposed",
+    "question": {
+      "en": "Apply repellent to all exposed areas including arms, legs, and neck. ✅ Full coverage prevents mosquito bites effectively.",
+      "yo": "Ẹ fi ohun ìlésùn mosikito sí gbogbo ibi tí ara yín hàn títí kan ọwọ́, ẹsẹ̀ àti ọrùn. ✅ Bíbo gbogbo ara máa ń dènà gígún mosikito dáadáa."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_tips"
+    }
+  },
+
+  "repellent_tip_children": {
+    "id": "repellent_tip_children",
+    "question": {
+      "en": "Teach children to apply repellents safely or apply it for them. ✅ Ensures young children are protected without risk of misuse.",
+      "yo": "Ẹ kọ́ àwọn ọmọdé bí wọ́n ṣe lè lo ohun ìlésùn mosikito láìléwu tàbí ẹ fi sára wọn fún wọn. ✅ Èyí máa ń dáàbò bo àwọn ọmọdé láìsí ewu lílo àìtọ́."
+    },
+    "options": {
+      "A": { "en": "Back", "yo": "Padà sẹ́yìn" }
+    },
+    "next": {
+      "A": "repellent_tips"
+    }
+  },
+
+  "treatment_step": {
+    "id": "treatment_step",
+    "question": {
+      "en": "Treatment options / questions:",
+      "yo": "Àwọn àṣàyàn ìtọ́jú / àwọn ìbéèrè:"
+    },
+    "options": {
+      "A": {
+        "en": "What drugs are used?",
+        "yo": "Àwọn oògùn wo ni a máa ń lò?"
+      },
+      "B": { "en": "Where to test?", "yo": "Ibi tí a lè ṣe àyẹ̀wò?" },
+      "C": { "en": "Follow up after treatment", "yo": "Àtẹ̀lé lẹ́yìn ìtọ́jú" },
+      "D": { "en": "Back to home menu", "yo": "Padà sí ojú-ìwé àkọ́kọ́" }
+    },
+    "next": {
+      "A": "drugs_step",
+      "B": "result_treatment_test",
+      "C": "result_treatment_followup",
+      "D": "root"
+    }
+  },
+
+  "drugs_step": {
+    "id": "drugs_step",
+    "question": {
+      "en": "Which malaria drug would you like to know about?",
+      "yo": "Oògùn àrùn malaria wo ni ẹ fẹ́ mọ̀ síi?"
+    },
+    "options": {
+      "A": {
+        "en": "Artemisinin-based Combination Therapy (ACT)",
+        "yo": "Ìtọ́jú Àpapọ̀ Tó Da Lórí Artemisinin (ACT)"
+      },
+      "B": { "en": "Chloroquine", "yo": "Chloroquine" },
+      "C": { "en": "Quinine", "yo": "Quinine" },
+      "D": { "en": "Mefloquine", "yo": "Mefloquine" },
+      "E": { "en": "Doxycycline", "yo": "Doxycycline" },
+      "F": { "en": "Primaquine", "yo": "Primaquine" },
+      "G": { "en": "Amatem Forte", "yo": "Amatem Forte" },
+      "H": { "en": "Back to Treatment Options", "yo": "Padà sí àwọn àṣàyàn ìtọ́jú" }
+    },
+    "next": {
+      "A": "act_info",
+      "B": "chloroquine_info",
+      "C": "quinine_info",
+      "D": "mefloquine_info",
+      "E": "doxycycline_info",
+      "F": "primaquine_info",
+      "G": "amatem_info",
+      "H": "treatment_step"
+    }
+  },
+
+
+
+
+
+
+  
+  "amatem_info": {
+    "id": "amatem_info",
+    "question": {
+      "en": "Amatem Forte is a popular and highly effective anti-malaria medication in many regions. It is a combination therapy designed to quickly eliminate malaria parasites.",
+      "yo": "Amatem Forte jẹ́ oògùn ìjàkójá àrùn malaria tó gbajúmọ̀ tó sì ń ṣiṣẹ́ dáadáa púpọ̀ ní ọ̀pọ̀lọpọ̀ agbègbè. Ó jẹ́ ìtọ́jú àpapọ̀ tí a ṣètò láti pa àwọn kòkòrò àrùn malaria run ní kíákíá."
+    },
+    "options": {
+      "A": {
+        "en": "How to use Amatem Forte?",
+        "yo": "Bí a ṣe lè lo Amatem Forte?"
+      },
+      "B": {
+        "en": "Side effects of Amatem Forte",
+        "yo": "Àwọn ìpalára Amatem Forte"
+      },
+      "C": { "en": "Back to Drugs", "yo": "Padà sí àkójọ àwọn oògùn" }
+    },
+    "next": {
+      "A": "amatem_usage",
+      "B": "amatem_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "amatem_usage": {
+    "id": "amatem_usage",
+    "question": {
+      "en": "Amatem Forte is usually taken orally for 3 days. Dosage depends on age and weight. Follow the instructions provided by a healthcare professional to ensure full effectiveness.",
+      "yo": "A sábà máa ń mu Amatem Forte ní ẹnu fún ọjọ́ mẹ́ta. Ìwọ̀n oògùn yàtọ̀ sí ọjọ́-orí àti ìwúwo ara. Ẹ tẹ̀lé àwọn ìtọ́ni tí oníṣẹ́ ìlera fúnni dáadáa láti rí dájú pé oògùn náà ṣiṣẹ́ pípé."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Amatem Forte Info",
+        "yo": "Padà sí ìròyìn Amatem Forte"
+      }
+    },
+    "next": {
+      "A": "amatem_info"
+    }
+  },
+
+  "amatem_side_effects": {
+    "id": "amatem_side_effects",
+    "question": {
+      "en": "Common side effects may include nausea, headache, dizziness, or mild abdominal discomfort. Severe reactions are rare but require immediate medical attention.",
+      "yo": "Àwọn ìpalára tó wọ́pọ̀ lè jẹ́ ìríra inú, orí fífo, òrírì, tàbí àìrọ̀rùn inú fẹ́lẹ́fẹ́lẹ́. Àwọn ìpalára tó burú púpọ̀ ṣọ̀wọ́n ṣùgbọ́n wọ́n nílò ìtọ́jú ìlera lẹ́sẹ̀kẹsẹ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Amatem Forte Info",
+        "yo": "Padà sí ìròyìn Amatem Forte"
+      }
+    },
+    "next": {
+      "A": "amatem_info"
+    }
+  },
+
+  "act_info": {
+    "id": "act_info",
+    "question": {
+      "en": "Artemisinin-based Combination Therapy (ACT) is the most effective treatment for uncomplicated malaria. It combines an artemisinin derivative with another drug to prevent resistance.",
+      "yo": "Ìtọ́jú Àpapọ̀ Tó Da Lórí Artemisinin (ACT) ni ìtọ́jú tó ṣiṣẹ́ dáadáa jùlọ fún àrùn malaria tí kò níra. Ó darapọ̀ oògùn artemisinin pẹ̀lú oògùn mìíràn láti dènà kí àrùn náà má bàá fara da oògùn."
+    },
+    "options": {
+      "A": { "en": "How to use ACT?", "yo": "Bí a ṣe lè lo ACT?" },
+      "B": { "en": "Side effects of ACT", "yo": "Àwọn ìpalára ACT" },
+      "C": { "en": "Back to Drugs", "yo": "Padà sí àkójọ àwọn oògùn" }
+    },
+    "next": {
+      "A": "act_usage",
+      "B": "act_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "act_usage": {
+    "id": "act_usage",
+    "question": {
+      "en": "ACT is usually taken orally for 3 days. The dosage depends on the patient's age and weight. Always follow a doctor's prescription carefully.",
+      "yo": "A sábà máa ń mu ACT ní ẹnu fún ọjọ́ mẹ́ta. Ìwọ̀n oògùn náà yàtọ̀ sí ọjọ́-orí àti ìwúwo ara ẹni àìsàn. Ẹ máa tẹ̀lé ìtọ̀ni tí dókítà fún yín dáadáa ní gbogbo ìgbà."
+    },
+    "options": {
+      "A": { "en": "Back to ACT Info", "yo": "Padà sí ìròyìn ACT" }
+    },
+    "next": {
+      "A": "act_info"
+    }
+  },
+
+  "act_side_effects": {
+    "id": "act_side_effects",
+    "question": {
+      "en": "Common side effects include nausea, headache, dizziness, and mild abdominal pain. Severe reactions are rare but require immediate medical attention.",
+      "yo": "Àwọn ìpalára tó wọ́pọ̀ ni ìríra inú, orí fífo, òrírì, àti ìrora inú fẹ́lẹ́fẹ́lẹ́. Àwọn ìpalára tó burú púpọ̀ ṣọ̀wọ́n ṣùgbọ́n wọ́n nílò ìtọ́jú ìlera lẹ́sẹ̀kẹsẹ̀."
+    },
+    "options": {
+      "A": { "en": "Back to ACT Info", "yo": "Padà sí ìròyìn ACT" }
+    },
+    "next": {
+      "A": "act_info"
+    }
+  },
+
+  "chloroquine_info": {
+    "id": "chloroquine_info",
+    "question": {
+      "en": "Chloroquine is used for malaria caused by Plasmodium vivax and sensitive strains of P. falciparum. Resistance is common in many regions.",
+      "yo": "A máa ń lò Chloroquine fún àrùn malaria tí Plasmodium vivax àti àwọn oríṣìí P. falciparum tó fara dá sí oògùn fa. Ṣùgbọ́n fífara da oògùn ti gbajúmọ̀ ní ọ̀pọ̀lọpọ̀ agbègbè."
+    },
+    "options": {
+      "A": {
+        "en": "How to use Chloroquine?",
+        "yo": "Bí a ṣe lè lo Chloroquine?"
+      },
+      "B": {
+        "en": "Side effects of Chloroquine",
+        "yo": "Àwọn ìpalára Chloroquine"
+      },
+      "C": { "en": "Back to Drugs", "yo": "Padà sí àkójọ àwọn oògùn" }
+    },
+    "next": {
+      "A": "chloroquine_usage",
+      "B": "chloroquine_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "chloroquine_usage": {
+    "id": "chloroquine_usage",
+    "question": {
+      "en": "Chloroquine is taken orally over 3 days. Dosage depends on age and weight. Always follow doctor instructions and do not self-medicate.",
+      "yo": "A máa ń mu Chloroquine ní ẹnu fún ọjọ́ mẹ́ta. Ìwọ̀n oògùn yàtọ̀ sí ọjọ́-orí àti ìwúwo ara. Ẹ máa tẹ̀lé ìtọ́ni dókítà, ẹ má ṣe lo oògùn fúnra yín láì wá dókítà."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Chloroquine Info",
+        "yo": "Padà sí ìròyìn Chloroquine"
+      }
+    },
+    "next": {
+      "A": "chloroquine_info"
+    }
+  },
+
+  "chloroquine_side_effects": {
+    "id": "chloroquine_side_effects",
+    "question": {
+      "en": "Possible side effects: headache, nausea, blurred vision, dizziness. Rarely, serious heart rhythm problems may occur.",
+      "yo": "Àwọn ìpalára tó lè ṣẹlẹ̀ ni orí fífo, ìríra inú, ìran tí kò ṣe kéré, àti òrírì. Ní ìgbà díẹ̀, àwọn ìṣòro ìlù ọkàn tó burú púpọ̀ lè ṣẹlẹ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Chloroquine Info",
+        "yo": "Padà sí ìròyìn Chloroquine"
+      }
+    },
+    "next": {
+      "A": "chloroquine_info"
+    }
+  },
+
+  "quinine_info": {
+    "id": "quinine_info",
+    "question": {
+      "en": "Quinine is used for severe malaria or when other treatments fail. It may be given orally or intravenously in hospital settings.",
+      "yo": "A máa ń lò Quinine fún àrùn malaria tó burú púpọ̀ tàbí nígbà tí àwọn ìtọ́jú mìíràn kò bá ṣiṣẹ́. A lè fún un ní ẹnu tàbí fífi sínú iṣan ẹ̀jẹ̀ tààrà (IV) ní ilé ìwòsàn."
+    },
+    "options": {
+      "A": {
+        "en": "How to use Quinine?",
+        "yo": "Bí a ṣe lè lo Quinine?"
+      },
+      "B": {
+        "en": "Side effects of Quinine",
+        "yo": "Àwọn ìpalára Quinine"
+      },
+      "C": {
+        "en": "Back to Drugs",
+        "yo": "Padà sí àkójọ àwọn oògùn"
+      }
+    },
+    "next": {
+      "A": "quinine_usage",
+      "B": "quinine_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "quinine_usage": {
+    "id": "quinine_usage",
+    "question": {
+      "en": "Quinine dosage depends on severity of infection. Oral therapy lasts 7 days; severe cases require IV administration under medical supervision.",
+      "yo": "Ìwọ̀n oògùn Quinine yàtọ̀ sí bí àkóràn náà ṣe burú tó. Ìtọ́jú ní ẹnu máa ń gba ọjọ́ méje; àwọn àkóràn tó burú púpọ̀ nílò fífi oògùn sínú iṣan ẹ̀jẹ̀ tààrà lábẹ́ àbójútó dókítà."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Quinine Info",
+        "yo": "Padà sí ìròyìn Quinine"
+      }
+    },
+    "next": {
+      "A": "quinine_info"
+    }
+  },
+
+  "quinine_side_effects": {
+    "id": "quinine_side_effects",
+    "question": {
+      "en": "Side effects: ringing in ears, nausea, headache, vision changes, and rarely low blood sugar or irregular heartbeats. Monitor carefully.",
+      "yo": "Àwọn ìpalára ni dídún nínú etí, ìríra inú, orí fífo, ìyípadà nínú ìran, àti ní ìgbà díẹ̀, ìdínkù sùgà nínú ẹ̀jẹ̀ tàbí ìlù ọkàn tí kò péye. Ẹ máa tọ́jú ara yín dáadáa."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Quinine Info",
+        "yo": "Padà sí ìròyìn Quinine"
+      }
+    },
+    "next": {
+      "A": "quinine_info"
+    }
+  },
+
+  "mefloquine_info": {
+    "id": "mefloquine_info",
+    "question": {
+      "en": "Mefloquine is used to treat or prevent malaria in regions with chloroquine-resistant strains. Not suitable for people with certain psychiatric conditions.",
+      "yo": "A máa ń lò Mefloquine láti tọ́jú tàbí ṣe ìdènà àrùn malaria ní àwọn agbègbè tí àwọn kòkòrò àrùn malaria ti fara da Chloroquine. Kò yẹ fún àwọn tó ní àwọn àìsàn ọpọlọ kan pàtó."
+    },
+    "options": {
+      "A": {
+        "en": "How to use Mefloquine?",
+        "yo": "Bí a ṣe lè lo Mefloquine?"
+      },
+      "B": {
+        "en": "Side effects of Mefloquine",
+        "yo": "Àwọn ìpalára Mefloquine"
+      },
+      "C": {
+        "en": "Back to Drugs",
+        "yo": "Padà sí àkójọ àwọn oògùn"
+      }
+    },
+    "next": {
+      "A": "mefloquine_usage",
+      "B": "mefloquine_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "mefloquine_usage": {
+    "id": "mefloquine_usage",
+    "question": {
+      "en": "Taken orally once weekly for prevention or daily for treatment. Dosage depends on age and body weight. Avoid missing doses.",
+      "yo": "A máa ń mu un ní ẹnu lẹ́ẹ̀kan lọ́sẹ̀ fún ìdènà, tàbí lójoojúmọ́ fún ìtọ́jú. Ìwọ̀n oògùn yàtọ̀ sí ọjọ́-orí àti ìwúwo ara. Ẹ má ṣe gbàgbé láti mu oògùn yín ní àkókò rẹ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Mefloquine Info",
+        "yo": "Padà sí ìròyìn Mefloquine"
+      }
+    },
+    "next": {
+      "A": "mefloquine_info"
+    }
+  },
+
+  "mefloquine_side_effects": {
+    "id": "mefloquine_side_effects",
+    "question": {
+      "en": "Side effects: dizziness, sleep disturbances, anxiety, nausea. Rare psychiatric effects may occur. Seek medical advice if severe.",
+      "yo": "Àwọn ìpalára ni òrírì, ìṣòro oorun, ìbẹ̀rù ọkàn, àti ìríra inú. Ní ìgbà díẹ̀, àwọn ìpalára ọpọlọ lè ṣẹlẹ̀. Ẹ wá ìmọ̀ràn dókítà bí ó bá burú púpọ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Mefloquine Info",
+        "yo": "Padà sí ìròyìn Mefloquine"
+      }
+    },
+    "next": {
+      "A": "mefloquine_info"
+    }
+  },
+
+  "doxycycline_info": {
+    "id": "doxycycline_info",
+    "question": {
+      "en": "Doxycycline is used as a prophylactic drug or in combination therapy for malaria. It's not recommended for children under 8 or pregnant women.",
+      "yo": "A máa ń lò Doxycycline gẹ́gẹ́ bí oògùn ìdènà tàbí gẹ́gẹ́ bí apá kan nínú ìtọ́jú àpapọ̀ fún àrùn malaria. Kò yẹ fún àwọn ọmọdé tó kéré ju ọdún mẹ́jọ àti àwọn aboyún."
+    },
+    "options": {
+      "A": {
+        "en": "How to use Doxycycline?",
+        "yo": "Bí a ṣe lè lo Doxycycline?"
+      },
+      "B": {
+        "en": "Side effects of Doxycycline",
+        "yo": "Àwọn ìpalára Doxycycline"
+      },
+      "C": {
+        "en": "Back to Drugs",
+        "yo": "Padà sí àkójọ àwọn oògùn"
+      }
+    },
+    "next": {
+      "A": "doxycycline_usage",
+      "B": "doxycycline_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "doxycycline_usage": {
+    "id": "doxycycline_usage",
+    "question": {
+      "en": "Taken orally once daily for prevention starting 1-2 days before exposure, and continued for 4 weeks after leaving the area. Treatment doses vary by infection severity.",
+      "yo": "A máa ń mu un ní ẹnu lẹ́ẹ̀kan lójoojúmọ́ fún ìdènà, tí a bẹ̀rẹ̀ láti ọjọ́ kan sí méjì ṣáájú kí a tó wọ agbègbè tí àrùn náà wà, a sì máa tẹ̀síwájú fún ọ̀sẹ̀ mẹ́rin lẹ́yìn tí a bá ti kúrò ní agbègbè náà. Ìwọ̀n oògùn fún ìtọ́jú yàtọ̀ sí bí àkóràn náà ṣe burú tó."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Doxycycline Info",
+        "yo": "Padà sí ìròyìn Doxycycline"
+      }
+    },
+    "next": {
+      "A": "doxycycline_info"
+    }
+  },
+
+  "doxycycline_side_effects": {
+    "id": "doxycycline_side_effects",
+    "question": {
+      "en": "Side effects: stomach upset, sensitivity to sunlight, nausea. Rarely, allergic reactions may occur.",
+      "yo": "Àwọn ìpalára ni ìdàrúdàpọ̀ ikùn, ìfarahàn sí ìmọ́lẹ̀ oòrùn, àti ìríra inú. Ní ìgbà díẹ̀, ìpalára àkóràn (allergy) lè ṣẹlẹ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Doxycycline Info",
+        "yo": "Padà sí ìròyìn Doxycycline"
+      }
+    },
+    "next": {
+      "A": "doxycycline_info"
+    }
+  },
+
+  "primaquine_info": {
+    "id": "primaquine_info",
+    "question": {
+      "en": "Primaquine is used to prevent relapse of P. vivax and P. ovale malaria. Testing for G6PD deficiency is necessary before use.",
+      "yo": "A máa ń lò Primaquine láti dènà ìtúnpadàbọ̀ àrùn malaria P. vivax àti P. ovale. Ó ṣe pàtàkì láti ṣe àyẹ̀wò àìní G6PD kí a tó lò ó."
+    },
+    "options": {
+      "A": {
+        "en": "How to use Primaquine?",
+        "yo": "Bí a ṣe lè lo Primaquine?"
+      },
+      "B": {
+        "en": "Side effects of Primaquine",
+        "yo": "Àwọn ìpalára Primaquine"
+      },
+      "C": {
+        "en": "Back to Drugs",
+        "yo": "Padà sí àkójọ àwọn oògùn"
+      }
+    },
+    "next": {
+      "A": "primaquine_usage",
+      "B": "primaquine_side_effects",
+      "C": "drugs_step"
+    }
+  },
+
+  "primaquine_usage": {
+    "id": "primaquine_usage",
+    "question": {
+      "en": "Taken orally for 14 days to prevent relapse. Dosage depends on weight and G6PD status. Must follow the full course.",
+      "yo": "A máa ń mu un ní ẹnu fún ọjọ́ mẹ́rìnlá láti dènà ìtúnpadàbọ̀ àrùn náà. Ìwọ̀n oògùn yàtọ̀ sí ìwúwo ara àti ipò G6PD. Ó ṣe pàtàkì láti parí gbogbo ìlànà ìtọ́jú náà."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Primaquine Info",
+        "yo": "Padà sí ìròyìn Primaquine"
+      }
+    },
+    "next": {
+      "A": "primaquine_info"
+    }
+  },
+
+  "primaquine_side_effects": {
+    "id": "primaquine_side_effects",
+    "question": {
+      "en": "Side effects: nausea, headache, dark urine. Severe hemolysis can occur in G6PD-deficient patients.",
+      "yo": "Àwọn ìpalára ni ìríra inú, orí fífo, àti ìtọ̀ dúdú. Ìparun ẹ̀jẹ̀ pupa tó burú púpọ̀ (hemolysis) lè ṣẹlẹ̀ lọ́dọ̀ àwọn ẹni àìsàn tó ní àìní G6PD."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Primaquine Info",
+        "yo": "Padà sí ìròyìn Primaquine"
+      }
+    },
+    "next": {
+      "A": "primaquine_info"
+    }
+  },
+
+  "result_treatment_test": {
+    "id": "result_treatment_test",
+    "question": {
+      "en": "Where can you get tested for malaria?",
+      "yo": "Ibi wo ni ẹ lè ṣe àyẹ̀wò àrùn malaria?"
+    },
+    "options": {
+      "A": {
+        "en": "Hospitals and Clinics",
+        "yo": "Àwọn ilé ìwòsàn àti ilé ìtọ́jú ìlera"
+      },
+      "B": { "en": "Private Labs", "yo": "Àwọn yàrá àyẹ̀wò aládàáni" },
+      "C": {
+        "en": "Rapid Diagnostic Tests (RDT) at Home or Pharmacies",
+        "yo": "Àyẹ̀wò Kíákíá (RDT) ní ilé tàbí ilé-ẹ̀gbogì"
+      },
+      "D": { "en": "Back to Treatment Options", "yo": "Padà sí àwọn àṣàyàn ìtọ́jú" }
+    },
+    "next": {
+      "A": "hospital_testing_info",
+      "B": "private_lab_info",
+      "C": "rdt_info",
+      "D": "treatment_step"
+    }
+  },
+
+  "hospital_testing_info": {
+    "id": "hospital_testing_info",
+    "question": {
+      "en": "Hospitals and government clinics provide malaria testing with professional supervision. They usually offer both blood smear microscopy and RDTs.",
+      "yo": "Àwọn ilé ìwòsàn àti ilé ìtọ́jú ìjọba máa ń pèsè àyẹ̀wò àrùn malaria lábẹ́ àbójútó àwọn aláǹtakò. Wọ́n sábà máa ń lo àyẹ̀wò ẹ̀jẹ̀ lábẹ́ microscope àti àyẹ̀wò kíákíá (RDT)."
+    },
+    "options": {
+      "A": {
+        "en": "How testing is done in hospitals?",
+        "yo": "Bí a ṣe ń ṣe àyẹ̀wò ní ilé ìwòsàn?"
+      },
+      "B": {
+        "en": "Benefits of testing in hospitals",
+        "yo": "Àwọn àǹfààní àyẹ̀wò ní ilé ìwòsàn"
+      },
+      "C": { "en": "Back to Testing Options", "yo": "Padà sí àwọn àṣàyàn àyẹ̀wò" }
+    },
+    "next": {
+      "A": "hospital_testing_method",
+      "B": "hospital_testing_benefits",
+      "C": "result_treatment_test"
+    }
+  },
+
+
+
+
+  
+  "hospital_testing_method": {
+    "id": "hospital_testing_method",
+    "question": {
+      "en": "Malaria testing in hospitals is usually done using a blood smear or Rapid Diagnostic Tests (RDTs).",
+      "yo": "A sábà máa ń ṣe àyẹ̀wò àrùn malaria ní àwọn ilé ìwòsàn nípa lílo àyẹ̀wò ẹ̀jẹ̀ lábẹ́ microscope tàbí Àyẹ̀wò Kíákíá (RDT)."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Hospital Testing Info",
+        "yo": "Padà sí ìròyìn àyẹ̀wò ilé ìwòsàn"
+      }
+    },
+    "next": {
+      "A": "hospital_testing_info"
+    }
+  },
+
+  "hospital_testing_benefits": {
+    "id": "hospital_testing_benefits",
+    "question": {
+      "en": "Benefits include accurate results, professional treatment advice, and monitoring for complications.",
+      "yo": "Àwọn àǹfààní rẹ̀ ni àbájáde tó péye gan-an, ìmọ̀ràn ìtọ́jú láti ọ̀dọ̀ àwọn aláǹtakò, àti àbójútó fún àwọn ìṣòro tó lè yọ."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Hospital Testing Info",
+        "yo": "Padà sí ìròyìn àyẹ̀wò ilé ìwòsàn"
+      }
+    },
+    "next": {
+      "A": "hospital_testing_info"
+    }
+  },
+
+  "private_lab_info": {
+    "id": "private_lab_info",
+    "question": {
+      "en": "Private laboratories offer malaria testing services, often with faster results.",
+      "yo": "Àwọn yàrá àyẹ̀wò aládàáni máa ń pèsè iṣẹ́ àyẹ̀wò àrùn malaria, tí àbájáde rẹ̀ sábà máa ń jáde ní kíákíá."
+    },
+    "options": {
+      "A": {
+        "en": "How testing is done in private labs?",
+        "yo": "Bí a ṣe ń ṣe àyẹ̀wò ní yàrá àyẹ̀wò aládàáni?"
+      },
+      "B": {
+        "en": "Benefits of testing in private labs",
+        "yo": "Àwọn àǹfààní àyẹ̀wò ní yàrá àyẹ̀wò aládàáni"
+      },
+      "C": { "en": "Back to Testing Options", "yo": "Padà sí àwọn àṣàyàn àyẹ̀wò" }
+    },
+    "next": {
+      "A": "private_lab_method",
+      "B": "private_lab_benefits",
+      "C": "result_treatment_test"
+    }
+  },
+
+  "private_lab_method": {
+    "id": "private_lab_method",
+    "question": {
+      "en": "Private labs use blood smear microscopy or RDTs for malaria detection.",
+      "yo": "Àwọn yàrá àyẹ̀wò aládàáni máa ń lo àyẹ̀wò ẹ̀jẹ̀ lábẹ́ microscope tàbí Àyẹ̀wò Kíákíá (RDT) láti wá àrùn malaria."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Private Lab Info",
+        "yo": "Padà sí ìròyìn yàrá àyẹ̀wò aládàáni"
+      }
+    },
+    "next": {
+      "A": "private_lab_info"
+    }
+  },
+
+  "private_lab_benefits": {
+    "id": "private_lab_benefits",
+    "question": {
+      "en": "Private labs are faster, more convenient, and usually have shorter waiting times.",
+      "yo": "Àyẹ̀wò ní yàrá àyẹ̀wò aládàáni yára jùlọ, ó rọrùn púpọ̀, àkókò ìdúró náà sì kéré ju ti ilé ìwòsàn lọ."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Private Lab Info",
+        "yo": "Padà sí ìròyìn yàrá àyẹ̀wò aládàáni"
+      }
+    },
+    "next": {
+      "A": "private_lab_info"
+    }
+  },
+
+  "rdt_info": {
+    "id": "rdt_info",
+    "question": {
+      "en": "Rapid Diagnostic Tests (RDTs) can be used at home or bought from pharmacies.",
+      "yo": "A lè lo Àyẹ̀wò Kíákíá (RDT) ní ilé tàbí rà á ní ilé-ẹ̀gbogì."
+    },
+    "options": {
+      "A": {
+        "en": "How to use RDTs at home?",
+        "yo": "Bí a ṣe lè lo RDT ní ilé?"
+      },
+      "B": { "en": "Limitations of RDTs", "yo": "Àwọn àlàálẹ́ RDT" },
+      "C": { "en": "Back to Testing Options", "yo": "Padà sí àwọn àṣàyàn àyẹ̀wò" }
+    },
+    "next": {
+      "A": "rdt_usage",
+      "B": "rdt_limitations",
+      "C": "result_treatment_test"
+    }
+  },
+
+  "rdt_usage": {
+    "id": "rdt_usage",
+    "question": {
+      "en": "Steps to use an RDT at home.",
+      "yo": "Àwọn ìgbésẹ̀ láti lo Àyẹ̀wò Kíákíá (RDT) ní ilé."
+    },
+    "options": {
+      "A": { "en": "Back to RDT Info", "yo": "Padà sí ìròyìn RDT" }
+    },
+    "next": {
+      "A": "rdt_info"
+    }
+  },
+
+  "rdt_limitations": {
+    "id": "rdt_limitations",
+    "question": {
+      "en": "RDTs may not detect malaria if parasite levels are very low.",
+      "yo": "RDT lè má rí àrùn malaria bí iye àwọn kòkòrò àrùn bá kéré púpọ̀. Bí àwọn àmì àìsàn bá ń tẹ̀síwájú, ẹ lọ sí ilé ìwòsàn."
+    },
+    "options": {
+      "A": { "en": "Back to RDT Info", "yo": "Padà sí ìròyìn RDT" }
+    },
+    "next": {
+      "A": "rdt_info"
+    }
+  },
+
+  "result_treatment_followup": {
+    "id": "result_treatment_followup",
+    "question": {
+      "en": "Follow-up after malaria treatment is important to ensure full recovery and prevent complications.",
+      "yo": "Àtẹ̀lé lẹ́yìn ìtọ́jú àrùn malaria ṣe pàtàkì láti rí dájú pé ẹ ti bọ́ láradá pátápátá àti láti dènà àwọn ìṣòro mìíràn."
+    },
+    "options": {
+      "A": {
+        "en": "Why follow-up is important",
+        "yo": "Ìdí tí àtẹ̀lé fi ṣe pàtàkì"
+      },
+      "B": {
+        "en": "When to schedule follow-up",
+        "yo": "Ìgbà tó yẹ láti ṣètò àtẹ̀lé"
+      },
+      "C": {
+        "en": "Tests during follow-up",
+        "yo": "Àwọn àyẹ̀wò tó yẹ ní àkókò àtẹ̀lé"
+      },
+      "D": {
+        "en": "Signs to watch after treatment",
+        "yo": "Àwọn àmì tó yẹ kí ẹ máa ṣọ́ra fún lẹ́yìn ìtọ́jú"
+      },
+      "E": { "en": "Back to Treatment Options", "yo": "Padà sí àwọn àṣàyàn ìtọ́jú" }
+    },
+    "next": {
+      "A": "followup_importance",
+      "B": "followup_timing",
+      "C": "followup_tests",
+      "D": "followup_signs",
+      "E": "treatment_step"
+    }
+  },
+
+  "followup_importance": {
+    "id": "followup_importance",
+    "question": {
+      "en": "Follow-up ensures the malaria infection is fully cleared, checks for treatment side effects, and helps prevent relapse or complications such as anemia.",
+      "yo": "Àtẹ̀lé máa ń rí dájú pé àkóràn malaria náà ti parí pátápátá, ó máa ń ṣàyẹ̀wò àwọn ìpalára tó lè wáyé lẹ́yìn ìtọ́jú, ó sì ń ṣèrànwọ́ láti dènà ìtúnpadàbọ̀ àrùn náà tàbí àwọn ìṣòro bíi àìtó ẹ̀jẹ̀ pupa."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Follow-up Options",
+        "yo": "Padà sí àwọn àṣàyàn àtẹ̀lé"
+      }
+    },
+    "next": {
+      "A": "result_treatment_followup"
+    }
+  },
+
+  "followup_timing": {
+    "id": "followup_timing",
+    "question": {
+      "en": "For uncomplicated malaria, follow-up is usually done 3–7 days after treatment. For severe malaria, more frequent follow-ups are needed as advised by your doctor.",
+      "yo": "Fún àrùn malaria tí kò níra, a sábà máa ń ṣe àtẹ̀lé lẹ́yìn ọjọ́ mẹ́ta sí méje látara ìtọ́jú. Fún àrùn malaria tó burú púpọ̀, àtẹ̀lé tó pọ̀ sí i ni a nílò gẹ́gẹ́ bí dókítà yín ṣe ń sọ."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Follow-up Options",
+        "yo": "Padà sí àwọn àṣàyàn àtẹ̀lé"
+      }
+    },
+    "next": {
+      "A": "result_treatment_followup"
+    }
+  },
+
+  "followup_tests": {
+    "id": "followup_tests",
+    "question": {
+      "en": "During follow-up, your doctor may recommend:\n1) Blood smear or RDT to ensure parasites are cleared.\n2) Blood tests to check for anemia or other complications.\n3) Monitoring vital signs if you had severe malaria.",
+      "yo": "Ní àkókò àtẹ̀lé, dókítà yín lè dá yín lóhùn pé:\n1) Ẹ ṣe àyẹ̀wò ẹ̀jẹ̀ lábẹ́ microscope tàbí RDT láti rí dájú pé àwọn kòkòrò àrùn ti parí.\n2) Ẹ ṣe àyẹ̀wò ẹ̀jẹ̀ láti wo àìtó ẹ̀jẹ̀ pupa tàbí àwọn ìṣòro mìíràn.\n3) Ẹ máa ṣàbójútó àwọn àmì ìyè pàtàkì ara bí àrùn malaria náà bá burú púpọ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Follow-up Options",
+        "yo": "Padà sí àwọn àṣàyàn àtẹ̀lé"
+      }
+    },
+    "next": {
+      "A": "result_treatment_followup"
+    }
+  },
+
+  "followup_signs": {
+    "id": "followup_signs",
+    "question": {
+      "en": "After treatment, watch for signs such as persistent fever, chills, fatigue, jaundice, or unusual bleeding. If these occur, contact a healthcare provider immediately.",
+      "yo": "Lẹ́yìn ìtọ́jú, ẹ máa ṣọ́ra fún àwọn àmì bíi ìba tó ń tẹ̀síwájú, ìtútù tó ń mú ara wárìrì, àárẹ̀, òdòdó awọ ara (jaundice), tàbí ìjáde ẹ̀jẹ̀ tó yàtọ̀. Bí àwọn wọ̀nyí bá ṣẹlẹ̀, ẹ kàn sí oníṣẹ́ ìlera lẹ́sẹ̀kẹsẹ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Follow-up Options",
+        "yo": "Padà sí àwọn àṣàyàn àtẹ̀lé"
+      }
+    },
+    "next": {
+      "A": "result_treatment_followup"
+    }
+  },
+
+  "environment_step": {
+    "id": "environment_step",
+    "question": {
+      "en": "Environment & malaria:",
+      "yo": "Àyíká àti àrùn malaria:"
+    },
+    "options": {
+      "A": { "en": "Household cleaning tips", "yo": "Àwọn ìmọ̀ràn fún ìmọ́mọ́ ilé" },
+      "B": {
+        "en": "Drainage & water management",
+        "yo": "Ìṣàn omi àti ìṣàkóso omi"
+      },
+      "C": { "en": "Community action", "yo": "Iṣẹ́ àjọṣepọ̀ àwùjọ" },
+      "D": { "en": "Back to home menu", "yo": "Padà sí ojú-ìwé àkọ́kọ́" }
+    },
+    "next": {
+      "A": "result_env_clean",
+      "B": "result_env_drain",
+      "C": "result_env_community",
+      "D": "root"
+    }
+  },
+
+  "result_env_clean": {
+    "id": "result_env_clean",
+    "question": {
+      "en": "Household cleaning is important to reduce mosquito breeding and prevent malaria.",
+      "yo": "Ìmọ́mọ́ ilé ṣe pàtàkì láti dín bíbímọ mosikito kù àti láti dènà àrùn malaria."
+    },
+    "options": {
+      "A": { "en": "Daily cleaning routines", "yo": "Ìmọ́mọ́ ilé lójoojúmọ́" },
+      "B": { "en": "Proper waste disposal", "yo": "Ìṣípò ìdọ̀tí tó péye" },
+      "C": {
+        "en": "Eliminating stagnant water at home",
+        "yo": "Yíyọ omi tó dúró kúrò ní ilé"
+      },
+      "D": {
+        "en": "Cleaning gutters and drains",
+        "yo": "Mímọ́ àwọn ọ̀nà omi orí ilé àti ọ̀nà ìṣàn omi"
+      },
+      "E": {
+        "en": "Using mosquito nets and screens",
+        "yo": "Lílo àwọ̀n mosikito àti àwọ̀n àṣẹ́ fèrèsé/ilẹ̀kùn"
+      },
+      "F": { "en": "Back to Environment Options", "yo": "Padà sí àwọn àṣàyàn àyíká" }
+    },
+    "next": {
+      "A": "daily_cleaning",
+      "B": "waste_disposal",
+      "C": "stagnant_water",
+      "D": "gutters_drains",
+      "E": "mosquito_nets_screens",
+      "F": "environment_step"
+    }
+  },
+
+  "daily_cleaning": {
+    "id": "daily_cleaning",
+    "question": {
+      "en": "Daily cleaning routines help remove mosquito resting places and reduce breeding:\n- Sweep and mop floors.\n- Clean surfaces where water may collect.\n- Wash dishes and food containers promptly.\n- Keep windows and doors clean.",
+      "yo": "Ìmọ́mọ́ ilé lójoojúmọ́ máa ń ṣèrànwọ́ láti yọ ibi tí mosikito ti máa ń sinmi kúrò tó sì ń dín bíbímọ wọn kù:\n- Ẹ gbá ilẹ̀ kí ẹ sì nu fẹ́.\n- Ẹ mọ́ àwọn ojú ilẹ̀ tí omi lè kó sí.\n- Ẹ fọ àwọn àwo oúnjẹ àti àpòtí oúnjẹ ní kíákíá.\n- Ẹ máa mọ́ àwọn fèrèsé àti ilẹ̀kùn."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Household Cleaning Tips",
+        "yo": "Padà sí Àwọn Ìmọ̀ràn Ìmọ́mọ́ Ilé"
+      }
+    },
+    "next": {
+      "A": "result_env_clean"
+    }
+  },
+
+  "waste_disposal": {
+    "id": "waste_disposal",
+    "question": {
+      "en": "Proper waste disposal prevents mosquito breeding:\n- Dispose of plastic bottles, cans, and containers that can collect water.\n- Separate biodegradable and non-biodegradable waste.\n- Ensure trash bins have tight-fitting lids.",
+      "yo": "Ìṣípò ìdọ̀tí tó péye máa ń dènà bíbímọ mosikito:\n- Ẹ dànù àwọn ìgo ṣiṣú, àgòló, àti àpòtí tí omi lè kó sí.\n- Ẹ ya àwọn ìdọ̀tí tó lè bàjẹ́ àti èyí tí kò lè bàjẹ́ sọ́tọ̀.\n- Ẹ rí dájú pé àpòtí ìdọ̀tí ní ìdérí tó mọ́ra."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Household Cleaning Tips",
+        "yo": "Padà sí Àwọn Ìmọ̀ràn Ìmọ́mọ́ Ilé"
+      }
+    },
+    "next": {
+      "A": "result_env_clean"
+    }
+  },
+
+  "stagnant_water": {
+    "id": "stagnant_water",
+    "question": {
+      "en": "Mosquitoes breed in stagnant water, so:\n- Empty water from buckets, flower pots, or basins daily.\n- Cover water storage containers.\n- Remove or change water in pet dishes daily.\n- Ensure potted plants do not have water accumulating in trays.",
+      "yo": "Mosikito máa ń bímọ nínú omi tó dúró, nítorí náà:\n- Ẹ tú omi kúrò nínú gárawa, ìkòkò ododo, tàbí àwopọ̀kọ́ lójoojúmọ́.\n- Ẹ bo àwọn àpòtí ìtọ́jú omi.\n- Ẹ yọ tàbí yí omi inú àwo ẹranko ilé padà lójoojúmọ́.\n- Ẹ rí dájú pé àwọn ewéko tó wà nínú àpòtí kò ní omi tó ń kó sí inú àpẹ̀rẹ̀."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Household Cleaning Tips",
+        "yo": "Padà sí Àwọn Ìmọ̀ràn Ìmọ́mọ́ Ilé"
+      }
+    },
+    "next": {
+      "A": "result_env_clean"
+    }
+  },
+
+  "gutters_drains": {
+    "id": "gutters_drains",
+    "question": {
+      "en": "Cleaning gutters and drains reduces mosquito breeding:\n- Clear leaves and debris from gutters.\n- Ensure water flows freely in drainage channels.\n- Avoid blocked pipes and puddles near your house.",
+      "yo": "Mímọ́ àwọn ọ̀nà omi orí ilé àti ọ̀nà ìṣàn omi máa ń dín bíbímọ mosikito kù:\n- Ẹ yọ ewé àti ìdọ̀tí kúrò nínú àwọn ọ̀nà omi orí ilé.\n- Ẹ rí dájú pé omi ń ṣàn láìnídíje nínú àwọn ọ̀nà ìṣàn omi.\n- Ẹ yẹra fún àwọn pàìpù tó dì àti àbàtà ní àyíká ilé yín."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Household Cleaning Tips",
+        "yo": "Padà sí Àwọn Ìmọ̀ràn Ìmọ́mọ́ Ilé"
+      }
+    },
+    "next": {
+      "A": "result_env_clean"
+    }
+  },
+
+  "mosquito_nets_screens": {
+    "id": "mosquito_nets_screens",
+    "question": {
+      "en": "Use mosquito nets and window/door screens to reduce mosquito bites:\n- Ensure bed nets are properly tucked under the mattress.\n- Repair torn nets and screens promptly.\n- Treat nets with insecticide if possible.",
+      "yo": "Ẹ lo àwọ̀n mosikito àti àwọ̀n àṣẹ́ fèrèsé/ilẹ̀kùn láti dín gígún mosikito kù:\n- Ẹ rí dájú pé ẹ ti fi àwọ̀n ibùsùn wọ inú àga dáadáa.\n- Ẹ ṣe àtúnṣe àwọ̀n tó ti ya àti àwọ̀n àṣẹ́ ní kíákíá.\n- Ẹ tọ́jú àwọ̀n pẹ̀lú oògùn ìpakòkòrò bí ó bá ṣe é ṣe."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Household Cleaning Tips",
+        "yo": "Padà sí Àwọn Ìmọ̀ràn Ìmọ́mọ́ Ilé"
+      }
+    },
+    "next": {
+      "A": "result_env_clean"
+    }
+  },
+
+  "result_env_drain": {
+    "id": "result_env_drain",
+    "question": {
+      "en": "Proper drainage and water management prevent mosquitoes from breeding in stagnant water.",
+      "yo": "Ìṣàn omi tó péye àti ìṣàkóso omi máa ń dènà mosikito láti bímọ nínú omi tó dúró."
+    },
+    "options": {
+      "A": {
+        "en": "Maintain clean drainage channels",
+        "yo": "Ìtọ́jú kí àwọn ọ̀nà ìṣàn omi máa mọ́"
+      },
+      "B": { "en": "Prevent water pooling", "yo": "Ìdènà kíkójọ omi" },
+      "C": { "en": "Cover water storage", "yo": "Bíbò àwọn àpòtí ìtọ́jú omi" },
+      "D": { "en": "Rainwater management", "yo": "Ìṣàkóso omi òjò" },
+      "E": {
+        "en": "Community drainage initiatives",
+        "yo": "Iṣẹ́ àjọṣepọ̀ ìṣàn omi àwùjọ"
+      },
+      "F": { "en": "Back to Environment Options", "yo": "Padà sí àwọn àṣàyàn àyíká" }
+    },
+    "next": {
+      "A": "clean_drainage",
+      "B": "prevent_pooling",
+      "C": "cover_water_storage",
+      "D": "rainwater_management",
+      "E": "community_drainage",
+      "F": "environment_step"
+    }
+  },
+
+  "clean_drainage": {
+    "id": "clean_drainage",
+    "question": {
+      "en": "Maintaining clean drainage channels reduces mosquito breeding:\n- Remove leaves, debris, and garbage from gutters and drains regularly.\n- Check that drains allow free water flow.\n- Avoid dumping waste into drains, as it can block water and create breeding sites.",
+      "yo": "Ìtọ́jú kí àwọn ọ̀nà ìṣàn omi máa mọ́ máa ń dín bíbímọ mosikito kù:\n- Ẹ yọ ewé, ìdọ̀tí, àti ìpọ̀jù kúrò nínú àwọn ọ̀nà omi orí ilé àti ọ̀nà ìṣàn omi déédéédéé.\n- Ẹ ṣàyẹ̀wò pé omi ń ṣàn láìnídíje nínú àwọn ọ̀nà ìṣàn omi.\n- Ẹ má dà ìdọ̀tí sínú àwọn ọ̀nà ìṣàn omi, nítorí èyí lè dá omi dúró tó sì lè ṣẹ̀dá ibi tí mosikito lè bímọ sí."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Drainage & Water Management",
+        "yo": "Padà sí Ìṣàn Omi àti Ìṣàkóso Omi"
+      }
+    },
+    "next": {
+      "A": "result_env_drain"
+    }
+  },
+
+  "prevent_pooling": {
+    "id": "prevent_pooling",
+    "question": {
+      "en": "Preventing water pooling helps stop mosquito breeding:\n- Level uneven surfaces in your yard to avoid puddles.\n- Fill holes or depressions where water collects.\n- Ensure that outdoor containers or tyres are stored upside down or emptied regularly.",
+      "yo": "Ìdènà kíkójọ omi máa ń ṣèrànwọ́ láti dá bíbímọ mosikito dúró:\n- Ẹ tẹ́ àwọn ilẹ̀ tó ní àwọn ihò ní àgbàlá yín láti yẹra fún àbàtà.\n- Ẹ kún àwọn ihò tàbí ìsàlẹ̀ tí omi ń kó sí.\n- Ẹ rí dájú pé a ti da àwọn àpòtí tàbí táyà tó wà ní ìta ilé dé isàlẹ̀ tàbí pé a ti tu omi tó wà nínú wọn déédéédéé."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Drainage & Water Management",
+        "yo": "Padà sí Ìṣàn Omi àti Ìṣàkóso Omi"
+      }
+    },
+    "next": {
+      "A": "result_env_drain"
+    }
+  },
+
+  "cover_water_storage": {
+    "id": "cover_water_storage",
+    "question": {
+      "en": "Properly covering water storage containers prevents mosquitoes from laying eggs:\n- Use tight-fitting lids on barrels, tanks, and buckets.\n- Treat stored water with safe larvicides if necessary.\n- Avoid leaving uncovered containers outdoors.",
+      "yo": "Bíbo àpòtí ìtọ́jú omi dáadáa máa ń dènà mosikito láti fiyín sí:\n- Ẹ lo àwọn ìdérí tó mọ́ra lórí agba omi, tanki omi, àti gárawa.\n- Ẹ tọ́jú omi tó wà nínú àwọn àpòtí pẹ̀lú àwọn larvicide tó ṣe àìléwu bí ó bá ṣe pàtàkì.\n- Ẹ má fi àwọn àpòtí tí kò bò sílẹ̀ ní ìta ilé."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Drainage & Water Management",
+        "yo": "Padà sí Ìṣàn Omi àti Ìṣàkóso Omi"
+      }
+    },
+    "next": {
+      "A": "result_env_drain"
+    }
+  },
+
+  "rainwater_management": {
+    "id": "rainwater_management",
+    "question": {
+      "en": "Managing rainwater prevents standing water that breeds mosquitoes:\n- Ensure rainwater drains away from your home quickly.\n- Use rainwater harvesting with covered tanks.\n- Clean catchment areas regularly to prevent debris accumulation.",
+      "yo": "Ìṣàkóso omi òjò máa ń dènà omi tó dúró tí mosikito lè bímọ nínú rẹ̀:\n- Ẹ rí dájú pé omi òjò ń ṣàn kúrò ní àyíká ilé yín ní kíákíá.\n- Ẹ lo ìkósínú omi òjò pẹ̀lú àwọn tanki tó bò.\n- Ẹ máa mọ́ àwọn ibi tí a ti ń kó omi òjò sí déédéédéé láti dènà kíkójọ ìdọ̀tí."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Drainage & Water Management",
+        "yo": "Padà sí Ìṣàn Omi àti Ìṣàkóso Omi"
+      }
+    },
+    "next": {
+      "A": "result_env_drain"
+    }
+  },
+
+  "community_drainage": {
+    "id": "community_drainage",
+    "question": {
+      "en": "Community-level drainage management helps reduce malaria risk:\n- Participate in neighborhood clean-up drives.\n- Report blocked drains to local authorities.\n- Collaborate with community members to maintain drainage canals and public water bodies.",
+      "yo": "Ìṣàkóso ìṣàn omi ní ìpele àwùjọ máa ń ṣèrànwọ́ láti dín ewu àrùn malaria kù:\n- Ẹ kópa nínú iṣẹ́ ìmọ́mọ́ àdúgbò.\n- Ẹ jábọ̀ àwọn ọ̀nà ìṣàn omi tó dì fún àwọn aláṣẹ agbègbè.\n- Ẹ ṣiṣẹ́ pọ̀ pẹ̀lú àwọn ọmọ àwùjọ láti tọ́jú àwọn ọ̀nà ìṣàn omi àti àwọn ibi omi gbogbo ènìyàn."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Drainage & Water Management",
+        "yo": "Padà sí Ìṣàn Omi àti Ìṣàkóso Omi"
+      }
+    },
+    "next": {
+      "A": "result_env_drain"
+    }
+  },
+
+
+
+
+
+
+
+  "result_env_community": {
+    "id": "result_env_community",
+    "question": {
+      "en": "Community action is crucial in reducing malaria risk. Collective efforts can significantly lower mosquito breeding and transmission.",
+      "yo": "Ìṣe àjọṣepọ̀ àwùjọ ṣe pàtàkì púpọ̀ láti dín ewu ìṣẹ̀lẹ̀ iba malaria kù. Ìgbìyànjú àjọṣepọ̀ lè dín ìbímọ̀ ẹfọ́n àti ìtànkálẹ̀ ààrùn náà kù lọ́pọ̀lọpọ̀."
+    },
+    "options": {
+      "A": { "en": "Community clean-up campaigns", "yo": "Ìpolongo ìmọ́tótó àdúgbò" },
+      "B": {
+        "en": "Educating community members",
+        "yo": "Kíkọ́ àwọn ará àwùjọ lẹ́kọ́ọ́"
+      },
+      "C": {
+        "en": "Proper waste management",
+        "yo": "Ìṣàkóso ìdọ̀tí tó tọ́ ní àwùjọ"
+      },
+      "D": {
+        "en": "Mosquito breeding site surveillance",
+        "yo": "Ìṣọ́ àti ìṣàkíyèsí ibi ìbímọ̀ ẹfọ́n"
+      },
+      "E": {
+        "en": "Working with local authorities",
+        "yo": "Ìṣiṣẹ́pọ̀ pẹ̀lú àwọn aláṣẹ ìbílẹ̀"
+      },
+      "F": { "en": "Back to Environment Options", "yo": "Padà sí Àwọn Àṣàyàn Àyíká" }
+    },
+    "next": {
+      "A": "community_cleanup",
+      "B": "community_education",
+      "C": "community_waste",
+      "D": "community_surveillance",
+      "E": "community_local_authorities",
+      "F": "environment_step"
+    }
+  },
+
+  "community_cleanup": {
+    "id": "community_cleanup",
+    "question": {
+      "en": "Organize and participate in community clean-up campaigns:\n- Remove trash, old tires, and containers that can collect water.\n- Clear blocked drains and open gutters.\n- Engage local volunteers to maintain public spaces free of stagnant water.",
+      "yo": "Ṣètò àti kópa nínú ìpolongo ìmọ́tótó àdúgbò:\n- Yọ ìdọ̀tí, taya atijọ́, àti àpótí tí omi lè kó sínú kúrò.\n- Ṣí ìṣàn omi tí ó dí àti mọ àwọn gọ́tà.\n- Bá àwọn olùfọwọ́sọwọ́pọ̀ ìbílẹ̀ ṣiṣẹ́ láti jẹ́ kí àwọn ibi gbogbogbò wà ní mímọ́, kí ó sì má ní omi tó dúró tí kò sí ń ṣàn."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Community Action",
+        "yo": "Padà sí Ìṣe Àjọṣepọ̀ Àwùjọ"
+      }
+    },
+    "next": {
+      "A": "result_env_community"
+    }
+  },
+
+  "community_education": {
+    "id": "community_education",
+    "question": {
+      "en": "Educate community members about malaria prevention:\n- Hold awareness meetings about mosquito breeding and malaria symptoms.\n- Share information on proper household cleaning and water management.\n- Encourage use of bed nets and indoor spraying.",
+      "yo": "Kọ́ àwọn ará àwùjọ lẹ́kọ́ọ́ nípa ìdènà iba malaria:\n- Ṣe ìpàdé ìsọ̀kan àti ìmọ̀ràn nípa ìbímọ̀ ẹfọ́n àti àwọn àmì ààrùn iba malaria.\n- Pín ìmọ̀ nípa bí a ti ń mọ inú ilé tó tọ́ àti ìṣàkóso omi dáradára.\n- Gba àwọn ènìyàn níyànjú láti máa lo àwọ̀n inú ibùsùn àti fífọn ogun ìdènà kokoro sínú ilé."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Community Action",
+        "yo": "Padà sí Ìṣe Àjọṣepọ̀ Àwùjọ"
+      }
+    },
+    "next": {
+      "A": "result_env_community"
+    }
+  },
+
+  "community_waste": {
+    "id": "community_waste",
+    "question": {
+      "en": "Promote proper waste management in the community:\n- Work with neighbors to ensure trash is properly collected and disposed of.\n- Avoid illegal dumping in drains, rivers, or vacant lots.\n- Encourage recycling programs to reduce container waste.",
+      "yo": "Ṣe ìgbélarúgẹ ìṣàkóso ìdọ̀tí tó tọ́ ní àwùjọ:\n- Bá àwọn aládúgbò ṣiṣẹ́ láti rí i pé a kó ìdọ̀tí jọ dáadáa kí a sì fi sí ibi tó yẹ.\n- Má ṣe fi ìdọ̀tí sílẹ̀ ní àìtọ́ ní ibi tí kò yẹ bíi inú ìṣàn omi, inú odò, tàbí inú ilẹ̀ tí kò ní ilé.\n- Gba àwọn ènìyàn níyànjú láti kópa nínú ètò àtúnlò nǹkan láti dín ìdọ̀tí àpótí àti ohun èlò kù."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Community Action",
+        "yo": "Padà sí Ìṣe Àjọṣepọ̀ Àwùjọ"
+      }
+    },
+    "next": {
+      "A": "result_env_community"
+    }
+  },
+
+  "community_surveillance": {
+    "id": "community_surveillance",
+    "question": {
+      "en": "Monitor and report mosquito breeding sites in the community:\n- Identify stagnant water in public areas, empty lots, and construction sites.\n- Notify local health authorities if there are large mosquito populations.\n- Participate in regular checks with community health workers.",
+      "yo": "Ṣe àkíyèsí kí o sì ròyìn nípa àwọn ibi ìbímọ̀ ẹfọ́n ní àwùjọ:\n- Wá àwọn ibi tí omi ti dúró sí láì ṣàn ní àwọn ibi gbogbogbò, ilẹ̀ tó ṣòfo, àti àwọn ibi iṣẹ́ ìkọ́lé.\n- Sọ fún àwọn aláṣẹ ìlera ìbílẹ̀ bí ẹfọ́n bá ti pọ̀ jù lọ ní agbègbè náà.\n- Kópa nínú ìṣàyẹ̀wò déédéé pẹ̀lú àwọn oṣiṣẹ́ ìlera àwùjọ."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Community Action",
+        "yo": "Padà sí Ìṣe Àjọṣepọ̀ Àwùjọ"
+      }
+    },
+    "next": {
+      "A": "result_env_community"
+    }
+  },
+
+  "community_local_authorities": {
+    "id": "community_local_authorities",
+    "question": {
+      "en": "Collaborate with local authorities for malaria prevention:\n- Report drainage and sanitation issues to municipal offices.\n- Request community-level spraying or fogging programs.\n- Support local health campaigns and vaccination drives if applicable.",
+      "yo": "Bá àwọn aláṣẹ ìbílẹ̀ ṣiṣẹ́pọ̀ fún ìdènà iba malaria:\n- Ròyìn àwọn ìṣòro ìṣàn omi àti ìmọ́tótó sí ọ́fíìsì ìjọba ìbílẹ̀.\n- Béèrè fún ètò fífọn ogun ìdènà kokoro tàbí fífọn ìkùùkuu ní àwùjọ.\n- Ṣe àtìlẹ́yìn fún àwọn ìpolówó ìlera ìbílẹ̀ àti ètò àbẹ̀rẹ ajẹsara bí ó bá yẹ."
+    },
+    "options": {
+      "A": {
+        "en": "Back to Community Action",
+        "yo": "Padà sí Ìṣe Àjọṣepọ̀ Àwùjọ"
+      }
+    },
+    "next": {
+      "A": "result_env_community"
+    }
+  },
+
+  "causes_step": {
+    "id": "causes_step",
+    "question": {
+      "en": "What causes malaria?",
+      "yo": "Kí ni ó ń fa iba malaria?"
+    },
+    "options": {
+      "A": {
+        "en": "How malaria is transmitted",
+        "yo": "Bí a ṣe ń gba iba malaria"
+      },
+      "B": { "en": "Mosquito life cycle", "yo": "Àyíká ìgbésí ayé ẹfọ́n" },
+      "C": { "en": "Risk factors", "yo": "Àwọn ohun tó lè fa ewu" },
+      "D": { "en": "Misconceptions", "yo": "Àwọn èrò àsìṣe tàbí ìmọ̀ tí kò tọ́" },
+      "E": { "en": "Back to home menu", "yo": "Padà sí àkójọ àkọ́kọ́" }
+    },
+    "next": {
+      "A": "result_causes_transmission",
+      "B": "result_causes_lifecycle",
+      "C": "result_causes_risk",
+      "D": "result_causes_misconceptions",
+      "E": "root"
+    }
+  },
+
+  "result_causes_transmission": {
+    "id": "result_causes_transmission",
+    "question": {
+      "en": "How is malaria transmitted?",
+      "yo": "Báwo ni a ṣe ń gba iba malaria?"
+    },
+    "options": {
+      "A": { "en": "Mosquito bites", "yo": "Gígún ẹfọ́n" },
+      "B": { "en": "Blood transfusion", "yo": "Ìgbà-ẹ̀jẹ̀ sínú ara" },
+      "C": {
+        "en": "Mother to child (congenital malaria)",
+        "yo": "Láti ọ̀dọ̀ ìyá sí ọmọ (iba malaria ìbímọ̀)"
+      },
+      "D": { "en": "Organ transplant", "yo": "Ìgbé ẹ̀yà ara ènìyàn" },
+      "E": {
+        "en": "Shared needles or syringes",
+        "yo": "Pípín abẹ́rẹ́ tàbí síríngi"
+      },
+      "F": { "en": "Back to Causes", "yo": "Padà sí Kí ni ó ń fa malaria?" }
+    },
+    "next": {
+      "A": "transmission_mosquito_bites",
+      "B": "transmission_blood_transfusion",
+      "C": "transmission_mother_child",
+      "D": "transmission_organ_transplant",
+      "E": "transmission_shared_needles",
+      "F": "causes_step"
+    }
+  },
+
+  "transmission_mosquito_bites": {
+    "id": "transmission_mosquito_bites",
+    "question": {
+      "en": "Transmission via mosquito bites",
+      "yo": "Gbígba ààrùn nípasẹ̀ gígún ẹfọ́n"
+    },
+    "options": {
+      "A": {
+        "en": "Species responsible (Anopheles mosquito)",
+        "yo": "Irú ẹfọ́n tó ń fà á (Ẹfọ́n Anopheles)"
+      },
+      "B": {
+        "en": "How the parasite enters the body",
+        "yo": "Bí kòkòrò ààrùn náà ṣe ń wọ inú ara"
+      },
+      "C": {
+        "en": "Time of bite risk (night vs day)",
+        "yo": "Àkókò tí ewu gígún wà (alẹ́ àti ọ̀sán)"
+      },
+      "D": {
+        "en": "Back to How malaria is transmitted",
+        "yo": "Padà sí Báwo ni a ṣe ń gba iba malaria"
+      }
+    },
+    "next": {
+      "A": "mosquito_species",
+      "B": "parasite_entry",
+      "C": "bite_time_risk",
+      "D": "result_causes_transmission"
+    }
+  },
+
+  "mosquito_species": {
+    "id": "mosquito_species",
+    "question": {
+      "en": "Which mosquitoes transmit malaria?",
+      "yo": "Irú ẹfọ́n wo ni ó ń tan iba malaria?"
+    },
+    "options": {
+      "A": { "en": "Anopheles gambiae", "yo": "Anopheles gambiae" },
+      "B": { "en": "Anopheles funestus", "yo": "Anopheles funestus" },
+      "C": {
+        "en": "Other Anopheles species",
+        "yo": "Àwọn irú Anopheles mìíràn"
+      },
+      "D": {
+        "en": "Back to Transmission via mosquito bites",
+        "yo": "Padà sí Gbígba ààrùn nípasẹ̀ gígún ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "info_anopheles_gambiae",
+      "B": "info_anopheles_funestus",
+      "C": "info_other_anopheles",
+      "D": "transmission_mosquito_bites"
+    }
+  },
+
+  "info_anopheles_gambiae": {
+    "id": "info_anopheles_gambiae",
+    "question": {
+      "en": "Anopheles gambiae",
+      "yo": "Anopheles gambiae"
+    },
+    "options": {
+      "A": {
+        "en": "Most efficient malaria vector in Africa",
+        "yo": "Ẹfọ́n tó lágbára jùlọ láti tan iba malaria ní Áfíríkà"
+      },
+      "B": { "en": "Feeds mainly at night", "yo": "Ó máa ń mu ẹ̀jẹ̀ ní àárọ̀" },
+      "C": { "en": "Prefers human blood", "yo": "Ó fẹ́ràn ẹ̀jẹ̀ ọmọnìyàn jùlọ" },
+      "D": { "en": "Back to Mosquito species", "yo": "Padà sí Irú ẹfọ́n" }
+    },
+    "next": {
+      "A": "info_anopheles_gambiae",
+      "B": "info_anopheles_gambiae",
+      "C": "info_anopheles_gambiae",
+      "D": "mosquito_species"
+    }
+  },
+
+  "info_anopheles_funestus": {
+    "id": "info_anopheles_funestus",
+    "question": {
+      "en": "Anopheles funestus",
+      "yo": "Anopheles funestus"
+    },
+    "options": {
+      "A": {
+        "en": "Major malaria vector in sub-Saharan Africa",
+        "yo": "Ẹfọ́n pàtàkì tó ń tan iba malaria ní Áfíríkà Apágúúsù Sahara"
+      },
+      "B": {
+        "en": "Breeds in permanent water bodies",
+        "yo": "Ó máa ń bímọ̀ nínú àwọn ibi omi tó wà títí"
+      },
+      "C": {
+        "en": "Bites at night, mainly indoors",
+        "yo": "Ó máa ń gun ní àárọ̀, ní ìpín púpọ̀ nínú ilé"
+      },
+      "D": { "en": "Back to Mosquito species", "yo": "Padà sí Irú ẹfọ́n" }
+    },
+    "next": {
+      "A": "info_anopheles_funestus",
+      "B": "info_anopheles_funestus",
+      "C": "info_anopheles_funestus",
+      "D": "mosquito_species"
+    }
+  },
+
+  "info_other_anopheles": {
+    "id": "info_other_anopheles",
+    "question": {
+      "en": "Other Anopheles species",
+      "yo": "Àwọn irú Anopheles mìíràn"
+    },
+    "options": {
+      "A": {
+        "en": "Found in specific regions outside Africa",
+        "yo": "Wọ́n wà ní àwọn agbègbè pàtó ní ìta Áfíríkà"
+      },
+      "B": {
+        "en": "Less efficient malaria vectors",
+        "yo": "Wọn kò lágbára tó láti tan iba malaria"
+      },
+      "C": { "en": "Back to Mosquito species", "yo": "Padà sí Irú ẹfọ́n" }
+    },
+    "next": {
+      "A": "info_other_anopheles",
+      "B": "info_other_anopheles",
+      "C": "mosquito_species"
+    }
+  },
+
+  "parasite_entry": {
+    "id": "parasite_entry",
+    "question": {
+      "en": "How the malaria parasite enters the body",
+      "yo": "Bí kòkòrò ààrùn iba malaria ṣe ń wọ inú ara"
+    },
+    "options": {
+      "A": {
+        "en": "Injected into the bloodstream by mosquito saliva",
+        "yo": "A fi í sínú ìṣan ẹ̀jẹ̀ nípasẹ̀ itọ́ ẹfọ́n"
+      },
+      "B": {
+        "en": "Travels to the liver first, then infects red blood cells",
+        "yo": "Ó kọ́kọ́ lọ sí ẹ̀dọ̀, lẹ́yìn náà ó bá àwọn sẹ́ẹ̀lì ẹ̀jẹ̀ pupa jẹ́"
+      },
+      "C": {
+        "en": "Symptoms appear after incubation period",
+        "yo": "Àwọn àmì ààrùn máa ń farahàn lẹ́yìn àsìkò ìfarapa"
+      },
+      "D": {
+        "en": "Back to Transmission via mosquito bites",
+        "yo": "Padà sí Gbígba ààrùn nípasẹ̀ gígún ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "parasite_entry",
+      "B": "parasite_entry",
+      "C": "parasite_entry",
+      "D": "transmission_mosquito_bites"
+    }
+  },
+
+  "bite_time_risk": {
+    "id": "bite_time_risk",
+    "question": {
+      "en": "When is malaria bite risk highest?",
+      "yo": "Nígbà wo ni ewu gígún iba malaria ga jùlọ?"
+    },
+    "options": {
+      "A": {
+        "en": "Nighttime (10 PM – 4 AM) for Anopheles mosquitoes",
+        "yo": "Ní àárọ̀ (10 PM – 4 AM) fún ẹfọ́n Anopheles"
+      },
+      "B": {
+        "en": "Indoor vs Outdoor biting habits",
+        "yo": "Ìṣesí gígún nínú ilé àti lóde"
+      },
+      "C": {
+        "en": "Back to Transmission via mosquito bites",
+        "yo": "Padà sí Gbígba ààrùn nípasẹ̀ gígún ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "bite_time_risk",
+      "B": "bite_time_risk",
+      "C": "transmission_mosquito_bites"
+    }
+  },
+
+  "transmission_blood_transfusion": {
+    "id": "transmission_blood_transfusion",
+    "question": {
+      "en": "Transmission through blood transfusion",
+      "yo": "Gbígba ààrùn nípasẹ̀ ìgbà-ẹ̀jẹ̀ sínú ara"
+    },
+    "options": {
+      "A": {
+        "en": "Contaminated blood with malaria parasites",
+        "yo": "Ẹ̀jẹ̀ tó ní kòkòrò ààrùn iba malaria"
+      },
+      "B": { "en": "Screening reduces risk", "yo": "Àyẹ̀wò ẹ̀jẹ̀ ń dín ewu kù" },
+      "C": {
+        "en": "Back to How malaria is transmitted",
+        "yo": "Padà sí Báwo ni a ṣe ń gba iba malaria"
+      }
+    },
+    "next": {
+      "A": "blood_transfusion_info",
+      "B": "blood_transfusion_screening",
+      "C": "result_causes_transmission"
+    }
+  },
+
+  "blood_transfusion_info": {
+    "id": "blood_transfusion_info",
+    "question": {
+      "en": "Contaminated blood",
+      "yo": "Ẹ̀jẹ̀ tó ní kòkòrò ààrùn"
+    },
+    "options": {
+      "A": {
+        "en": "Parasites survive in stored blood",
+        "yo": "Àwọn kòkòrò ààrùn máa ń wà láààyè nínú ẹ̀jẹ̀ tí a pa mọ́"
+      },
+      "B": {
+        "en": "Can infect recipient during transfusion",
+        "yo": "Ó lè ran ẹni tó ń gba ẹ̀jẹ̀ náà lójú nígbà ìgbà-ẹ̀jẹ̀"
+      },
+      "C": { "en": "Back to Blood transfusion", "yo": "Padà sí Ìgbà-ẹ̀jẹ̀" }
+    },
+    "next": {
+      "A": "blood_transfusion_info",
+      "B": "blood_transfusion_info",
+      "C": "transmission_blood_transfusion"
+    }
+  },
+
+  "blood_transfusion_screening": {
+    "id": "blood_transfusion_screening",
+    "question": {
+      "en": "Screening of blood",
+      "yo": "Àyẹ̀wò ẹ̀jẹ̀"
+    },
+    "options": {
+      "A": {
+        "en": "Donor blood tested for malaria",
+        "yo": "A máa ń ṣe àyẹ̀wò ẹ̀jẹ̀ olùfúnni fún iba malaria"
+      },
+      "B": {
+        "en": "Reduces risk but does not eliminate completely",
+        "yo": "Ó ń dín ewu kù ṣùgbọ́n kò pa á run pátápátá"
+      },
+      "C": { "en": "Back to Blood transfusion", "yo": "Padà sí Ìgbà-ẹ̀jẹ̀" }
+    },
+    "next": {
+      "A": "blood_transfusion_screening",
+      "B": "blood_transfusion_screening",
+      "C": "transmission_blood_transfusion"
+    }
+  },
+
+  "transmission_mother_child": {
+    "id": "transmission_mother_child",
+    "question": {
+      "en": "Congenital malaria (mother to child)",
+      "yo": "Iba malaria ìbímọ̀ (láti ọ̀dọ̀ ìyá sí ọmọ)"
+    },
+    "options": {
+      "A": {
+        "en": "Parasite crosses the placenta",
+        "yo": "Kòkòrò ààrùn náà ń kọjá sí àyà ìgbẹ́ inú oyun"
+      },
+      "B": {
+        "en": "Infection risk highest in first pregnancies",
+        "yo": "Ewu ìkólùú ààrùn ga jùlọ nínú oyún àkọ́kọ́"
+      },
+      "C": { "en": "Symptoms in newborns", "yo": "Àwọn àmì ààrùn nínú ọmọ ọwọ́" },
+      "D": {
+        "en": "Back to How malaria is transmitted",
+        "yo": "Padà sí Báwo ni a ṣe ń gba iba malaria"
+      }
+    },
+    "next": {
+      "A": "mother_child_info",
+      "B": "mother_child_risk",
+      "C": "mother_child_symptoms",
+      "D": "result_causes_transmission"
+    }
+  },
+
+  "mother_child_info": {
+    "id": "mother_child_info",
+    "question": {
+      "en": "Parasite crosses placenta",
+      "yo": "Kòkòrò ààrùn ń kọjá sí àyà ìgbẹ́ inú oyun"
+    },
+    "options": {
+      "A": {
+        "en": "Occurs if mother is infected during pregnancy",
+        "yo": "Ó máa ń ṣẹlẹ̀ bí ìyá bá ní ààrùn náà nígbà oyún"
+      },
+      "B": {
+        "en": "Parasites enter fetal bloodstream",
+        "yo": "Àwọn kòkòrò ààrùn náà wọ inú ìṣan ẹ̀jẹ̀ ọmọ inú"
+      },
+      "C": { "en": "Back to Congenital malaria", "yo": "Padà sí Iba malaria ìbímọ̀" }
+    },
+    "next": {
+      "A": "mother_child_info",
+      "B": "mother_child_info",
+      "C": "transmission_mother_child"
+    }
+  },
+
+  "mother_child_risk": {
+    "id": "mother_child_risk",
+    "question": {
+      "en": "Risk factors for congenital malaria",
+      "yo": "Àwọn ohun tó fa ewu iba malaria ìbímọ̀"
+    },
+    "options": {
+      "A": { "en": "First pregnancy", "yo": "Oyún àkọ́kọ́" },
+      "B": {
+        "en": "High maternal parasitemia",
+        "yo": "Ìwọ̀n kòkòrò ààrùn tó ga nínú ẹ̀jẹ̀ ìyá"
+      },
+      "C": { "en": "Lack of preventive treatment", "yo": "Àìní ìtọ́jú ìdènà" },
+      "D": { "en": "Back to Congenital malaria", "yo": "Padà sí Iba malaria ìbímọ̀" }
+    },
+    "next": {
+      "A": "mother_child_risk",
+      "B": "mother_child_risk",
+      "C": "mother_child_risk",
+      "D": "transmission_mother_child"
+    }
+  },
+
+  "mother_child_symptoms": {
+    "id": "mother_child_symptoms",
+    "question": {
+      "en": "Symptoms in newborns",
+      "yo": "Àwọn àmì ààrùn nínú ọmọ ọwọ́"
+    },
+    "options": {
+      "A": { "en": "Fever, irritability", "yo": "Ibà, ìbínú kékeré" },
+      "B": { "en": "Anemia, jaundice", "yo": "Àìní ẹ̀jẹ̀, ìbàjẹ́ awọ̀ ara" },
+      "C": {
+        "en": "Poor feeding, lethargy",
+        "yo": "Ìjẹun tí kò dára, àárẹ̀ púpọ̀"
+      },
+      "D": { "en": "Back to Congenital malaria", "yo": "Padà sí Iba malaria ìbímọ̀" }
+    },
+    "next": {
+      "A": "mother_child_symptoms",
+      "B": "mother_child_symptoms",
+      "C": "mother_child_symptoms",
+      "D": "transmission_mother_child"
+    }
+  },
+
+  "transmission_organ_transplant": {
+    "id": "transmission_organ_transplant",
+    "question": {
+      "en": "Transmission via organ transplant",
+      "yo": "Gbígba ààrùn nípasẹ̀ ìgbé ẹ̀yà ara ènìyàn"
+    },
+    "options": {
+      "A": {
+        "en": "Malaria parasites in donor organ",
+        "yo": "Kòkòrò ààrùn iba malaria nínú ẹ̀yà ara olùfúnni"
+      },
+      "B": {
+        "en": "Screening of donor reduces risk",
+        "yo": "Àyẹ̀wò olùfúnni ń dín ewu kù"
+      },
+      "C": {
+        "en": "Back to How malaria is transmitted",
+        "yo": "Padà sí Báwo ni a ṣe ń gba iba malaria"
+      }
+    },
+    "next": {
+      "A": "organ_transplant_info",
+      "B": "organ_transplant_screening",
+      "C": "result_causes_transmission"
+    }
+  },
+
+  "organ_transplant_info": {
+    "id": "organ_transplant_info",
+    "question": {
+      "en": "Parasites in donor organ",
+      "yo": "Kòkòrò ààrùn nínú ẹ̀yà ara olùfúnni"
+    },
+    "options": {
+      "A": {
+        "en": "Parasites can survive in organ tissues",
+        "yo": "Àwọn kòkòrò ààrùn lè wà láààyè nínú àwọn iṣan ẹ̀yà ara"
+      },
+      "B": { "en": "Can infect recipient", "yo": "Ó lè ran ẹni tó ń gba ẹ̀yà ara náà lójú" },
+      "C": { "en": "Back to Organ transplant", "yo": "Padà sí Ìgbé ẹ̀yà ara" }
+    },
+    "next": {
+      "A": "organ_transplant_info",
+      "B": "organ_transplant_info",
+      "C": "transmission_organ_transplant"
+    }
+  },
+
+  "organ_transplant_screening": {
+    "id": "organ_transplant_screening",
+    "question": {
+      "en": "Donor screening",
+      "yo": "Àyẹ̀wò olùfúnni"
+    },
+    "options": {
+      "A": { "en": "Screening reduces risk", "yo": "Àyẹ̀wò ń dín ewu kù" },
+      "B": {
+        "en": "Still rare cases reported",
+        "yo": "Ṣùgbọ́n àwọn àpẹẹrẹ tó ṣọ̀wọ́n sì ń wà"
+      },
+      "C": { "en": "Back to Organ transplant", "yo": "Padà sí Ìgbé ẹ̀yà ara" }
+    },
+    "next": {
+      "A": "organ_transplant_screening",
+      "B": "organ_transplant_screening",
+      "C": "transmission_organ_transplant"
+    }
+  },
+
+  "transmission_shared_needles": {
+    "id": "transmission_shared_needles",
+    "question": {
+      "en": "Transmission via shared needles or syringes",
+      "yo": "Gbígba ààrùn nípasẹ̀ pípín abẹ́rẹ́ tàbí síríngi"
+    },
+    "options": {
+      "A": {
+        "en": "Blood contaminated with parasites",
+        "yo": "Ẹ̀jẹ̀ tó ní kòkòrò ààrùn"
+      },
+      "B": {
+        "en": "Common in unsterilized equipment",
+        "yo": "Ó máa ń ṣẹlẹ̀ púpọ̀ nínú àwọn ohun èlò tí a kò pa run kòkòrò"
+      },
+      "C": {
+        "en": "Back to How malaria is transmitted",
+        "yo": "Padà sí Báwo ni a ṣe ń gba iba malaria"
+      }
+    },
+    "next": {
+      "A": "needles_info",
+      "B": "needles_risk",
+      "C": "result_causes_transmission"
+    }
+  },
+
+  "needles_info": {
+    "id": "needles_info",
+    "question": {
+      "en": "Blood contamination through needles",
+      "yo": "Ìbàjẹ́ ẹ̀jẹ̀ nípasẹ̀ abẹ́rẹ́"
+    },
+    "options": {
+      "A": {
+        "en": "Parasites enter directly into bloodstream",
+        "yo": "Àwọn kòkòrò ààrùn wọ inú ìṣan ẹ̀jẹ̀ tààrà"
+      },
+      "B": {
+        "en": "Infects the next person using the same needle",
+        "yo": "Ó máa ń ran ẹni tó bá tún lo abẹ́rẹ́ náà lójú"
+      },
+      "C": { "en": "Back to Shared needles", "yo": "Padà sí Pípín abẹ́rẹ́" }
+    },
+    "next": {
+      "A": "needles_info",
+      "B": "needles_info",
+      "C": "transmission_shared_needles"
+    }
+  },
+
+  "needles_risk": {
+    "id": "needles_risk",
+    "question": {
+      "en": "Risk factors of shared needles",
+      "yo": "Àwọn ohun tó fa ewu nínú pípín abẹ́rẹ́"
+    },
+    "options": {
+      "A": {
+        "en": "Injecting drugs with unsterilized equipment",
+        "yo": "Títa oògùn sára pẹ̀lú àwọn ohun èlò tí a kò pa run kòkòrò"
+      },
+      "B": { "en": "Unsafe medical practices", "yo": "Àwọn ìṣe ìtọ́jú ìlera tí kò láìléwu" },
+      "C": { "en": "Back to Shared needles", "yo": "Padà sí Pípín abẹ́rẹ́" }
+    },
+    "next": {
+      "A": "needles_risk",
+      "B": "needles_risk",
+      "C": "transmission_shared_needles"
+    }
+  },
+
+  "result_treatment_drugs": {
+    "id": "result_treatment_drugs",
+    "question": {
+      "en": "Drugs used for malaria",
+      "yo": "Àwọn oògùn tí a ń lò fún iba malaria"
+    },
+    "options": {},
+    "result": {
+      "en": "Artemisinin-based Combination Therapies (ACTs) are the WHO-recommended drugs for treating uncomplicated malaria. Always take as prescribed.",
+      "yo": "Àwọn oògùn Artemisinin-based Combination Therapies (ACTs) ni WHO ṣe àbá fún títọ́jú iba malaria tí kò nira. Máa mu wọn gẹ́gẹ́ bí dókítà ṣe paláṣẹ."
+    }
+  },
+
+  "result_causes_lifecycle": {
+    "id": "result_causes_lifecycle",
+    "question": {
+      "en": "Learn about the mosquito life cycle in relation to malaria transmission",
+      "yo": "Kọ́ ẹ̀kọ́ nípa àyíká ìgbésí ayé ẹfọ́n àti bí ó ṣe jọmọ́ ìtànkálẹ̀ iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Stages of mosquito life cycle",
+        "yo": "Àwọn ìpele àyíká ìgbésí ayé ẹfọ́n"
+      },
+      "B": {
+        "en": "Time taken for each stage",
+        "yo": "Àkókò tí kọ̀ọ̀kan ìpele gbà"
+      },
+      "C": {
+        "en": "Environmental conditions for growth",
+        "yo": "Àwọn ipò ayíká tó dára fún ìdàgbàsókè"
+      },
+      "D": {
+        "en": "How mosquito life cycle affects malaria transmission",
+        "yo": "Bí àyíká ìgbésí ayé ẹfọ́n ṣe nípa lórí ìtànkálẹ̀ iba malaria"
+      },
+      "E": { "en": "Back to Causes", "yo": "Padà sí Àwọn Ìdí" }
+    },
+    "next": {
+      "A": "mosquito_lifecycle_stages",
+      "B": "mosquito_lifecycle_time",
+      "C": "mosquito_lifecycle_environment",
+      "D": "mosquito_lifecycle_transmission",
+      "E": "causes_step"
+    }
+  },
+
+  "mosquito_lifecycle_stages": {
+    "id": "mosquito_lifecycle_stages",
+    "question": {
+      "en": "What are the stages of mosquito life cycle?",
+      "yo": "Kí ni àwọn ìpele àyíká ìgbésí ayé ẹfọ́n?"
+    },
+    "options": {
+      "A": { "en": "Egg stage", "yo": "Ìpele ẹyin" },
+      "B": { "en": "Larva stage", "yo": "Ìpele ọmọ ẹfọ́n inú omi (larva)" },
+      "C": { "en": "Pupa stage", "yo": "Ìpele ìyípadà (pupa)" },
+      "D": { "en": "Adult mosquito stage", "yo": "Ìpele ẹfọ́n àgbà" },
+      "E": {
+        "en": "Back to Mosquito life cycle",
+        "yo": "Padà sí Àyíká ìgbésí ayé ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "mosquito_stage_egg",
+      "B": "mosquito_stage_larva",
+      "C": "mosquito_stage_pupa",
+      "D": "mosquito_stage_adult",
+      "E": "result_causes_lifecycle"
+    }
+  },
+
+  "mosquito_stage_egg": {
+    "id": "mosquito_stage_egg",
+    "question": {
+      "en": "Egg stage",
+      "yo": "Ìpele ẹyin"
+    },
+    "options": {
+      "A": {
+        "en": "Female Anopheles mosquito lays eggs on water surface",
+        "yo": "Ẹfọ́n Anopheles abo máa ń pa ẹyin sórí ojú omi"
+      },
+      "B": {
+        "en": "Eggs hatch within 2–3 days in warm conditions",
+        "yo": "Àwọn ẹyin máa ń yọ láàárín ọjọ́ 2 sí 3 ní àyíká tó lọ́wọ́rọ́"
+      },
+      "C": {
+        "en": "Back to Life cycle stages",
+        "yo": "Padà sí Àwọn ìpele àyíká ìgbésí ayé"
+      }
+    },
+    "next": {
+      "A": "mosquito_stage_egg",
+      "B": "mosquito_stage_egg",
+      "C": "mosquito_lifecycle_stages"
+    }
+  },
+
+  "mosquito_stage_larva": {
+    "id": "mosquito_stage_larva",
+    "question": {
+      "en": "Larva stage",
+      "yo": "Ìpele ọmọ ẹfọ́n inú omi (larva)"
+    },
+    "options": {
+      "A": {
+        "en": "Larvae live in water, feed on microorganisms",
+        "yo": "Àwọn ọmọ ẹfọ́n inú omi máa ń gbé nínú omi, wọ́n sì ń jẹ àwọn kòkòrò kékèké"
+      },
+      "B": {
+        "en": "Undergo several molts (4 instars)",
+        "yo": "Wọ́n máa ń yọ awọ ara wọn ní ọ̀pọ̀ ìgbà (ìgbà mẹ́rin)"
+      },
+      "C": {
+        "en": "Back to Life cycle stages",
+        "yo": "Padà sí Àwọn ìpele àyíká ìgbésí ayé"
+      }
+    },
+    "next": {
+      "A": "mosquito_stage_larva",
+      "B": "mosquito_stage_larva",
+      "C": "mosquito_lifecycle_stages"
+    }
+  },
+
+  "mosquito_stage_pupa": {
+    "id": "mosquito_stage_pupa",
+    "question": {
+      "en": "Pupa stage",
+      "yo": "Ìpele ìyípadà (pupa)"
+    },
+    "options": {
+      "A": { "en": "Pupa does not feed", "yo": "Ní ìpele yìí, kò jẹun" },
+      "B": {
+        "en": "Transformation into adult occurs inside the pupal case",
+        "yo": "Ìyípadà sí ẹfọ́n àgbà máa ń ṣẹlẹ̀ nínú ihò ìyípadà"
+      },
+      "C": { "en": "Duration about 2–3 days", "yo": "Ìgbà tó máa ń gbà tó ọjọ́ 2 sí 3" },
+      "D": {
+        "en": "Back to Life cycle stages",
+        "yo": "Padà sí Àwọn ìpele àyíká ìgbésí ayé"
+      }
+    },
+    "next": {
+      "A": "mosquito_stage_pupa",
+      "B": "mosquito_stage_pupa",
+      "C": "mosquito_stage_pupa",
+      "D": "mosquito_lifecycle_stages"
+    }
+  },
+
+  "mosquito_stage_adult": {
+    "id": "mosquito_stage_adult",
+    "question": {
+      "en": "Adult mosquito stage",
+      "yo": "Ìpele ẹfọ́n àgbà"
+    },
+    "options": {
+      "A": {
+        "en": "Male mosquitoes feed on nectar",
+        "yo": "Ẹfọ́n akọ máa ń mu omi adídùn inú òdòdó"
+      },
+      "B": {
+        "en": "Female mosquitoes feed on blood to produce eggs",
+        "yo": "Ẹfọ́n abo máa ń mu ẹ̀jẹ̀ láti lè bí ẹyin"
+      },
+      "C": {
+        "en": "Adult females can transmit malaria after becoming infected",
+        "yo": "Ẹfọ́n abo àgbà lè tan iba malaria lẹ́yìn tí wọ́n bá ti ní kòkòrò ààrùn náà"
+      },
+      "D": {
+        "en": "Back to Life cycle stages",
+        "yo": "Padà sí Àwọn ìpele àyíká ìgbésí ayé"
+      }
+    },
+    "next": {
+      "A": "mosquito_stage_adult",
+      "B": "mosquito_stage_adult",
+      "C": "mosquito_stage_adult",
+      "D": "mosquito_lifecycle_stages"
+    }
+  },
+
+  "mosquito_lifecycle_time": {
+    "id": "mosquito_lifecycle_time",
+    "question": {
+      "en": "Time taken for each stage",
+      "yo": "Àkókò tí kọ̀ọ̀kan ìpele gbà"
+    },
+    "options": {
+      "A": {
+        "en": "Eggs hatch in 2–3 days",
+        "yo": "Àwọn ẹyin máa ń yọ láàárín ọjọ́ 2 sí 3"
+      },
+      "B": {
+        "en": "Larval stage lasts 4–14 days depending on temperature",
+        "yo": "Ìpele ọmọ ẹfọ́n inú omi máa ń gbà láti ọjọ́ 4 dé 14 gẹ́gẹ́ bí ìgbóná ojú ọjọ́ ṣe rí"
+      },
+      "C": {
+        "en": "Pupal stage lasts 2–3 days",
+        "yo": "Ìpele ìyípadà máa ń gbà ọjọ́ 2 sí 3"
+      },
+      "D": {
+        "en": "Adult mosquito lifespan 1–2 weeks (male) or 2–4 weeks (female)",
+        "yo": "Ìgbésí ayé ẹfọ́n àgbà jẹ́ ọ̀sẹ̀ 1 sí 2 (akọ) tàbí ọ̀sẹ̀ 2 sí 4 (abo)"
+      },
+      "E": {
+        "en": "Back to Mosquito life cycle",
+        "yo": "Padà sí Àyíká ìgbésí ayé ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "mosquito_lifecycle_time",
+      "B": "mosquito_lifecycle_time",
+      "C": "mosquito_lifecycle_time",
+      "D": "mosquito_lifecycle_time",
+      "E": "result_causes_lifecycle"
+    }
+  },
+
+  "mosquito_lifecycle_environment": {
+    "id": "mosquito_lifecycle_environment",
+    "question": {
+      "en": "Environmental conditions for mosquito growth",
+      "yo": "Àwọn ipò ayíká tó dára fún ìdàgbàsókè ẹfọ́n"
+    },
+    "options": {
+      "A": {
+        "en": "Still water for egg laying",
+        "yo": "Omi tí kò ṣàn fún fífi ẹyin sí"
+      },
+      "B": {
+        "en": "Warm temperatures accelerate development",
+        "yo": "Ìgbóná ojú ọjọ́ ń mú kí ìdàgbàsókè yára"
+      },
+      "C": {
+        "en": "Humidity supports survival",
+        "yo": "Ọ̀rinrin ojú ọjọ́ ń ràn wọ́n lọ́wọ́ láti wà láààyè"
+      },
+      "D": {
+        "en": "Back to Mosquito life cycle",
+        "yo": "Padà sí Àyíká ìgbésí ayé ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "mosquito_lifecycle_environment",
+      "B": "mosquito_lifecycle_environment",
+      "C": "mosquito_lifecycle_environment",
+      "D": "result_causes_lifecycle"
+    }
+  },
+
+  "mosquito_lifecycle_transmission": {
+    "id": "mosquito_lifecycle_transmission",
+    "question": {
+      "en": "How mosquito life cycle affects malaria transmission",
+      "yo": "Bí àyíká ìgbésí ayé ẹfọ́n ṣe nípa lórí ìtànkálẹ̀ iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Only adult females bite humans and transmit malaria",
+        "yo": "Ẹfọ́n abo àgbà nìkan ló máa ń gun ènìyàn kí ó sì tan iba malaria"
+      },
+      "B": {
+        "en": "Longer adult lifespan increases transmission risk",
+        "yo": "Ìgbésí ayé ẹfọ́n àgbà tó pẹ́ ń pọ̀ ewu ìtànkálẹ̀ ààrùn náà sí i"
+      },
+      "C": {
+        "en": "Rapid breeding can increase mosquito population quickly",
+        "yo": "Ìbímọ̀ tó yára lè mú kí iye ẹfọ́n pọ̀ sí i kíákíá"
+      },
+      "D": {
+        "en": "Environmental factors that speed up the life cycle increase transmission risk",
+        "yo": "Àwọn ohun tó wà ní ayíká tó ń mú kí àyíká ìgbésí ayé yára ń pọ̀ ewu ìtànkálẹ̀ ààrùn náà sí i"
+      },
+      "E": {
+        "en": "Back to Mosquito life cycle",
+        "yo": "Padà sí Àyíká ìgbésí ayé ẹfọ́n"
+      }
+    },
+    "next": {
+      "A": "mosquito_lifecycle_transmission",
+      "B": "mosquito_lifecycle_transmission",
+      "C": "mosquito_lifecycle_transmission",
+      "D": "mosquito_lifecycle_transmission",
+      "E": "result_causes_lifecycle"
+    }
+  },
+
+  "result_causes_risk": {
+    "id": "result_causes_risk",
+    "question": {
+      "en": "What are the risk factors for malaria?",
+      "yo": "Kí ni àwọn ohun tó fa ewu iba malaria?"
+    },
+    "options": {
+      "A": { "en": "Geographical risk", "yo": "Ewu agbègbè ilẹ̀ ayé" },
+      "B": { "en": "Seasonal risk", "yo": "Ewu àkókò ọdún" },
+      "C": { "en": "Age and immunity", "yo": "Ọjọ́ orí àti agbára ìdáàbò bo ara" },
+      "D": { "en": "Pregnancy", "yo": "Oyún" },
+      "E": {
+        "en": "Socioeconomic factors",
+        "yo": "Àwọn ohun tó jọmọ́ ipò àwùjọ àti owó"
+      },
+      "F": { "en": "Travel and exposure", "yo": "Ìrìnàjò àti ìfarahàn sí ààrùn" },
+      "G": { "en": "Back to Causes", "yo": "Padà sí Àwọn Ìdí" }
+    },
+    "next": {
+      "A": "risk_geographical",
+      "B": "risk_seasonal",
+      "C": "risk_age_immunity",
+      "D": "risk_pregnancy",
+      "E": "risk_socioeconomic",
+      "F": "risk_travel",
+      "G": "causes_step"
+    }
+  }
+  ,
+
+
+
+
+
+
+  "risk_geographical": {
+    "id": "risk_geographical",
+    "question": {
+      "en": "Geographical risk factors",
+      "yo": "Àwọn ohun tó fa ewu gẹ́gẹ́ bí ibi tí a wà"
+    },
+    "options": {
+      "A": {
+        "en": "Living in tropical or subtropical regions",
+        "yo": "Gbígbé ní àwọn agbègbè tí ojú ọjọ́ gbóná tàbí tí kò gbóná tó"
+      },
+      "B": {
+        "en": "High prevalence areas like sub-Saharan Africa, parts of Asia and Latin America",
+        "yo": "Àwọn agbègbè tí iba malaria pọ̀ jù lọ bíi Áfíríkà Apágúúsù Sahara, apá kan ti Asia àti Latin America"
+      },
+      "C": {
+        "en": "Back to Risk factors",
+        "yo": "Padà sí Àwọn ohun tó fa ewu"
+      }
+    },
+    "next": {
+      "A": "risk_geographical",
+      "B": "risk_geographical",
+      "C": "result_causes_risk"
+    }
+  },
+
+  "risk_seasonal": {
+    "id": "risk_seasonal",
+    "question": {
+      "en": "Seasonal risk factors",
+      "yo": "Àwọn ohun tó fa ewu gẹ́gẹ́ bí àkókò ọdún"
+    },
+    "options": {
+      "A": {
+        "en": "Rainy season increases mosquito breeding sites",
+        "yo": "Àsìkò òjò ń pọ̀ àwọn ibi tí ẹfọ́n máa ń bímọ̀ sí i"
+      },
+      "B": {
+        "en": "Flooded areas create stagnant water for mosquito larvae",
+        "yo": "Àwọn agbègbè tí omi kún ń ṣẹ̀dá omi tí kò ń ṣàn fún àwọn ọmọ ẹfọ́n inú omi"
+      },
+      "C": {
+        "en": "Back to Risk factors",
+        "yo": "Padà sí Àwọn ohun tó fa ewu"
+      }
+    },
+    "next": {
+      "A": "risk_seasonal",
+      "B": "risk_seasonal",
+      "C": "result_causes_risk"
+    }
+  },
+
+  "risk_age_immunity": {
+    "id": "risk_age_immunity",
+    "question": {
+      "en": "Age and immunity as risk factors",
+      "yo": "Ọjọ́ orí àti agbára ìdáàbò bo ara gẹ́gẹ́ bí ohun tó fa ewu"
+    },
+    "options": {
+      "A": {
+        "en": "Children under 5 are most vulnerable",
+        "yo": "Àwọn ọmọdé tí kò tíì di ọmọ ọdún márùn-ún ló ṣòro jù lọ"
+      },
+      "B": {
+        "en": "People with weakened immunity",
+        "yo": "Àwọn ènìyàn tí agbára ìdáàbò bo ara wọn kò lágbára"
+      },
+      "C": {
+        "en": "Back to Risk factors",
+        "yo": "Padà sí Àwọn ohun tó fa ewu"
+      }
+    },
+    "next": {
+      "A": "risk_age_immunity",
+      "B": "risk_age_immunity",
+      "C": "result_causes_risk"
+    }
+  },
+
+  "risk_pregnancy": {
+    "id": "risk_pregnancy",
+    "question": {
+      "en": "Pregnancy as a risk factor",
+      "yo": "Oyún gẹ́gẹ́ bí ohun tó fa ewu"
+    },
+    "options": {
+      "A": {
+        "en": "Pregnant women have reduced immunity to malaria",
+        "yo": "Àwọn obìnrin tó lóyún ní agbára ìdáàbò bo ara tó dín kù sí iba malaria"
+      },
+      "B": {
+        "en": "First pregnancies have highest risk",
+        "yo": "Oyún àkọ́kọ́ ní ewu tó ga jù lọ"
+      },
+      "C": {
+        "en": "Can cause complications for mother and baby",
+        "yo": "Ó lè fa àwọn ìṣòro fún ìyá àti ọmọ"
+      },
+      "D": {
+        "en": "Back to Risk factors",
+        "yo": "Padà sí Àwọn ohun tó fa ewu"
+      }
+    },
+    "next": {
+      "A": "risk_pregnancy",
+      "B": "risk_pregnancy",
+      "C": "risk_pregnancy",
+      "D": "result_causes_risk"
+    }
+  },
+
+  "risk_socioeconomic": {
+    "id": "risk_socioeconomic",
+    "question": {
+      "en": "Socioeconomic factors affecting malaria risk",
+      "yo": "Àwọn ohun tó jọmọ́ ipò àwùjọ àti owó tó nípa lórí ewu iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Poor housing and lack of window screens",
+        "yo": "Ilé tí kò péye àti àìní àwọ̀n fèrèsé"
+      },
+      "B": {
+        "en": "Limited access to mosquito nets and repellents",
+        "yo": "Àìní ànfààní láti rí àwọ̀n inú ibùsùn àti ohun ìdènà ẹfọ́n"
+      },
+      "C": {
+        "en": "Limited access to healthcare and preventive treatment",
+        "yo": "Àìní ànfààní láti rí ìtọ́jú ìlera àti ìtọ́jú ìdènà"
+      },
+      "D": {
+        "en": "Back to Risk factors",
+        "yo": "Padà sí Àwọn ohun tó fa ewu"
+      }
+    },
+    "next": {
+      "A": "risk_socioeconomic",
+      "B": "risk_socioeconomic",
+      "C": "risk_socioeconomic",
+      "D": "result_causes_risk"
+    }
+  },
+
+  "risk_travel": {
+    "id": "risk_travel",
+    "question": {
+      "en": "Travel and exposure risk factors",
+      "yo": "Ìrìnàjò àti ìfarahàn sí ààrùn gẹ́gẹ́ bí ohun tó fa ewu"
+    },
+    "options": {
+      "A": {
+        "en": "Traveling to malaria-endemic regions without prophylaxis",
+        "yo": "Ìrìnàjò lọ sí àwọn agbègbè tí iba malaria pọ̀ láìsí lílo oògùn ìdènà"
+      },
+      "B": {
+        "en": "Outdoor activities in areas with high mosquito density",
+        "yo": "Ṣíṣe àwọn iṣẹ́ lóde ní àwọn agbègbè tí ẹfọ́n pọ̀ jù lọ"
+      },
+      "C": {
+        "en": "Back to Risk factors",
+        "yo": "Padà sí Àwọn ohun tó fa ewu"
+      }
+    },
+    "next": {
+      "A": "risk_travel",
+      "B": "risk_travel",
+      "C": "result_causes_risk"
+    }
+  },
+
+  "result_causes_misconceptions": {
+    "id": "result_causes_misconceptions",
+    "question": {
+      "en": "Common misconceptions about malaria",
+      "yo": "Àwọn èrò àsìṣe tí ó wọ́pọ̀ nípa iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Malaria is caused by dirty water",
+        "yo": "Omi àìmọ́ ló ń fa iba malaria"
+      },
+      "B": {
+        "en": "Malaria is caused by eating certain foods",
+        "yo": "Jíjẹ àwọn oúnjẹ kan ló ń fa iba malaria"
+      },
+      "C": {
+        "en": "Only children get malaria",
+        "yo": "Àwọn ọmọdé nìkan ló lè ní iba malaria"
+      },
+      "D": {
+        "en": "Malaria can be transmitted by casual contact",
+        "yo": "A lè gba iba malaria nípasẹ̀ ìfarahàn lásán"
+      },
+      "E": {
+        "en": "Malaria always shows immediate symptoms",
+        "yo": "Àwọn àmì iba malaria máa ń farahàn lẹ́sẹ̀kẹsẹ̀ nígbà gbogbo"
+      },
+      "F": { "en": "Back to Causes", "yo": "Padà sí Àwọn Ìdí" }
+    },
+    "next": {
+      "A": "misconception_dirty_water",
+      "B": "misconception_foods",
+      "C": "misconception_children_only",
+      "D": "misconception_casual_contact",
+      "E": "misconception_immediate_symptoms",
+      "F": "causes_step"
+    }
+  },
+
+  "misconception_dirty_water": {
+    "id": "misconception_dirty_water",
+    "question": {
+      "en": "Misconception: Malaria is caused by dirty water",
+      "yo": "Èrò àsìṣe: Omi àìmọ́ ló ń fa iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Malaria is caused by Plasmodium parasites transmitted through mosquito bites, not dirty water",
+        "yo": "Kòkòrò Plasmodium tí ẹfọ́n ń tan nípasẹ̀ gígún ni ó ń fa iba malaria, kì í ṣe omi àìmọ́"
+      },
+      "B": {
+        "en": "Dirty water can increase mosquito breeding sites, indirectly increasing risk",
+        "yo": "Omi àìmọ́ lè pọ̀ àwọn ibi tí ẹfọ́n máa ń bímọ̀ sí i, èyí tó ń pọ̀ ewu sí i lọ́nà àrọ́wọ́tó"
+      },
+      "C": { "en": "Back to Misconceptions", "yo": "Padà sí Àwọn Èrò Àsìṣe" }
+    },
+    "next": {
+      "A": "misconception_dirty_water",
+      "B": "misconception_dirty_water",
+      "C": "result_causes_misconceptions"
+    }
+  },
+
+  "misconception_foods": {
+    "id": "misconception_foods",
+    "question": {
+      "en": "Misconception: Certain foods cause malaria",
+      "yo": "Èrò àsìṣe: Àwọn oúnjẹ kan lè fa iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Malaria cannot be caused by food or drink",
+        "yo": "Oúnjẹ tàbí ohun mímu kò lè fa iba malaria"
+      },
+      "B": {
+        "en": "Eating certain foods may affect immunity but does not transmit malaria",
+        "yo": "Jíjẹ àwọn oúnjẹ kan lè nípa lórí agbára ìdáàbò bo ara ṣùgbọ́n kò lè tan iba malaria"
+      },
+      "C": { "en": "Back to Misconceptions", "yo": "Padà sí Àwọn Èrò Àsìṣe" }
+    },
+    "next": {
+      "A": "misconception_foods",
+      "B": "misconception_foods",
+      "C": "result_causes_misconceptions"
+    }
+  },
+
+  "misconception_children_only": {
+    "id": "misconception_children_only",
+    "question": {
+      "en": "Misconception: Only children get malaria",
+      "yo": "Èrò àsìṣe: Àwọn ọmọdé nìkan ló lè ní iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Malaria can affect people of all ages",
+        "yo": "Iba malaria lè ṣẹlẹ̀ sí àwọn ènìyàn ní gbogbo ọjọ́ orí"
+      },
+      "B": {
+        "en": "Children under 5 are more vulnerable due to weaker immunity",
+        "yo": "Àwọn ọmọdé tí kò tíì di ọmọ ọdún márùn-ún ló ṣòro jù lọ nítorí pé agbára ìdáàbò bo ara wọn kò lágbára"
+      },
+      "C": { "en": "Back to Misconceptions", "yo": "Padà sí Àwọn Èrò Àsìṣe" }
+    },
+    "next": {
+      "A": "misconception_children_only",
+      "B": "misconception_children_only",
+      "C": "result_causes_misconceptions"
+    }
+  },
+
+  "misconception_casual_contact": {
+    "id": "misconception_casual_contact",
+    "question": {
+      "en": "Misconception: Malaria can be transmitted by casual contact",
+      "yo": "Èrò àsìṣe: A lè gba iba malaria nípasẹ̀ ìfarahàn lásán"
+    },
+    "options": {
+      "A": {
+        "en": "Malaria is not transmitted by touching, hugging, or sharing utensils",
+        "yo": "A kò lè gba iba malaria nípasẹ̀ fífọwọ́ kan ara, dídìmọ́ra, tàbí pípín àwọn ohun èlò ìjẹun"
+      },
+      "B": {
+        "en": "Transmission occurs only via infected mosquitoes, blood transfusion, organ transplant, mother-to-child, or shared needles",
+        "yo": "A lè gba ààrùn náà nípasẹ̀ ẹfọ́n tó ní kòkòrò ààrùn, ìgbà-ẹ̀jẹ̀, ìgbé ẹ̀yà ara, láti ọ̀dọ̀ ìyá sí ọmọ, tàbí pípín abẹ́rẹ́ nìkan"
+      },
+      "C": { "en": "Back to Misconceptions", "yo": "Padà sí Àwọn Èrò Àsìṣe" }
+    },
+    "next": {
+      "A": "misconception_casual_contact",
+      "B": "misconception_casual_contact",
+      "C": "result_causes_misconceptions"
+    }
+  },
+
+  "misconception_immediate_symptoms": {
+    "id": "misconception_immediate_symptoms",
+    "question": {
+      "en": "Misconception: Malaria always shows immediate symptoms",
+      "yo": "Èrò àsìṣe: Àwọn àmì iba malaria máa ń farahàn lẹ́sẹ̀kẹsẹ̀ nígbà gbogbo"
+    },
+    "options": {
+      "A": {
+        "en": "Symptoms can appear 7–30 days after infection depending on parasite species",
+        "yo": "Àwọn àmì ààrùn náà lè farahàn láàárín ọjọ́ méje sí ọgbọ̀n lẹ́yìn tí a bá ti ní kòkòrò ààrùn náà, gẹ́gẹ́ bí irú kòkòrò náà ṣe rí"
+      },
+      "B": {
+        "en": "Some infected people may carry parasites without showing immediate symptoms (asymptomatic carriers)",
+        "yo": "Àwọn ènìyàn kan tó ní kòkòrò ààrùn náà lè wà láì fi àmì kankan hàn lẹ́sẹ̀kẹsẹ̀ (àwọn agbékòkòrò tí kò ní àmì)"
+      },
+      "C": { "en": "Back to Misconceptions", "yo": "Padà sí Àwọn Èrò Àsìṣe" }
+    },
+    "next": {
+      "A": "misconception_immediate_symptoms",
+      "B": "misconception_immediate_symptoms",
+      "C": "result_causes_misconceptions"
+    }
+  },
+
+  "others_step": {
+    "id": "others_step",
+    "question": {
+      "en": "Other enquiries:",
+      "yo": "Àwọn ìbéèrè míìràn:"
+    },
+    "options": {
+      "A": { "en": "Contact health center", "yo": "Kan sí ilé-ìwòsàn agbègbè" },
+      "B": { "en": "Nearest clinic", "yo": "Ilé-ìwòsàn tó súnmọ́ jù lọ" },
+      "C": { "en": "Report side effects", "yo": "Ròyìn àwọn ipa ẹ̀gbẹ́ oògùn" },
+      "D": { "en": "Talk to a human agent", "yo": "Bá aṣojú ènìyàn sọ̀rọ̀" },
+      "E": { "en": "Back to Main Menu", "yo": "Padà sí Àkójọ Àkọ́kọ́" }
+    },
+    "next": {
+      "A": "result_others_contact",
+      "B": "result_others_nearest",
+      "C": "result_others_sideeffects",
+      "D": "result_others_human",
+      "E": "root"
+    }
+  },
+
+  "result_others_contact": {
+    "id": "result_others_contact",
+    "question": {
+      "en": "Contact your local health center",
+      "yo": "Kan sí ilé-ìwòsàn agbègbè rẹ"
+    },
+    "options": {
+      "A": {
+        "en": "Phone number of nearest health center",
+        "yo": "Nọ́mbà fóònù ilé-ìwòsàn tó súnmọ́ jù lọ"
+      },
+      "B": {
+        "en": "Email address for inquiries",
+        "yo": "Àdírẹ́ẹ̀sì ímeèlì fún ìbéèrè"
+      },
+      "C": {
+        "en": "Website or online resources",
+        "yo": "Ojú òpó ayélujára tàbí àwọn ohun èlò lórí ayélujára"
+      },
+      "D": { "en": "Back to Other enquiries", "yo": "Padà sí Àwọn ìbéèrè míìràn" }
+    },
+    "next": {
+      "A": "contact_phone",
+      "B": "contact_email",
+      "C": "contact_website",
+      "D": "others_step"
+    }
+  },
+
+  "contact_phone": {
+    "id": "contact_phone",
+    "question": {
+      "en": "Phone contacts for local health centers",
+      "yo": "Àwọn nọ́mbà fóònù fún àwọn ilé-ìwòsàn agbègbè"
+    },
+    "options": {
+      "A": {
+        "en": "General helpline for malaria enquiries",
+        "yo": "Nọ́mbà ìrànlọ́wọ́ gbogbogbò fún ìbéèrè nípa iba malaria"
+      },
+      "B": {
+        "en": "Emergency contact for severe malaria cases",
+        "yo": "Nọ́mbà pàjáwìrì fún àwọn ọ̀ràn iba malaria tó burú púpọ̀"
+      },
+      "C": {
+        "en": "Back to Contact health center",
+        "yo": "Padà sí Kan sí ilé-ìwòsàn agbègbè"
+      }
+    },
+    "next": {
+      "A": "contact_phone",
+      "B": "contact_phone",
+      "C": "result_others_contact"
+    }
+  },
+
+  "contact_email": {
+    "id": "contact_email",
+    "question": {
+      "en": "Email addresses for health center inquiries",
+      "yo": "Àwọn àdírẹ́ẹ̀sì ímeèlì fún ìbéèrè ilé-ìwòsàn"
+    },
+    "options": {
+      "A": {
+        "en": "Send inquiries regarding malaria symptoms and treatment",
+        "yo": "Fi ìbéèrè ránṣẹ́ nípa àwọn àmì iba malaria àti ìtọ́jú rẹ̀"
+      },
+      "B": {
+        "en": "Request health education materials",
+        "yo": "Béèrè fún àwọn ohun èlò ẹ̀kọ́ ìlera"
+      },
+      "C": {
+        "en": "Back to Contact health center",
+        "yo": "Padà sí Kan sí ilé-ìwòsàn agbègbè"
+      }
+    },
+    "next": {
+      "A": "contact_email",
+      "B": "contact_email",
+      "C": "result_others_contact"
+    }
+  },
+
+  "contact_website": {
+    "id": "contact_website",
+    "question": {
+      "en": "Online resources",
+      "yo": "Àwọn ohun èlò lórí ayélujára"
+    },
+    "options": {
+      "A": {
+        "en": "National malaria control program website",
+        "yo": "Ojú òpó ayélujára ètò ìṣàkóso iba malaria orílẹ̀-èdè"
+      },
+      "B": {
+        "en": "Local health center website",
+        "yo": "Ojú òpó ayélujára ilé-ìwòsàn agbègbè"
+      },
+      "C": {
+        "en": "Back to Contact health center",
+        "yo": "Padà sí Kan sí ilé-ìwòsàn agbègbè"
+      }
+    },
+    "next": {
+      "A": "contact_website",
+      "B": "contact_website",
+      "C": "result_others_contact"
+    }
+  },
+
+  "result_others_nearest": {
+    "id": "result_others_nearest",
+    "question": {
+      "en": "Find the nearest clinic or hospital",
+      "yo": "Wá ilé-ìwòsàn kékeré tàbí ilé-ìwòsàn ńlá tó súnmọ́ jù lọ"
+    },
+    "options": {
+      "A": { "en": "Use GPS/location services", "yo": "Lo iṣẹ́ GPS/ìṣàfihàn ibùdó" },
+      "B": {
+        "en": "List of nearby clinics by city or region",
+        "yo": "Àtòkọ àwọn ilé-ìwòsàn tó wà nítòsí gẹ́gẹ́ bí ìlú tàbí agbègbè"
+      },
+      "C": { "en": "Back to Other enquiries", "yo": "Padà sí Àwọn ìbéèrè míìràn" }
+    },
+    "next": {
+      "A": "nearest_gps",
+      "B": "nearest_list",
+      "C": "others_step"
+    }
+  },
+
+  "nearest_gps": {
+    "id": "nearest_gps",
+    "question": {
+      "en": "Using GPS to find clinics",
+      "yo": "Lílo GPS láti wá àwọn ilé-ìwòsàn"
+    },
+    "options": {
+      "A": {
+        "en": "Enable location services on your device",
+        "yo": "Mú kí iṣẹ́ ìṣàfihàn ibùdó ṣiṣẹ́ lórí ẹ̀rọ rẹ"
+      },
+      "B": {
+        "en": "Search for 'nearest malaria treatment center'",
+        "yo": "Ṣàwárí 'ilé-ìwòsàn ìtọ́jú iba malaria tó súnmọ́ jù lọ'"
+      },
+      "C": {
+        "en": "Back to Nearest clinic",
+        "yo": "Padà sí Ilé-ìwòsàn tó súnmọ́ jù lọ"
+      }
+    },
+    "next": {
+      "A": "nearest_gps",
+      "B": "nearest_gps",
+      "C": "result_others_nearest"
+    }
+  },
+
+  "nearest_list": {
+    "id": "nearest_list",
+    "question": {
+      "en": "List of clinics and hospitals",
+      "yo": "Àtòkọ àwọn ilé-ìwòsàn kékeré àti àwọn ilé-ìwòsàn ńlá"
+    },
+    "options": {
+      "A": {
+        "en": "Major hospitals in your state",
+        "yo": "Àwọn ilé-ìwòsàn ńlá ní ìpínlẹ̀ rẹ"
+      },
+      "B": { "en": "Community health centers", "yo": "Àwọn ilé-ìwòsàn àwùjọ" },
+      "C": {
+        "en": "Back to Nearest clinic",
+        "yo": "Padà sí Ilé-ìwòsàn tó súnmọ́ jù lọ"
+      }
+    },
+    "next": {
+      "A": "nearest_list",
+      "B": "nearest_list",
+      "C": "result_others_nearest"
+    }
+  },
+
+  "result_others_sideeffects": {
+    "id": "result_others_sideeffects",
+    "question": {
+      "en": "Report side effects from malaria medication",
+      "yo": "Ròyìn àwọn ipa ẹ̀gbẹ́ láti ọ̀dọ̀ oògùn iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Common side effects (nausea, headache, dizziness)",
+        "yo": "Àwọn ipa ẹ̀gbẹ́ tó wọ́pọ̀ (ríru inú, ríru orí, àìbalẹ̀)"
+      },
+      "B": {
+        "en": "Severe side effects (allergic reactions, jaundice)",
+        "yo": "Àwọn ipa ẹ̀gbẹ́ tó burú púpọ̀ (ìfarapa ààrùn aláìlera, pípọ́n ojú àti ara)"
+      },
+      "C": {
+        "en": "How to report side effects to authorities",
+        "yo": "Bí a ṣe lè ròyìn àwọn ipa ẹ̀gbẹ́ sí àwọn aláṣẹ"
+      },
+      "D": { "en": "Back to Other enquiries", "yo": "Padà sí Àwọn ìbéèrè míìràn" }
+    },
+    "next": {
+      "A": "sideeffects_common",
+      "B": "sideeffects_severe",
+      "C": "sideeffects_report",
+      "D": "others_step"
+    }
+  },
+
+  "sideeffects_common": {
+    "id": "sideeffects_common",
+    "question": {
+      "en": "Common side effects of malaria medications",
+      "yo": "Àwọn ipa ẹ̀gbẹ́ tó wọ́pọ̀ ti àwọn oògùn iba malaria"
+    },
+    "options": {
+      "A": { "en": "Nausea and vomiting", "yo": "Ríru inú àti bíbi" },
+      "B": {
+        "en": "Headache and fatigue",
+        "yo": "Ríru orí àti àárẹ̀ ara"
+      },
+      "C": { "en": "Mild dizziness", "yo": "Àìbalẹ̀ kékeré" },
+      "D": {
+        "en": "Back to Report side effects",
+        "yo": "Padà sí Ròyìn àwọn ipa ẹ̀gbẹ́"
+      }
+    },
+    "next": {
+      "A": "sideeffects_common",
+      "B": "sideeffects_common",
+      "C": "sideeffects_common",
+      "D": "result_others_sideeffects"
+    }
+  },
+
+  "sideeffects_severe": {
+    "id": "sideeffects_severe",
+    "question": {
+      "en": "Severe side effects of malaria medications",
+      "yo": "Àwọn ipa ẹ̀gbẹ́ tó burú púpọ̀ ti oògùn iba malaria"
+    },
+    "options": {
+      "A": {
+        "en": "Allergic reactions (rash, swelling, difficulty breathing)",
+        "yo": "Ìfarapa ààrùn aláìlera (ìyọ ara, ìwú ara, ìṣòro mímí"
+      },
+      "B": { "en": "Jaundice or dark urine", "yo": "Pípọ́n ojú àti ara tàbí ìtọ̀ dúdú" },
+      "C": { "en": "Severe abdominal pain", "yo": "Ríru inú tó burú púpọ̀" },
+      "D": {
+        "en": "Back to Report side effects",
+        "yo": "Padà sí Ròyìn àwọn ipa ẹ̀gbẹ́"
+      }
+    },
+    "next": {
+      "A": "sideeffects_severe",
+      "B": "sideeffects_severe",
+      "C": "sideeffects_severe",
+      "D": "result_others_sideeffects"
+    }
+  },
+
+  "sideeffects_report": {
+    "id": "sideeffects_report",
+    "question": {
+      "en": "How to report side effects",
+      "yo": "Bí a ṣe lè ròyìn àwọn ipa ẹ̀gbẹ́"
+    },
+    "options": {
+      "A": {
+        "en": "Contact your doctor immediately",
+        "yo": "Kan sí dókítà rẹ lẹ́sẹ̀kẹsẹ̀"
+      },
+      "B": {
+        "en": "Report to local health authority or pharmacovigilance unit",
+        "yo": "Ròyìn sí aláṣẹ ìlera agbègbè tàbí ẹ̀ka àkíyèsí oògùn"
+      },
+      "C": {
+        "en": "Keep medication packaging and details of side effect",
+        "yo": "Pa àpótí oògùn àti àlàyé ipa ẹ̀gbẹ́ náà mọ́"
+      },
+      "D": {
+        "en": "Back to Report side effects",
+        "yo": "Padà sí Ròyìn àwọn ipa ẹ̀gbẹ́"
+      }
+    },
+    "next": {
+      "A": "sideeffects_report",
+      "B": "sideeffects_report",
+      "C": "sideeffects_report",
+      "D": "result_others_sideeffects"
+    }
+  },
+
+  "result_others_human": {
+    "id": "result_others_human",
+    "question": {
+      "en": "Talk to a human agent",
+      "yo": "Bá aṣojú ènìyàn sọ̀rọ̀"
+    },
+    "options": {
+      "A": { "en": "Call a health hotline", "yo": "Pe nọ́mbà ìrànlọ́wọ́ ìlera" },
+      "B": {
+        "en": "Chat with a medical professional online",
+        "yo": "Bá oníṣẹ́ ìlera sọ̀rọ̀ lórí ayélujára"
+      },
+      "C": {
+        "en": "Visit a local clinic for in-person consultation",
+        "yo": "Ṣàbẹ̀wò sí ilé-ìwòsàn agbègbè fún ìmúlò tààrà"
+      },
+      "D": { "en": "Back to Other enquiries", "yo": "Padà sí Àwọn ìbéèrè míìràn" }
+    },
+    "next": {
+      "A": "human_hotline",
+      "B": "human_online_chat",
+      "C": "human_inperson",
+      "D": "others_step"
+    }
+  },
+
+  "human_hotline": {
+    "id": "human_hotline",
+    "question": {
+      "en": "Call a health hotline",
+      "yo": "Pe nọ́mbà ìrànlọ́wọ́ ìlera"
+    },
+    "options": {
+      "A": {
+        "en": "General malaria information hotline",
+        "yo": "Nọ́mbà ìrànlọ́wọ́ gbogbogbò fún ìmọ̀ nípa iba malaria"
+      },
+      "B": {
+        "en": "Emergency malaria hotline",
+        "yo": "Nọ́mbà ìrànlọ́wọ́ pàjáwìrì fún iba malaria"
+      },
+      "C": {
+        "en": "Back to Talk to a human agent",
+        "yo": "Padà sí Bá aṣojú ènìyàn sọ̀rọ̀"
+      }
+    },
+    "next": {
+      "A": "human_hotline",
+      "B": "human_hotline",
+      "C": "result_others_human"
+    }
+  },
+
+  "human_online_chat": {
+    "id": "human_online_chat",
+    "question": {
+      "en": "Chat with a medical professional online",
+      "yo": "Bá oníṣẹ́ ìlera sọ̀rọ̀ lórí ayélujára"
+    },
+    "options": {
+      "A": {
+        "en": "Use official health websites or apps",
+        "yo": "Lo àwọn ojú òpó ayélujára ìlera oṣẹ́ tàbí àwọn ìṣàmúlò"
+      },
+      "B": {
+        "en": "Use approved telemedicine platforms",
+        "yo": "Lo àwọn pẹpẹ oògùn jíjìnnà tí a fọwọ́sí"
+      },
+      "C": {
+        "en": "Back to Talk to a human agent",
+        "yo": "Padà sí Bá aṣojú ènìyàn sọ̀rọ̀"
+      }
+    },
+    "next": {
+      "A": "human_online_chat",
+      "B": "human_online_chat",
+      "C": "result_others_human"
+    }
+  },
+
+  "human_inperson": {
+    "id": "human_inperson",
+    "question": {
+      "en": "Visit a clinic for consultation",
+      "yo": "Ṣàbẹ̀wò sí ilé-ìwòsàn fún ìmúlò"
+    },
+    "options": {
+      "A": {
+        "en": "Bring details of your symptoms",
+        "yo": "Mú àlàyé àwọn àmì ààrùn rẹ wá"
+      },
+      "B": {
+        "en": "Bring a list of current medications",
+        "yo": "Mú àtòkọ àwọn oògùn tí o ń lò lọ́wọ́lọ́wọ́ wá"
+      },
+      "C": {
+        "en": "Back to Talk to a human agent",
+        "yo": "Padà sí Bá aṣojú ènìyàn sọ̀rọ̀"
+      }
+    },
+    "next": {
+      "A": "human_inperson",
+      "B": "human_inperson",
+      "C": "result_others_human"
+    }
   }
 }

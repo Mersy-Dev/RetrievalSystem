@@ -7,10 +7,20 @@ type ChatWindowProps = {
   open: boolean;
   category: keyof typeof dummyData;
   onClose: () => void;
+  lang: "en" | "yo";
 };
 
-export default function ChatWindow({ open, category, onClose }: ChatWindowProps) {
-  type Message = { sender: "user" | "bot"; text: string };
+export default function ChatWindow({
+  open,
+  category,
+  onClose,
+  lang,
+}: ChatWindowProps) {
+  type Message = {
+    sender: "user" | "bot";
+    text: string;
+    lang?: "en" | "yo"; // store language of this message
+  };
 
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -19,25 +29,36 @@ export default function ChatWindow({ open, category, onClose }: ChatWindowProps)
   const sendMessage = (text: string) => {
     if (!text) return;
 
-    const userMsg: Message = { sender: "user", text };
+    // 1️⃣ Add user message
+    const userMsg: Message = { sender: "user", text, lang };
     setMessages((prev) => [...prev, userMsg]);
 
-    // Bot reply
-    const reply = dummyData[category]?.response || "Sorry, I don't have info on that yet.";
-    const botMsg: Message = { sender: "bot", text: reply };
+    // 2️⃣ Determine bot reply in current language
+    const responseObj = (
+      dummyData as unknown as Record<
+        string,
+        { response?: { en: string; yo: string } }
+      >
+    )[category]?.response;
 
+    const replyText = responseObj
+      ? responseObj[lang]
+      : lang === "yo"
+      ? "Ẹ̀ṣé, mi ò ní ìtànkálẹ̀ fún ìbéèrè yìí."
+      : "Sorry, I don't have info on that yet.";
+
+    const botMsg: Message = { sender: "bot", text: replyText, lang };
+
+    // 3️⃣ Add bot message with delay
     setTimeout(() => {
       setMessages((prev) => [...prev, botMsg]);
-    }, 500); // slight delay for realistic feel
+    }, 500);
   };
 
   return (
     <div className="fixed inset-0 z-50 flex">
       {/* Overlay */}
-      <div
-        className="absolute inset-0 bg-black/30"
-        onClick={onClose}
-      ></div>
+      <div className="absolute inset-0 bg-black/30" onClick={onClose}></div>
 
       {/* Side Chat */}
       <div className="ml-auto relative z-50 w-full max-w-[400px] h-screen bg-white dark:bg-gray-900 shadow-lg flex flex-col">
@@ -104,13 +125,19 @@ export default function ChatWindow({ open, category, onClose }: ChatWindowProps)
         </div>
 
         {/* Input */}
-        <ChatInput onSend={sendMessage} />
+        <ChatInput onSend={sendMessage} lang={lang} />
       </div>
     </div>
   );
 }
 
-function ChatInput({ onSend }: { onSend: (text: string) => void }) {
+function ChatInput({
+  onSend,
+  lang,
+}: {
+  onSend: (text: string) => void;
+  lang: "en" | "yo";
+}) {
   const [text, setText] = useState("");
 
   const send = () => {
@@ -124,14 +151,14 @@ function ChatInput({ onSend }: { onSend: (text: string) => void }) {
       <input
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Type your message..."
+        placeholder={lang === "yo" ? "Tẹ ọrọ rẹ..." : "Type your message..."}
         className="flex-1 border rounded-xl px-3 py-2 dark:bg-gray-800 dark:text-white"
       />
       <button
         onClick={send}
         className="bg-[#2E3094] text-white px-4 py-2 rounded-xl hover:bg-[#23267a]"
       >
-        Send
+        {lang === "yo" ? "Firanṣẹ" : "Send"}
       </button>
     </div>
   );

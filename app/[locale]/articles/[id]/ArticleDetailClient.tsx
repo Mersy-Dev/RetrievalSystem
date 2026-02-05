@@ -136,7 +136,7 @@ export default function ArticleDetailClient() {
   }
 
   return (
-    <section className="bg-sky-50 dark:bg-gray-900 py-12 transition-colors duration-300">
+    <section className="bg-sky-100 dark:bg-gray-900 py-12 transition-colors duration-300">
       <div className="max-w-5xl mx-auto space-y-10 p-6">
         {/* Title + Metadata */}
         <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-2">
@@ -252,6 +252,22 @@ export default function ArticleDetailClient() {
             <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">
               {t("articles.preview.sections.yoruba.title")}
             </h3>
+
+            {/* ⚠️ Translation Notice */}
+            <div className="flex gap-3 p-4 rounded-lg border border-yellow-300 dark:border-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 text-sm text-yellow-800 dark:text-yellow-200">
+              <Info className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-medium">
+                  {t("articles.preview.sections.yoruba.notice.title")}
+                </p>
+
+                <p>{t("articles.preview.sections.yoruba.notice.limit")}</p>
+
+                <p>
+                  {t("articles.preview.sections.yoruba.notice.alternative")}
+                </p>
+              </div>
+            </div>
 
             {!translatedDoc ? (
               <div className="flex flex-col items-center justify-center py-12 space-y-5">
@@ -404,7 +420,7 @@ export default function ArticleDetailClient() {
         <div className="pt-4">
           <Link
             href="/system"
-            className="text-sky-600 dark:text-sky-400 hover:underline font-medium"
+            className="text-sky-700 dark:text-sky-400 hover:underline font-medium"
           >
             {t("articles.backToSearch.button")}
           </Link>

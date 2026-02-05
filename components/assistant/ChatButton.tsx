@@ -5,9 +5,10 @@ export default function ChatButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="fixed bottom-6 right-6 bg-[#2E3094] hover:bg-[#23267a] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl z-50 transition"
+      aria-label="Open medical assistant"
+      className="fixed bottom-6 right-6 z-[70] w-14 h-14 rounded-full shadow-2xl bg-[#0f4bd6] hover:bg-[#0b3bb8] text-white flex items-center justify-center"
     >
-      <MessageCircle size={28} />
+      <MessageCircle size={26} />
     </button>
   );
 }

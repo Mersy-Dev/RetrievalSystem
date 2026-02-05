@@ -72,7 +72,7 @@ export default async function RootLayout({
             <LanguageProvider locale={locale} />
 
             <Header />
-            <ChatWrapper />
+            <ChatWrapper lang={locale as "en" | "yo"} />
             <main className="pt-0">{children}</main>
           </NextIntlClientProvider>
 
