@@ -15,8 +15,8 @@ export async function GET(
     });
 
     const data = await res.json();
+    console.log(data); // ✅ moved console.log before return
     return new Response(JSON.stringify(data), { status: 200 });
-    console.log(data);
     
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -24,46 +24,65 @@ export async function GET(
   }
 }
 
-
-
 // ✅ PUT update document
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   try {
+    const { id } = await context.params; // ✅ await the params
     const body = await req.json();
 
-    const res = await fetch(`${API_URL}/documents/${params.id}`, {
+    const res = await fetch(`${API_URL}/documents/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
 
     if (!res.ok) {
-      return NextResponse.json({ error: "Failed to update document" }, { status: res.status });
+      return NextResponse.json(
+        { error: "Failed to update document" },
+        { status: res.status }
+      );
     }
 
     const updated = await res.json();
     return NextResponse.json(updated);
   } catch (error) {
     console.error("PUT document error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
 
 // ✅ DELETE document
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   try {
-    const res = await fetch(`${API_URL}/documents/${params.id}`, {
+    const { id } = await context.params; // ✅ await the params
+
+    const res = await fetch(`${API_URL}/documents/${id}`, {
       method: "DELETE",
     });
 
     if (!res.ok) {
-      return NextResponse.json({ error: "Failed to delete document" }, { status: res.status });
+      return NextResponse.json(
+        { error: "Failed to delete document" },
+        { status: res.status }
+      );
     }
 
     const deleted = await res.json();
     return NextResponse.json(deleted);
   } catch (error) {
     console.error("DELETE document error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
