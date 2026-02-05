@@ -3,7 +3,7 @@
 import { locales } from '@/locales'
 import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const LanguageSwitcher = ({ closeMenu }: { closeMenu?: () => void }) => {
   const router = useRouter()
@@ -13,15 +13,7 @@ const LanguageSwitcher = ({ closeMenu }: { closeMenu?: () => void }) => {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false)
 
-  // Load stored locale on mount
-  useEffect(() => {
-    const storedLocale = localStorage.getItem('selectedLocale')
-    if (storedLocale && storedLocale !== locale) {
-      changeLanguage(storedLocale) // Sync the stored locale
-    }
-  }, []) // Run only once on mount
-
-  const changeLanguage = (newLocale: string) => {
+  const changeLanguage = useCallback((newLocale: string) => {
     if (newLocale === locale) return // Prevent redundant updates
 
     // Store new locale in localStorage
@@ -31,13 +23,21 @@ const LanguageSwitcher = ({ closeMenu }: { closeMenu?: () => void }) => {
     const segments = pathname.split('/').filter((seg) => !locales.includes(seg))
 
     // Construct the new path correctly
-    const newPath = `/${newLocale}/${segments.join('/')}`.replace(/\/+/g, '/') 
+    const newPath = `/${newLocale}/${segments.join('/')}`.replace(/\/+/g, '/')
 
     router.replace(newPath)
     setDropdownOpen(false)
 
     if (closeMenu) closeMenu()
-  }
+  }, [locale, pathname, router, closeMenu])
+
+  // Load stored locale on mount or when locale/changeLanguage updates
+  useEffect(() => {
+    const storedLocale = localStorage.getItem('selectedLocale')
+    if (storedLocale && storedLocale !== locale) {
+      changeLanguage(storedLocale) // Sync the stored locale
+    }
+  }, [changeLanguage, locale])
 
   return (
     <div className="relative">

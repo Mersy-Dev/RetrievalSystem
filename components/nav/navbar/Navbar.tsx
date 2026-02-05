@@ -46,7 +46,7 @@ const Navbar = () => {
             className="object-contain"
           />
           <span className="text-[10px] text-gray-500 dark:text-gray-300 leading-none mt-1">
-            {t("tagline")}
+            {/* {t("MalariaHome")} */}
           </span>
         </Link>
 

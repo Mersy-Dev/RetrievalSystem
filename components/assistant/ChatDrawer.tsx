@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import tree from "@/components/data/malaria-knowledge.json";
 
@@ -20,7 +20,7 @@ type Message = {
   id: string;
   sender: "bot" | "user";
   text: string;
-  lang: "en" | "yo"; // store the language
+  lang: "en" | "yo";
   meta?: string;
   ts: number;
 };
@@ -39,24 +39,8 @@ export default function ChatDrawer({
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [typing, setTyping] = useState(false);
 
-  useEffect(() => {
-    if (open) {
-      startStep("root");
-    } else {
-      setCurrentStepId(null);
-      setMessages([]);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    scrollRef.current?.scrollTo({
-      top: scrollRef.current.scrollHeight,
-      behavior: "smooth",
-    });
-  }, [messages, typing]);
-
   // push bot message respecting the language
-  function pushBotMessage(stepText: StepText | string) {
+  const pushBotMessage = useCallback((stepText: StepText | string) => {
     const text =
       typeof stepText === "string" ? stepText : stepText[lang] || stepText.en;
 
@@ -68,9 +52,9 @@ export default function ChatDrawer({
       ts: Date.now(),
     };
     setMessages((m) => [...m, msg]);
-  }
+  }, [lang]);
 
-  function pushUserMessage(stepText: StepText | string, meta?: string) {
+  const pushUserMessage = useCallback((stepText: StepText | string, meta?: string) => {
     const text =
       typeof stepText === "string" ? stepText : stepText[lang] || stepText.en;
 
@@ -83,7 +67,77 @@ export default function ChatDrawer({
       ts: Date.now(),
     };
     setMessages((m) => [...m, msg]);
-  }
+  }, [lang]);
+
+  const startStep = useCallback((stepId: string) => {
+    const step: Step | undefined = typedTree[stepId];
+    if (!step) return;
+    setCurrentStepId(stepId);
+    setTimeout(() => {
+      pushBotMessage(step.question);
+    }, 120);
+  }, [pushBotMessage]);
+
+  const startRoot = useCallback(() => {
+    setMessages([]);
+    setCurrentStepId(null);
+    setTimeout(() => startStep("root"), 150);
+  }, [startStep]);
+
+  const handleOptionSelect = useCallback((letter: string) => {
+    const step: Step | undefined = currentStepId
+      ? typedTree[currentStepId]
+      : undefined;
+    if (!step) return;
+    const optionText = step.options[letter];
+    if (!optionText) return;
+
+    pushUserMessage(`${letter} — ${optionText[lang]}`, letter);
+
+    const nextId = step.next ? step.next[letter] : undefined;
+
+    if (nextId) {
+      setTyping(true);
+      setTimeout(() => {
+        setTyping(false);
+        startStep(nextId);
+      }, 500);
+      return;
+    } else {
+      const result = step.results?.[letter] ?? step.result;
+      setTyping(true);
+      setTimeout(() => {
+        setTyping(false);
+        if (typeof result === "string" && result) {
+          pushBotMessage(result);
+        } else if (result && typeof result === "object") {
+          pushBotMessage(result);
+        } else {
+          pushBotMessage(
+            lang === "yo"
+              ? "Ko si alaye siwaju sii fun aṣayan yẹn."
+              : "No further information available for that option.",
+          );
+        }
+      }, 500);
+    }
+  }, [currentStepId, lang, pushUserMessage, pushBotMessage, startStep]);
+
+  useEffect(() => {
+    if (open) {
+      startStep("root");
+    } else {
+      setCurrentStepId(null);
+      setMessages([]);
+    }
+  }, [open, startStep]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({
+      top: scrollRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages, typing]);
 
   if (!open) return null;
   const currentStep: Step | undefined = currentStepId
@@ -106,13 +160,9 @@ export default function ChatDrawer({
               className="rounded-full"
             />
             <div>
-              <div className="font-semibold text-lg">
-                {lang === "yo" ? "Oluranlọwọ Ilera" : "Health Assistant"}
-              </div>
+              <div className="font-semibold text-lg">Health Assistant</div>
               <div className="text-sm text-gray-500">
-                {lang === "yo"
-                  ? "Alaye ati itọsọna nipa malaria"
-                  : "Malaria information & guidance"}
+                Malaria information & guidance
               </div>
             </div>
           </div>
@@ -246,10 +296,7 @@ export default function ChatDrawer({
             </div>
             <div className="flex gap-2">
               <button
-                onClick={() => {
-                  setMessages([]);
-                  startRoot();
-                }}
+                onClick={startRoot}
                 className="px-3 py-1 rounded-md text-sm bg-gray-100 dark:bg-gray-800"
               >
                 Restart
@@ -260,59 +307,4 @@ export default function ChatDrawer({
       </aside>
     </div>
   );
-
-  // helpers
-  function startRoot() {
-    setMessages([]);
-    setCurrentStepId(null);
-    setTimeout(() => startStep("root"), 150);
-  }
-
-  function startStep(stepId: string) {
-    const step: Step | undefined = typedTree[stepId];
-    if (!step) return;
-    setCurrentStepId(stepId);
-    setTimeout(() => {
-      pushBotMessage(step.question);
-    }, 120);
-  }
-
-  function handleOptionSelect(letter: string) {
-    const step: Step | undefined = currentStepId
-      ? typedTree[currentStepId]
-      : undefined;
-    if (!step) return;
-    const optionText = step.options[letter];
-    if (!optionText) return;
-
-    pushUserMessage(`${letter} — ${optionText[lang]}`, letter);
-
-    const nextId = step.next ? step.next[letter] : undefined;
-
-    if (nextId) {
-      setTyping(true);
-      setTimeout(() => {
-        setTyping(false);
-        startStep(nextId);
-      }, 500);
-      return;
-    } else {
-      const result = step.results?.[letter] ?? step.result;
-      setTyping(true);
-      setTimeout(() => {
-        setTyping(false);
-        if (typeof result === "string" && result) {
-          pushBotMessage(result);
-        } else if (result && typeof result === "object") {
-          pushBotMessage(result);
-        } else {
-          pushBotMessage(
-            lang === "yo"
-              ? "Ko si alaye siwaju sii fun aṣayan yẹn."
-              : "No further information available for that option.",
-          );
-        }
-      }, 500);
-    }
-  }
 }
