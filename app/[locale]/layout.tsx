@@ -10,14 +10,13 @@ import LanguageProvider from "@/components/provider/LanguageProvider";
 import { ThemeProvider } from "next-themes";
 
 import ChatWrapper from "@/components/assistant/ChatWrapper";
-
+import './chat-animations.css';  
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// ⭐ Import the official provider
 import { NextIntlClientProvider } from "next-intl";
-import { set } from "lodash"; // ✅ install: npm install lodash
+import { set } from "lodash";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,27 +34,26 @@ export const metadata: Metadata = {
     "An advanced system for retrieving and analyzing malaria information.",
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const locale = params.locale;
+  params: Promise<{ locale: string }>;
+};
+
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const { locale } = await params;
 
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
 
-  // 🔹 Fetch translations from your backend
+  // Fetch translations from your backend
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/translations/${locale}`,
     { cache: "no-store" }
   );
   const flatMessages = await res.json();
 
-  // 🔹 Convert flat keys (e.g. "home.hero.title") into nested objects
+  // Convert flat keys into nested objects
   const messages = Object.entries(flatMessages).reduce(
     (acc, [key, value]) => set(acc, key, value),
     {}
@@ -67,7 +65,6 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* ✅ Use NextIntlClientProvider instead of custom TranslationProvider */}
           <NextIntlClientProvider locale={locale} messages={messages}>
             <LanguageProvider locale={locale} />
 

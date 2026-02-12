@@ -49,6 +49,8 @@ export interface Document {
   fileSize?: number;         // in MB
   createdAt: string;
   updatedAt?: string;
+  cloudinaryUrl?: string; // ✅ ADD THIS
+
 
   tags: Tag[];               // related tags
   feedbacks?: Feedback[];    // user feedback (if included in response)

@@ -33,7 +33,7 @@ function DocumentPageContent() {
   const materials: Material[] = allDocuments.map((doc) => ({
     id: Number(doc.id),
     title: doc.title,
-    description: doc.description,
+    description: doc.description ?? "",
     author: doc.author,
     publishedYear: doc.publishedYear,
     publisher: doc.publisher || undefined,

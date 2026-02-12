@@ -1,0 +1,89 @@
+/* Chat Component Animations */
+
+/* ChatButton Animations */
+@keyframes pulse-custom {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse-custom 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ChatDrawer Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+/* Custom scrollbar styles */
+.chat-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: #bfdbfe;
+  border-radius: 3px;
+}
+
+.dark .chat-scrollbar::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #93c5fd;
+}
+
+.dark .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
