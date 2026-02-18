@@ -2,7 +2,7 @@
 import { MessageCircle, Sparkles, Stethoscope } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export default function ChatButton({ onClick }: { onClick: () => void }) {
+export default function ChatButton({ onClick, lang = "en" }: { onClick: () => void; lang?: "en" | "yo" }) {
   const [showTooltip, setShowTooltip] = useState(true);
   const [shouldVibrate, setShouldVibrate] = useState(false);
 
@@ -48,10 +48,10 @@ export default function ChatButton({ onClick }: { onClick: () => void }) {
           <div className="space-y-1">
             <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 flex items-center gap-2">
               <MessageCircle size={16} />
-              Learn about Malaria
+              {lang === "yo" ? "Kọ́ nípa Ìbà" : "Learn about Malaria"}
             </p>
             <p className="text-xs text-gray-600 dark:text-gray-400">
-              Symptoms • Treatment • Prevention • More
+              {lang === "yo" ? "Àwọn àmì • Ìtọ́jú • Ìdènà • Síwájú síi" : "Symptoms • Treatment • Prevention • More"}
             </p>
           </div>
           
@@ -73,7 +73,7 @@ export default function ChatButton({ onClick }: { onClick: () => void }) {
           // Don't hide tooltip on hover if it's within first 8 seconds
           setTimeout(() => setShowTooltip(false), 2000);
         }}
-        aria-label="Open malaria information assistant"
+        aria-label={lang === "yo" ? "Ṣí olùrànlọ́wọ́ alábòde ìbà" : "Open malaria information assistant"}
         className={`
           relative w-16 h-16 rounded-full shadow-2xl
           bg-gradient-to-br from-sky-500 to-blue-600
@@ -109,7 +109,7 @@ export default function ChatButton({ onClick }: { onClick: () => void }) {
           ${!showTooltip ? 'opacity-100' : 'opacity-0'}
         `}
       >
-        Malaria Info
+        {lang === "yo" ? "Ìròyìn Ìbà" : "Malaria Info"}
       </div>
 
       {/* Custom Animations */}

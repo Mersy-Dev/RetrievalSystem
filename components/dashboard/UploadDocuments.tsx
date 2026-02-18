@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+import { useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 import {
   Upload,
   FileText,
@@ -13,8 +11,10 @@ import {
   BookOpen,
   Link as LinkIcon,
   Loader2,
+  AlertCircle,
 } from "lucide-react";
 import { toast } from "react-toastify";
+import { useUser } from "@/redux/user/hooks/useUser";
 
 const TAG_OPTIONS = [
   "🧬 Malaria Symptoms",
@@ -25,9 +25,14 @@ const TAG_OPTIONS = [
   "🛡️ Preventive Measures",
 ];
 
-function UploadDocumentContent() {
+export default function UploadDocumentPage() {
+  console.log('🚀 UPLOAD PAGE COMPONENT LOADED');
+  
   const router = useRouter();
-  const [pageLoading, setPageLoading] = useState(true);
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+  const { user, isAuthenticated, loading: authLoading } = useUser();
+  
   const [title, setTitle] = useState("");
   const [titleYo, setTitleYo] = useState("");
   const [description, setDescription] = useState("");
@@ -41,12 +46,12 @@ function UploadDocumentContent() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPageLoading(false);
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, []);
+  // ✅ REMOVED - This was causing the redirect loop
+  // useEffect(() => {
+  //   if (!authLoading && !isAuthenticated) {
+  //     router.push(`/${locale}/auth/login`);
+  //   }
+  // }, [authLoading, isAuthenticated, router, locale]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -54,79 +59,204 @@ function UploadDocumentContent() {
     );
   };
 
+  const validateForm = () => {
+    if (!title.trim()) {
+      toast.warning("📝 Please enter a document title");
+      return false;
+    }
+    if (!author.trim()) {
+      toast.warning("👤 Please enter the author name");
+      return false;
+    }
+    if (!publishedYear) {
+      toast.warning("📅 Please enter the published year");
+      return false;
+    }
+    if (!file) {
+      toast.warning("📂 Please select a file to upload");
+      return false;
+    }
+
+    const allowedTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      toast.warning("📄 Please upload a PDF or Word document only");
+      return false;
+    }
+
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      toast.warning("📦 File size must be less than 10MB");
+      return false;
+    }
+
+    const year = parseInt(publishedYear);
+    const currentYear = new Date().getFullYear();
+    if (year < 1900 || year > currentYear) {
+      toast.warning(`📅 Published year must be between 1900 and ${currentYear}`);
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) {
-      toast.warning("📂 Please select a file to upload.");
+    
+    if (!validateForm()) {
       return;
     }
 
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append("title", title);
-      formData.append("titleYo", titleYo);
-      formData.append("description", description);
-      formData.append("descriptionYo", descriptionYo);
-      formData.append("author", author);
-      formData.append("authorYo", authorYo);
+      formData.append("title", title.trim());
+      formData.append("titleYo", titleYo.trim());
+      formData.append("description", description.trim());
+      formData.append("descriptionYo", descriptionYo.trim());
+      formData.append("author", author.trim());
+      formData.append("authorYo", authorYo.trim());
       formData.append("publishedYear", publishedYear);
-      formData.append("publisher", publisher);
-      formData.append("referenceLink", referenceLink);
-      formData.append("document", file);
+      formData.append("publisher", publisher.trim());
+      formData.append("referenceLink", referenceLink.trim());
+      formData.append("document", file!);
       formData.append("tags", JSON.stringify(selectedTags));
 
-      // ✅ Backend now calculates pages, readingTime, fileSize, storageUrl, signedUrl
+      // const token = localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+      
       const response = await fetch("/api/documents/upload", {
         method: "POST",
+        // headers: {
+        //   ...(token && { Authorization: `Bearer ${token}` }),
+        // },
         body: formData,
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || "Upload failed");
+        throw new Error(result.error || result.message || "Upload failed");
       }
 
-      toast.success("🎉 Your document has been uploaded successfully!");
+      toast.success("🎉 Document uploaded successfully!");
 
-      setTimeout(() => {
-        router.push("/dashboard/documents");
-      }, 1500);
-
-      // reset form
       setTitle("");
+      setTitleYo("");
       setDescription("");
+      setDescriptionYo("");
       setAuthor("");
+      setAuthorYo("");
       setPublishedYear("");
       setPublisher("");
       setReferenceLink("");
       setFile(null);
       setSelectedTags([]);
+
+      setTimeout(() => {
+        router.push(`/${locale}/dashboard/documents`);
+      }, 1500);
+
     } catch (error: unknown) {
-      const message =
-        error instanceof Error ? error.message : "Something went wrong";
+      const message = error instanceof Error ? error.message : "Something went wrong";
       toast.error(`❌ Upload failed: ${message}`);
+      console.error("Upload error:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  if (pageLoading) {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      const allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ];
+      
+      if (!allowedTypes.includes(selectedFile.type)) {
+        toast.warning("📄 Please upload a PDF or Word document only");
+        e.target.value = "";
+        return;
+      }
+
+      const maxSize = 10 * 1024 * 1024;
+      if (selectedFile.size > maxSize) {
+        toast.warning("📦 File size must be less than 10MB");
+        e.target.value = "";
+        return;
+      }
+
+      setFile(selectedFile);
+    }
+  };
+
+  console.log('Upload page state:', { authLoading, isAuthenticated, user });
+
+  // ✅ Simplified loading check
+  if (authLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
-        <span className="ml-3 text-lg">Loading page...</span>
+        <span className="ml-3 text-lg text-gray-900 dark:text-white">Loading...</span>
       </div>
     );
   }
 
+  // ✅ Show login message if not authenticated, but don't redirect
+  // (Let dashboard layout handle auth, since we're inside it)
+  if (!isAuthenticated) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <AlertCircle className="w-16 h-16 text-amber-500 mb-4" />
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          Authentication Required
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          Please log in to upload documents
+        </p>
+        <button
+          onClick={() => router.push(`/${locale}/auth/login`)}
+          className="px-6 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700"
+        >
+          Go to Login
+        </button>
+      </div>
+    );
+  }
+
+  const isEmailVerified = user?.isEmailVerified ?? true;
+
   return (
     <div className="space-y-8">
+      <h1 className="text-3xl font-bold text-green-600">✅ UPLOAD PAGE IS RENDERING!</h1>
+      
+      {/* Email Verification Warning */}
+      {!isEmailVerified && (
+        <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-lg">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+                Email Verification Required
+              </h3>
+              <p className="text-sm text-amber-700 dark:text-amber-400 mt-1">
+                You can upload documents, but some features may be limited until you verify your email.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center gap-2">
         <FileText className="w-6 h-6 text-indigo-500" />
-        <h1 className="text-2xl font-bold">Upload Document</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          Upload Document
+        </h1>
       </div>
 
       {/* Upload Form */}
@@ -134,64 +264,77 @@ function UploadDocumentContent() {
         onSubmit={handleSubmit}
         className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-6 space-y-6"
       >
-        {/* Title */}
+        {/* Title (English) */}
         <div>
-          <label className="block text-sm font-medium mb-2">Title</label>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Title <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             placeholder="Enter document title"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
+
+        {/* Title (Yoruba) */}
         <div>
-          <label className="block text-sm font-medium mb-2">Title (Yoruba)</label>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Title (Yoruba)
+          </label>
           <input
             type="text"
             placeholder="Enter document title in Yoruba"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             value={titleYo}
             onChange={(e) => setTitleYo(e.target.value)}
           />
         </div>
-       
-        <div>
-          <label className="block text-sm font-medium mb-2">Author (Yoruba)</label>
-          <input
-            type="text"
-            placeholder="Enter author name(s) in Yoruba"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
-            value={authorYo}
-            onChange={(e) => setAuthorYo(e.target.value)}
-          />
-        </div>
 
-        {/* Author */}
+        {/* Author (English) */}
         <div>
-          <label className="block text-sm font-medium mb-2 flex items-center gap-1">
-            <User className="w-4 h-4 text-indigo-500" /> Author(s)
+          <label className="text-sm font-medium mb-2 flex items-center gap-1 text-gray-700 dark:text-gray-300">
+            <User className="w-4 h-4 text-indigo-500" /> 
+            Author(s) <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             placeholder="Enter author name(s)"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             required
           />
         </div>
 
+        {/* Author (Yoruba) */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Author (Yoruba)
+          </label>
+          <input
+            type="text"
+            placeholder="Enter author name(s) in Yoruba"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
+            value={authorYo}
+            onChange={(e) => setAuthorYo(e.target.value)}
+          />
+        </div>
+
         {/* Published Year */}
         <div>
-          <label className="block text-sm font-medium mb-2 flex items-center gap-1">
-            <Calendar className="w-4 h-4 text-indigo-500" /> Published Year
+          <label className="text-sm font-medium mb-2 flex items-center gap-1 text-gray-700 dark:text-gray-300">
+            <Calendar className="w-4 h-4 text-indigo-500" /> 
+            Published Year <span className="text-red-500">*</span>
           </label>
           <input
             type="number"
             placeholder="e.g. 2023"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            min="1900"
+            max={new Date().getFullYear()}
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             value={publishedYear}
             onChange={(e) => setPublishedYear(e.target.value)}
             required
@@ -200,13 +343,13 @@ function UploadDocumentContent() {
 
         {/* Publisher */}
         <div>
-          <label className="block text-sm font-medium mb-2 flex items-center gap-1">
+          <label className="text-sm font-medium mb-2 flex items-center gap-1 text-gray-700 dark:text-gray-300">
             <BookOpen className="w-4 h-4 text-indigo-500" /> Publisher / Source
           </label>
           <input
             type="text"
             placeholder="Enter publisher or source"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             value={publisher}
             onChange={(e) => setPublisher(e.target.value)}
           />
@@ -214,36 +357,41 @@ function UploadDocumentContent() {
 
         {/* Reference Link */}
         <div>
-          <label className="block text-sm font-medium mb-2 flex items-center gap-1">
-            <LinkIcon className="w-4 h-4 text-indigo-500" /> Reference Link
-            (optional)
+          <label className="text-sm font-medium mb-2 flex items-center gap-1 text-gray-700 dark:text-gray-300">
+            <LinkIcon className="w-4 h-4 text-indigo-500" /> 
+            Reference Link (optional)
           </label>
           <input
             type="url"
             placeholder="Enter DOI or reference link"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             value={referenceLink}
             onChange={(e) => setReferenceLink(e.target.value)}
           />
         </div>
 
-        {/* Description */}
+        {/* Description (English) */}
         <div>
-          <label className="block text-sm font-medium mb-2">Description</label>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Description
+          </label>
           <textarea
             placeholder="Enter short description"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 
-         <div>
-          <label className="block text-sm font-medium mb-2">Description (Yoruba)</label>
+        {/* Description (Yoruba) */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Description (Yoruba)
+          </label>
           <textarea
             placeholder="Enter short description in Yoruba"
-            className="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 bg-gray-50 dark:bg-gray-900"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
             rows={3}
             value={descriptionYo}
             onChange={(e) => setDescriptionYo(e.target.value)}
@@ -252,31 +400,38 @@ function UploadDocumentContent() {
 
         {/* File Upload */}
         <div>
-          <label className="block text-sm font-medium mb-2">Upload File</label>
-          <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 cursor-pointer hover:border-indigo-500">
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Upload File <span className="text-red-500">*</span>
+          </label>
+          <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 hover:border-indigo-500 dark:hover:border-indigo-400 transition-colors">
             <Upload className="w-8 h-8 mb-2 text-indigo-500" />
-            <p className="text-sm">Click to select file (PDF, DOC, etc.)</p>
+            <p className="text-sm mb-1">Click to select file (PDF or Word document)</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mb-2">Maximum file size: 10MB</p>
             <input
               type="file"
-              accept=".pdf,.doc,.docx"
+              accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
               className="hidden"
-              onChange={(e) =>
-                setFile(e.target.files ? e.target.files[0] : null)
-              }
+              onChange={handleFileChange}
               id="fileInput"
+              required
             />
             <label
               htmlFor="fileInput"
-              className="mt-2 cursor-pointer text-indigo-600 hover:underline"
+              className="mt-2 cursor-pointer text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
             >
-              {file ? file.name : "Choose File"}
+              {file ? `📄 ${file.name}` : "Choose File"}
             </label>
+            {file && (
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                Size: {(file.size / 1024 / 1024).toFixed(2)} MB
+              </p>
+            )}
           </div>
         </div>
 
         {/* Tags */}
         <div>
-          <label className="block text-sm font-medium mb-3 flex items-center gap-2">
+          <label className="text-sm font-medium mb-3 flex items-center gap-2 text-gray-700 dark:text-gray-300">
             <Tag className="w-4 h-4 text-indigo-500" /> Tags
           </label>
           <div className="flex flex-wrap gap-2">
@@ -297,12 +452,20 @@ function UploadDocumentContent() {
           </div>
         </div>
 
-        {/* Submit */}
-        <div className="flex justify-end">
+        {/* Submit Buttons */}
+        <div className="flex justify-end gap-3 pt-4">
+          <button
+            type="button"
+            onClick={() => router.push(`/${locale}/dashboard/documents`)}
+            disabled={loading}
+            className="px-6 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            Cancel
+          </button>
           <button
             type="submit"
             disabled={loading}
-            className={`px-6 py-2 rounded-lg text-white ${
+            className={`px-6 py-2 rounded-lg text-white font-medium transition-colors ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-indigo-600 hover:bg-indigo-700"
@@ -314,19 +477,11 @@ function UploadDocumentContent() {
                 Uploading...
               </span>
             ) : (
-              "Upload"
+              "Upload Document"
             )}
           </button>
         </div>
       </form>
     </div>
-  );
-}
-
-export default function UploadDocumentPage() {
-  return (
-    <Provider store={store}>
-      <UploadDocumentContent />
-    </Provider>
   );
 }

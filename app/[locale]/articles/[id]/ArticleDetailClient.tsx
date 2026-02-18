@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
+import parse from "html-react-parser";
 
 import Link from "next/link";
 import {
@@ -73,11 +74,11 @@ export default function ArticleDetailClient() {
     translatedText?: string;
     translatedUrl?: string;
   } | null>(null);
-  
+
   const [translating, setTranslating] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Yoruba reader state
   const [fontSize, setFontSize] = useState(16);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -122,15 +123,15 @@ export default function ArticleDetailClient() {
 
   const handleDownloadYoruba = () => {
     if (!translatedDoc?.fileUrl) return;
-    
+
     // Create a download link
-    const link = document.createElement('a');
+    const link = globalThis.document.createElement("a");
     link.href = translatedDoc.fileUrl;
-    link.download = `${document?.title || 'document'}_yoruba.pdf`;
-    link.target = '_blank';
-    document.body.appendChild(link);
+    link.download = `${document?.title || "document"}_yoruba.pdf`;
+    link.target = "_blank";
+    globalThis.document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
+    globalThis.document.body.removeChild(link);
   };
 
   if (loading) {
@@ -138,7 +139,9 @@ export default function ArticleDetailClient() {
       <div className="flex justify-center items-center h-screen">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-sky-500 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">Loading document...</p>
+          <p className="text-gray-600 dark:text-gray-400">
+            Loading document...
+          </p>
         </div>
       </div>
     );
@@ -175,7 +178,7 @@ export default function ArticleDetailClient() {
 
           <div className="flex flex-wrap items-center text-sm text-gray-600 dark:text-gray-400 gap-6">
             <span className="flex items-center gap-2">
-              <User size={18} className="text-sky-500" /> 
+              <User size={18} className="text-sky-500" />
               <strong>Author:</strong> {document.author}
             </span>
             <span className="flex items-center gap-2">
@@ -218,7 +221,8 @@ export default function ArticleDetailClient() {
                 {t("articles.quickStats.fields.readingTime")}
               </p>
               <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-                {document.readingTime} min{document.readingTime !== 1 ? "s" : ""}
+                {document.readingTime} min
+                {document.readingTime !== 1 ? "s" : ""}
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
@@ -328,14 +332,19 @@ export default function ArticleDetailClient() {
                   {t("articles.preview.sections.yoruba.notice.title")}
                 </p>
                 <p>{t("articles.preview.sections.yoruba.notice.limit")}</p>
-                <p>{t("articles.preview.sections.yoruba.notice.alternative")}</p>
+                <p>
+                  {t("articles.preview.sections.yoruba.notice.alternative")}
+                </p>
               </div>
             </div>
 
             {!translatedDoc ? (
               <div className="flex flex-col items-center justify-center py-20 space-y-6">
                 <div className="p-6 bg-white dark:bg-gray-800 rounded-full shadow-lg">
-                  <BookOpen size={48} className="text-green-600 dark:text-green-400" />
+                  <BookOpen
+                    size={48}
+                    className="text-green-600 dark:text-green-400"
+                  />
                 </div>
                 <button
                   onClick={handleTranslate}
@@ -361,27 +370,32 @@ export default function ArticleDetailClient() {
             ) : (
               <div className="space-y-4">
                 {/* Yoruba Content Reader */}
-                <div 
+                <div
                   className={`
                     bg-white dark:bg-gray-900 rounded-xl shadow-lg border-2 border-green-200 dark:border-gray-600 
                     transition-all duration-300
-                    ${isFullscreen ? 'fixed inset-4 z-50' : 'relative'}
+                    ${isFullscreen ? "fixed inset-4 z-50" : "relative"}
                   `}
                 >
                   {/* Reader Controls */}
                   <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-t-xl">
                     <div className="flex items-center gap-2">
-                      <BookOpen size={20} className="text-green-600 dark:text-green-400" />
+                      <BookOpen
+                        size={20}
+                        className="text-green-600 dark:text-green-400"
+                      />
                       <span className="font-medium text-gray-700 dark:text-gray-300">
                         Yoruba Translation
                       </span>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       {/* Font Size Controls */}
                       <div className="flex items-center gap-2 bg-white dark:bg-gray-900 rounded-lg px-3 py-1.5 shadow-sm border border-gray-200 dark:border-gray-700">
                         <button
-                          onClick={() => setFontSize(Math.max(12, fontSize - 2))}
+                          onClick={() =>
+                            setFontSize(Math.max(12, fontSize - 2))
+                          }
                           className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"
                           title="Decrease font size"
                         >
@@ -391,7 +405,9 @@ export default function ArticleDetailClient() {
                           {fontSize}
                         </span>
                         <button
-                          onClick={() => setFontSize(Math.min(24, fontSize + 2))}
+                          onClick={() =>
+                            setFontSize(Math.min(24, fontSize + 2))
+                          }
                           className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"
                           title="Increase font size"
                         >
@@ -403,7 +419,9 @@ export default function ArticleDetailClient() {
                       <button
                         onClick={() => setIsFullscreen(!isFullscreen)}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition"
-                        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                        title={
+                          isFullscreen ? "Exit fullscreen" : "Enter fullscreen"
+                        }
                       >
                         <Maximize2 size={18} />
                       </button>
@@ -421,26 +439,39 @@ export default function ArticleDetailClient() {
                   </div>
 
                   {/* Reader Content */}
-                  <div 
+                  <div
                     className={`
                       overflow-y-auto bg-white dark:bg-gray-900 rounded-b-xl
-                      ${isFullscreen ? 'h-[calc(100%-60px)]' : 'max-h-[600px]'}
+                      ${isFullscreen ? "h-[calc(100%-60px)]" : "max-h-[600px]"}
                     `}
                   >
                     {translatedDoc?.translation ? (
-                      <div 
-                        className="p-8 md:p-12 prose prose-lg dark:prose-invert max-w-none"
-                        style={{ fontSize: `${fontSize}px`, lineHeight: '1.8' }}
+                      <div
+                        className="p-8 md:p-12 prose prose-lg dark:prose-invert max-w-none
+               prose-headings:font-bold 
+               prose-h1:text-3xl prose-h1:mb-4 prose-h1:text-sky-700 dark:prose-h1:text-sky-300
+               prose-h2:text-2xl prose-h2:mt-6 prose-h2:mb-3 prose-h2:text-sky-600 dark:prose-h2:text-sky-400
+               prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:mb-4
+               prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-bold
+               prose-table:w-full prose-table:border-collapse prose-table:my-6
+               prose-th:border prose-th:border-gray-300 dark:prose-th:border-gray-600 
+               prose-th:bg-sky-100 dark:prose-th:bg-sky-900/30 prose-th:p-3 prose-th:text-left
+               prose-td:border prose-td:border-gray-300 dark:prose-td:border-gray-600 
+               prose-td:p-3 prose-td:text-gray-700 dark:prose-td:text-gray-300"
+                        style={{ fontSize: `${fontSize}px`, lineHeight: "1.8" }}
                       >
-                        <div className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap font-serif">
-                          {translatedDoc.translation}
-                        </div>
+                        {parse(translatedDoc.translation)}
                       </div>
                     ) : (
                       <div className="p-12 text-center text-gray-500 dark:text-gray-400">
-                        <FileText size={48} className="mx-auto mb-4 text-gray-300 dark:text-gray-600" />
+                        <FileText
+                          size={48}
+                          className="mx-auto mb-4 text-gray-300 dark:text-gray-600"
+                        />
                         <p>No translated content available</p>
-                        <p className="text-sm mt-2">Please download the PDF to view the full translation</p>
+                        <p className="text-sm mt-2">
+                          Please download the PDF to view the full translation
+                        </p>
                       </div>
                     )}
                   </div>
@@ -486,35 +517,37 @@ export default function ArticleDetailClient() {
         )}
 
         {/* Related Documents */}
-        {Array.isArray(document.relatedDocs) && document.relatedDocs.length > 0 && (
-          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-            <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4 flex items-center gap-2">
-              <BookOpen size={20} /> {t("articles.relatedDocs.title")}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {document.relatedDocs.map((doc) => (
-                <Link
-                  key={doc.id}
-                  href={`/articles/${doc.id}`}
-                  className="p-4 bg-sky-50 dark:bg-gray-700 rounded-lg hover:bg-sky-100 dark:hover:bg-gray-600 transition border border-sky-100 dark:border-gray-600 group"
-                >
-                  <h3 className="font-semibold text-sky-700 dark:text-sky-300 group-hover:underline mb-1">
-                    {doc.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Published: {doc.publishedYear}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+        {Array.isArray(document.relatedDocs) &&
+          document.relatedDocs.length > 0 && (
+            <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+              <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4 flex items-center gap-2">
+                <BookOpen size={20} /> {t("articles.relatedDocs.title")}
+              </h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {document.relatedDocs.map((doc) => (
+                  <Link
+                    key={doc.id}
+                    href={`/articles/${doc.id}`}
+                    className="p-4 bg-sky-50 dark:bg-gray-700 rounded-lg hover:bg-sky-100 dark:hover:bg-gray-600 transition border border-sky-100 dark:border-gray-600 group"
+                  >
+                    <h3 className="font-semibold text-sky-700 dark:text-sky-300 group-hover:underline mb-1">
+                      {doc.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Published: {doc.publishedYear}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
         {/* Feedbacks */}
         {Array.isArray(document.feedbacks) && document.feedbacks.length > 0 && (
           <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
             <h2 className="text-xl font-semibold text-sky-700 dark:text-sky-300 mb-4 flex items-center gap-2">
-              <Star size={20} className="text-yellow-500" /> {t("articles.feedbacks.title")}
+              <Star size={20} className="text-yellow-500" />{" "}
+              {t("articles.feedbacks.title")}
             </h2>
             <div className="space-y-4">
               {document.feedbacks.map((fb) => (

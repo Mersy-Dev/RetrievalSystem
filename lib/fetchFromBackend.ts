@@ -1,5 +1,5 @@
 import { handleAxiosError } from '@/components/utils/handleAxiosError';
-import { ApiResponse } from '@/types/APIresponse';
+import { ApiResponse } from '@/types/ApiResponse'
 import { FetchWithAuthOptions } from '@/types/FetchFromBackend';
 import { RequestMethod } from '@/types/http/RequestMethod';
 import axios, { AxiosRequestConfig, Method as AxiosMethod } from 'axios';

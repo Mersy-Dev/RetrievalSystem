@@ -9,7 +9,7 @@ export default function ChatWrapper({ lang }: { lang: "en" | "yo" }) {
 
   return (
     <>
-      <ChatButton onClick={() => setOpen(true)} />
+      <ChatButton onClick={() => setOpen(true)} lang={lang} />
       <ChatDrawer open={open} onClose={() => setOpen(false)} lang={lang} />
     </>
   );

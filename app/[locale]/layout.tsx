@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/nav/Header";
 import LanguageProvider from "@/components/provider/LanguageProvider";
 import { ThemeProvider } from "next-themes";
+import { ReduxProvider } from "@/components/ReduxProvider";
 
 import ChatWrapper from "@/components/assistant/ChatWrapper";
 import './chat-animations.css';  
@@ -65,15 +66,17 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <LanguageProvider locale={locale} />
+          <ReduxProvider>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <LanguageProvider locale={locale} />
 
-            <Header />
-            <ChatWrapper lang={locale as "en" | "yo"} />
-            <main className="pt-0">{children}</main>
-          </NextIntlClientProvider>
+              <Header />
+              <ChatWrapper lang={locale as "en" | "yo"} />
+              <main className="pt-0">{children}</main>
+            </NextIntlClientProvider>
 
-          <ToastContainer position="top-right" autoClose={3000} theme="light" />
+            <ToastContainer position="top-right" autoClose={3000} theme="light" />
+          </ReduxProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -134,8 +134,9 @@ const Navbar = () => {
               {t("about")}
             </Link>
 
+            {/* Updated Dashboard Link - Now points to login */}
             <Link
-              href="/dashboard"
+              href="/auth/login"
               className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200"
             >
               {t("dashboard")}
