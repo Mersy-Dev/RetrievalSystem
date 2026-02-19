@@ -11,7 +11,7 @@
     "test": "echo \"No tests available\" && exit 0",
     "code-lint": "eslint --fix app components i18n && prettier --write app components i18n",
     "review": "npm run type-check && npm run code-lint",
-    "prepare": "husky install",
+    "prepare": "husky",
     "precommit": "lint-staged",
     "postinstall": "husky install",
     "check-translations": "ts-node checkTranslations.ts"
