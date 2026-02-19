@@ -23,18 +23,18 @@ const shuffleArray = <T,>(array: T[]) =>
 
 const highlightMatch = (text: string, query: string) => {
   if (!query.trim()) return text;
-  
+
   const keywords = normalizeText(query).split(/\s+/).filter(Boolean);
   let highlightedText = text;
-  
+
   keywords.forEach((keyword) => {
     const regex = new RegExp(`(${keyword})`, "gi");
     highlightedText = highlightedText.replace(
       regex,
-      '<mark class="bg-yellow-200 dark:bg-yellow-600 px-1 rounded">$1</mark>'
+      '<mark class="bg-yellow-200 dark:bg-yellow-600 px-1 rounded">$1</mark>',
     );
   });
-  
+
   return highlightedText;
 };
 
@@ -46,7 +46,7 @@ function SearchPageContent() {
   const t = useTranslations("system");
 
   const { allDocuments, loading, error } = useAppSelector(
-    (state) => state.documents
+    (state) => state.documents,
   );
 
   const [query, setQuery] = useState("");
@@ -64,7 +64,7 @@ function SearchPageContent() {
     if (query.trim()) {
       setIsSearching(true);
       setHasSearched(false);
-      
+
       const startTime = Date.now();
       const timer = setTimeout(() => {
         setIsSearching(false);
@@ -184,18 +184,20 @@ function SearchPageContent() {
                   Popular searches:
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {t.raw("tags").map((tag: string) => (
-                    <button
-                      key={tag}
-                      onClick={() => {
-                        setQuery(tag.replace(/^[^\s]+\s/, ""));
-                        setVisibleCount(10);
-                      }}
-                      className="text-sm bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-sky-500 dark:hover:border-sky-400 hover:shadow-md rounded-full px-4 py-2 transition-all duration-200"
-                    >
-                      {tag}
-                    </button>
-                  ))}
+                  {Object.values(t.raw("tags") as Record<string, string>).map(
+                    (tag: string) => (
+                      <button
+                        key={tag}
+                        onClick={() => {
+                          setQuery(tag.replace(/^[^\s]+\s/, ""));
+                          setVisibleCount(10);
+                        }}
+                        className="text-sm bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-sky-500 dark:hover:border-sky-400 hover:shadow-md rounded-full px-4 py-2 transition-all duration-200"
+                      >
+                        {tag}
+                      </button>
+                    ),
+                  )}
                 </div>
               </div>
             )}
@@ -208,7 +210,8 @@ function SearchPageContent() {
         {/* Search Stats - Google-like */}
         {hasSearched && !isSearching && (
           <div className="mb-4 text-sm text-gray-600 dark:text-gray-400 animate-fade-in">
-            About {filteredDocs.length} results ({searchTime.toFixed(2)} seconds)
+            About {filteredDocs.length} results ({searchTime.toFixed(2)}{" "}
+            seconds)
           </div>
         )}
 
@@ -241,10 +244,12 @@ function SearchPageContent() {
               <div className="space-y-8">
                 {visibleDocs.length > 0 ? (
                   visibleDocs.map((doc, index) => {
-                    const title = locale === "yo" ? doc.titleYo || doc.title : doc.title;
+                    const title =
+                      locale === "yo" ? doc.titleYo || doc.title : doc.title;
                     const description =
                       locale === "yo"
-                        ? doc.descriptionYo || "Ko sí àlàyé tó wà nínú èdè Yorùbá."
+                        ? doc.descriptionYo ||
+                          "Ko sí àlàyé tó wà nínú èdè Yorùbá."
                         : doc.description || "No description available.";
 
                     return (
@@ -293,7 +298,7 @@ function SearchPageContent() {
                             __html: highlightMatch(
                               description.slice(0, 180) +
                                 (description.length > 180 ? "..." : ""),
-                              query
+                              query,
                             ),
                           }}
                         />
@@ -315,16 +320,19 @@ function SearchPageContent() {
             )}
 
             {/* Show More Button */}
-            {hasSearched && !isSearching && visibleCount < filteredDocs.length && (
-              <div className="mt-12 text-center animate-fade-in">
-                <button
-                  onClick={() => setVisibleCount((prev) => prev + 10)}
-                  className="bg-sky-600 dark:bg-sky-500 text-white px-8 py-3 rounded-full hover:bg-sky-700 dark:hover:bg-sky-600 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  {t("ui.viewMoreButton")} ({filteredDocs.length - visibleCount} more)
-                </button>
-              </div>
-            )}
+            {hasSearched &&
+              !isSearching &&
+              visibleCount < filteredDocs.length && (
+                <div className="mt-12 text-center animate-fade-in">
+                  <button
+                    onClick={() => setVisibleCount((prev) => prev + 10)}
+                    className="bg-sky-600 dark:bg-sky-500 text-white px-8 py-3 rounded-full hover:bg-sky-700 dark:hover:bg-sky-600 shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    {t("ui.viewMoreButton")} (
+                    {filteredDocs.length - visibleCount} more)
+                  </button>
+                </div>
+              )}
 
             {/* Initial State - Featured/Random Documents */}
             {showInitialView && allDocuments.length > 0 && (
